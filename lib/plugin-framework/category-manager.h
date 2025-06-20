@@ -39,6 +39,10 @@ public:
     QList<Category*> getCategorys();
     Category* getCategory(const QString& categoryID);
 
+signals:
+    void subItemAdded(const QString& categoryID, const QString& subitemID);
+    void subItemDeleted(const QString& categoryID, const QString& subitemID);
+
 private:
     bool loadAllCategory();
     bool loadAllSubItem();
