@@ -12,7 +12,10 @@
  * Author:     liuxinhao <liuxinhao@kylinsec.com.cn>
  */
 #include "plugin-manager.h"
+#include "logging-category.h"
 #include "plugin-loader.h"
+#include "plugin-prefs.h"
+#include "qt5-log-i.h"
 
 #include <QMutex>
 #include <QVector>
@@ -22,6 +25,7 @@ PluginManager* PluginManager::_instance = nullptr;
 PluginManager::~PluginManager()
 {
     qDeleteAll(m_plugins);
+    delete m_pluginPrefs;
 }
 
 PluginManager* PluginManager::instance()
@@ -47,7 +51,14 @@ bool PluginManager::init()
         return true;
     }
 
-    m_plugins = PluginLoader::loadAllPlugins();
+    m_pluginPrefs = new PluginPrefs();
+    if (!m_pluginPrefs->init())
+    {
+        KLOG_ERROR(qLcPluginFramework) << "plugin prefs init failed!";
+        return false;
+    }
+
+    m_plugins = PluginLoader::loadAllPlugins(m_pluginPrefs);
     m_isInited = true;
     return true;
 }

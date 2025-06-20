@@ -22,7 +22,6 @@ if( SERVER_MODE )
 else()
     set(ENABLE_SERVER_MODE false)
 endif()
-configure_file(./settings.ini.in ${CMAKE_BINARY_DIR}/settings.ini)
 
 find_package(Qt5 COMPONENTS
         Core
@@ -100,9 +99,6 @@ target_link_libraries(${PROJECT_NAME}
 install(FILES ${INCLUDE_SRC} DESTINATION ${KCP_INCLUDEDIR})
 install(FILES ${PANEL_QM_FILES} DESTINATION ${TRANSLATION_DIR})
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_FULL_BINDDIR})
-
-get_filename_component(KCP_SETTINGS_DIR ${KCP_SETTINGS} DIRECTORY CACHE)
-install(FILES ${CMAKE_BINARY_DIR}/settings.ini DESTINATION ${KCP_SETTINGS_DIR})
 
 add_subdirectory(lib)
 add_subdirectory(libexec)

@@ -48,9 +48,5 @@ target_link_libraries(${TARGET_NAME}
 #安装插件到指定目录
 install(TARGETS ${TARGET_NAME} DESTINATION ${PLUGIN_LIBS_DIR}/)
 
-#安装插件desktop
-configure_file(data/kiran-cpanel-display.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kiran-cpanel-display.desktop @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kiran-cpanel-display.desktop DESTINATION ${PLUGIN_DESKTOP_DIR}/ )
-
 #安装翻译文件
 install(FILES ${DISPLAY_QM_FILES} DESTINATION ${TRANSLATION_DIR} )

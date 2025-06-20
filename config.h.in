@@ -1,6 +1,5 @@
 #ifndef __KIRAN_CONFIG_H__
 
-#define SETTINGS_PATH              "@KCP_SETTINGS@"
 #define CATEGORY_DESKTOP_DIR       "@CATEGORY_DESKTOP_DIR@"
 #define CATEGORY_ICON_DIR          "@CATEGORY_ICON_DIR@"
 

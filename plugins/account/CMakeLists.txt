@@ -1,9 +1,5 @@
 set(TARGET_NAME kiran-cpanel-account)
 
-if (PASSWD_EXPIRATION_POLICY_VISIBLE)
-    add_definitions(-DPASSWD_EXPIRATION_POLICY)
-endif ()
-
 pkg_search_module(CRYPTOPP REQUIRED cryptopp)
 pkg_search_module(PAM pam)
 

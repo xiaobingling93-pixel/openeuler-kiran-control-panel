@@ -34,7 +34,9 @@ int AccountPlugin::init(KiranControlPanel::PanelInterface* interface)
 {
     m_panelInterface = interface;
 
-    if (!AccountsGlobalInfo::instance()->init())
+    auto showRoot = m_panelInterface->queryCofnig("showRootAccount",false).toBool();
+    auto showPasswordExpirationPolicy = m_panelInterface->queryCofnig("showPasswordExpirationPolicy",false).toBool();
+    if (!AccountsGlobalInfo::instance()->init(showRoot,showPasswordExpirationPolicy))
     {
         KLOG_ERROR(qLcAccount) << "load user info failed!";
         return -1;

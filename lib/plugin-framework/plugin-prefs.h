@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2020 ~ 2024 KylinSec Co., Ltd.
+ * Copyright (c) 2020 ~ 2025 KylinSec Co., Ltd.
  * kiran-control-panel is licensed under Mulan PSL v2.
  * You can use this software according to the terms and conditions of the Mulan PSL v2.
  * You may obtain a copy of Mulan PSL v2 at:
@@ -12,28 +12,27 @@
  * Author:     liuxinhao <liuxinhao@kylinsec.com.cn>
  */
 #include <QString>
+#include <QVariant>
+#include "plugin.h"
 
-namespace Kiran
+class QGSettings;
+class PluginPrefs
 {
-namespace Network
-{
-class Prefs
-{
+    friend class PluginManager;
+
 public:
-    ~Prefs();
-    static Prefs *instance();
+    PluginPrefs();
+    ~PluginPrefs();
 
-    bool getCheckConnectivity() const;
-    QString getConnectivityAddress() const;
-    qint64 getConnectivityPort() const;
-    bool getCheckWiredCarrier() const;
+    QStringList getDisabledPlugins() const;
+    QVariant queryConfig(const QString& key, const QVariant& defaultVar = QVariant()) const;
+
+protected:
+    bool init();
+    void dump();
 
 private:
-    Prefs();
-    bool m_checkConnectivity = true;
-    QString m_connectivityAddress = "";
-    qint64 m_connectivityPort = 0;
-    bool m_checkWiredCarrier = false;
+    static PluginPrefs* _instance;
+    bool m_isInited = false;
+    QGSettings* m_settings = nullptr;
 };
-}  // namespace Network
-}  // namespace Kiran

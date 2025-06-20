@@ -15,12 +15,12 @@
 
 #include "plugin.h"
 
+class PluginPrefs;
 class PluginLoader
 {
 public:
     PluginLoader(){};
     ~PluginLoader(){};
 
-    static QList<Plugin*> loadAllPlugins();
-    static Plugin* loadSinglePlugin(const QString& path);
+    static QList<Plugin*> loadAllPlugins(PluginPrefs* prefs);
 };

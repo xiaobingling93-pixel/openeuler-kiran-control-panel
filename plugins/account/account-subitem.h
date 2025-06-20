@@ -29,7 +29,7 @@ public:
     AccountSubItem(KiranControlPanel::PanelInterface* interface, QObject* parent = nullptr);
     ~AccountSubItem();
 
-    virtual bool eventFilter(QObject* watched, QEvent* event);
+    bool eventFilter(QObject* watched, QEvent* event) override;
 
     QString getID() override;
     QString getName() override;

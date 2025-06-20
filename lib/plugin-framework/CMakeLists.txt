@@ -12,10 +12,12 @@ target_include_directories(${TARGET_NAME} PRIVATE
         ${CMAKE_CURRENT_BINARY_DIR}
         ${PROJECT_BINARY_DIR}
         ${KLOG_INCLUDE_DIRS}
-        ${GLIB_2_INCLUDE_DIRS})
+        ${GLIB_2_INCLUDE_DIRS}
+        ${QGSETTINGS_INCLUDE_DIRS})
 
 target_link_libraries(${TARGET_NAME} PRIVATE
         Qt5::Core
         Qt5::Widgets
         ${KLOG_LIBRARIES}
-        ${GLIB_2_LIBRARIES})
+        ${GLIB_2_LIBRARIES}
+        ${QGSETTINGS_LIBRARIES})
