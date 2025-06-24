@@ -48,7 +48,7 @@ bool AvatarEditorWrapper::exec(const QString &srcImage, QString &dstImage)
 
     avatarEditorProcess.start(ACCOUNT_AVATAR_EDITOR,
                               QStringList() << "--image" << srcImage
-                                            << "--cliped-save-path" << tempFilePath,
+                                            << "--clipped-save-path" << tempFilePath,
                               QIODevice::NotOpen);
 
     if (!avatarEditorProcess.waitForStarted(3000))
