@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema id="com.kylinsec.kiran.control-panel.plugin" path="/com/kylinsec/kiran/control-panel/">
+        <key name="disabled-plugins" type="as">
+            <default>[]</default>
+            <summary>Disable Plugins</summary>
+            <description>Disabled plug-ins.</description>
+        </key>
+        <key name="show-root-account" type="b">
+            <default>false</default>
+            <summary>Whether to show Rooted users in the Control Center Accounts plugin</summary>
+            <description>Whether to show Rooted users in the Control Center Accounts plugin.</description>
+        </key>
+        <key name="server-mode" type="b">
+            <default>false</default>
+            <summary>Server Mode</summary>
+            <description>Whether the Control Center is running in server mode.</description>
+        </key>
+        <key name="show-password-expiration-policy" type="b">
+            <default>false</default>
+            <summary>Show Password Expiration Policy</summary>
+            <description>Whether to show the Password Expiration Policy in the Control Center Accounts plugin.</description>
+        </key>
+    </schema>
+</schemalist>

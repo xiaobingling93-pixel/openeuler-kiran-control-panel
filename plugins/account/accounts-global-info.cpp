@@ -51,7 +51,7 @@ AccountsGlobalInfo *AccountsGlobalInfo::instance()
     return pInst.data();
 }
 
-bool AccountsGlobalInfo::init()
+bool AccountsGlobalInfo::init(bool showRoot, bool showPasswordExpirationPolicy)
 {
     if (m_accountsInterface.isNull())
     {
@@ -69,16 +69,7 @@ bool AccountsGlobalInfo::init()
             { m_pubkey = publicKey; });
 
     // 判断是否显示ROOT用户
-    QSettings settings(SETTINGS_PATH, QSettings::IniFormat);
-    if (settings.status() != QSettings::NoError)
-    {
-        KLOG_WARNING(qLcAccount) << "parse" << SETTINGS_PATH << "failed!" << settings.status();
-    }
-    else
-    {
-        m_showRoot = settings.value("Account/ShowRoot", false).toBool();
-    };
-    KLOG_DEBUG(qLcAccount, "show root:%s", m_showRoot ? "true" : "false");
+    KLOG_DEBUG(qLcAccount, "show root:%s", showRoot ? "true" : "false");
 
     // 加载用户
     QDBusPendingReply<QList<QDBusObjectPath>> getUsersReply;
@@ -94,7 +85,7 @@ bool AccountsGlobalInfo::init()
     }
     objList = getUsersReply.value();
 
-    if (m_showRoot)
+    if (showRoot)
     {
         // 将Root用户加入链表中
         auto getRootReply = m_accountsInterface->FindUserById(0);
@@ -143,6 +134,7 @@ bool AccountsGlobalInfo::init()
     } while (0);
 
     m_pubkey = m_accountsInterface->rsa_public_key();
+    m_showPasswordExpirationPolicy = showPasswordExpirationPolicy;
     return true;
 }
 
@@ -189,6 +181,11 @@ bool AccountsGlobalInfo::checkUserNameAvaliable(const QString &userName)
 QString AccountsGlobalInfo::getCurrentUser()
 {
     return m_curUserName;
+}
+
+bool AccountsGlobalInfo::getShowPasswordExpirationPolicy()
+{
+    return m_showPasswordExpirationPolicy;
 }
 
 QString AccountsGlobalInfo::rsaPublicKey()

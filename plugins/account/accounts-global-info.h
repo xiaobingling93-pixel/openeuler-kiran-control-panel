@@ -30,7 +30,7 @@ public:
     static AccountsGlobalInfo *instance();
     static QString rsaPublicKey();
 
-    bool init();
+    bool init(bool showRoot, bool showPasswordExpirationPolicy);
 
     // 获取排序之后的用户列表
     QList<QString> getUserObjectPathList();
@@ -40,6 +40,9 @@ public:
     bool checkUserNameAvaliable(const QString &userName);
 
     QString getCurrentUser();
+
+    // 获取是否显示密码过期策略
+    bool getShowPasswordExpirationPolicy();
 
 private:
     void addUserToMap(const QDBusObjectPath &user);
@@ -59,8 +62,8 @@ private:
     DBusWrapper::KiranAccountServicePtr m_accountsInterface;
     QMap<QString,DBusWrapper::KiranAccountServiceUserPtr> m_usersMap; // QMap<DBus对象路径,用户相关接口>
     QString m_curUserName;
-    bool m_showRoot =  false;
     QString m_pubkey;
+    bool m_showPasswordExpirationPolicy;
 };
 
 #endif  // ACCOUNTSGLOBALINFO_H

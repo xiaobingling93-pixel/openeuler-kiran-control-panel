@@ -14,18 +14,35 @@
 
 #include "plugin-loader.h"
 #include "config.h"
+#include "logging-category.h"
+#include "plugin-prefs.h"
 #include "plugin-v1.h"
 #include "plugin-v2.h"
-#include "logging-category.h"
 
 #include <qt5-log-i.h>
 #include <QDir>
+#include <QGSettings>
 #include <QScopedPointer>
 
-QList<Plugin*> PluginLoader::loadAllPlugins()
+QString getPluginIDFromFile(QString baseName)
+{
+    static char* prefixs[] = {"kiran-cpnael-", "libkiran-cpanel-", NULL};
+    for (int i = 0; prefixs[i]; i++)
+    {
+        if (baseName.startsWith(prefixs[i]))
+        {
+            return baseName.mid(strlen(prefixs[i]));
+        }
+    }
+    return baseName;
+}
+
+QList<Plugin*> PluginLoader::loadAllPlugins(PluginPrefs* prefs)
 {
     QStringList loadedPluginLibrarys;
     QList<Plugin*> plugins;
+
+    auto disabledPlugins = prefs->getDisabledPlugins();
 
     // 老版本接口,通过插件desktop文件加载插件信息以及插件的共享库
     QDir desktopDir(PLUGIN_DESKTOP_DIR);
@@ -33,6 +50,12 @@ QList<Plugin*> PluginLoader::loadAllPlugins()
     for (auto desktopFileInfo : desktopFileInfoList)
     {
         QString pluginPath = desktopFileInfo.absoluteFilePath();
+        QString desktopName = desktopFileInfo.baseName();
+        if (disabledPlugins.contains(getPluginIDFromFile(desktopName)))
+        {
+            KLOG_INFO(qLcPluginFramework) << "plugin" << desktopName << "is disabled, skip load it.";
+            continue;
+        }
 
         QScopedPointer<PluginV1> pPlugin(new PluginV1());
         if (!pPlugin->load(pluginPath))
@@ -55,10 +78,17 @@ QList<Plugin*> PluginLoader::loadAllPlugins()
     {
         QString libraryPath = libraryFileInfo.absoluteFilePath();
 
+        QString libraryName = libraryFileInfo.baseName();
+        if (disabledPlugins.contains(getPluginIDFromFile(libraryName)))
+        {
+            KLOG_INFO(qLcPluginFramework) << "plugin" << libraryName << "is disabled, skip load it.";
+            continue;
+        }
+
         if (loadedPluginLibrarys.contains(libraryPath))
             continue;
 
-        QScopedPointer<PluginV2> pPlugin(new PluginV2());
+        QScopedPointer<PluginV2> pPlugin(new PluginV2(prefs));
         if (!pPlugin->load(libraryPath))
         {
             KLOG_WARNING(qLcPluginFramework) << "can't load plugin v2:" << libraryPath;
@@ -70,26 +100,4 @@ QList<Plugin*> PluginLoader::loadAllPlugins()
     }
 
     return plugins;
-}
-
-Plugin* PluginLoader::loadSinglePlugin(const QString& path)
-{
-    if (path.endsWith(".desktop"))
-    {
-        QScopedPointer<PluginV1> pPlugin(new PluginV1);
-        if (pPlugin->load(path))
-        {
-            return pPlugin.take();
-        }
-    }
-    else if (path.endsWith(".so"))
-    {
-        QScopedPointer<PluginV2> pPlugin(new PluginV2);
-        if (pPlugin->load(path))
-        {
-            return pPlugin.take();
-        }
-    }
-
-    return nullptr;
 }

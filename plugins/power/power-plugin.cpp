@@ -20,7 +20,6 @@
 #include "pages/power-settings-page.h"
 #include "pages/server-general-settings.h"
 #include "plugin-subitem.h"
-#include "power-prefs.h"
 #include "upower-interface.h"
 
 #include <kiran-log/qt5-log-i.h>
@@ -39,9 +38,9 @@ PowerPlugin::~PowerPlugin()
 int PowerPlugin::init(KiranControlPanel::PanelInterface* interface)
 {
     PowerInterface::globalInit();
-    Power::Prefs prefs;
 
-    if (prefs.enableServerMode())
+    auto serverMode = interface->queryCofnig("serverMode",false).toBool();
+    if (serverMode)
     {
         initServerPower();
     }

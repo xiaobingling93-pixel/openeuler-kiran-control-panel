@@ -13,8 +13,10 @@
  */
 #include "plugin-v2.h"
 #include "logging-category.h"
+#include "plugin-prefs.h"
 
 #include <qt5-log-i.h>
+#include <qvariant.h>
 #include <QFileInfo>
 
 #define RETURN_VAL_IF_IVALID(val)             \
@@ -26,8 +28,9 @@
         }                                     \
     }
 
-PluginV2::PluginV2(QObject* parent)
-    : Plugin(parent)
+PluginV2::PluginV2(PluginPrefs* prefs, QObject* parent)
+    : Plugin(parent),
+      m_prefs(prefs)
 {
     m_isValid = false;
 }
@@ -112,4 +115,9 @@ void PluginV2::handlePluginSubItemInfoChanged(const QString& subItemID)
 void PluginV2::handlePluginSubItemChanged()
 {
     emit Plugin::subItemChanged();
+}
+
+QVariant PluginV2::queryCofnig(const QString& key,const QVariant& defaultVar)
+{
+    return m_prefs->queryConfig(key,defaultVar);
 }

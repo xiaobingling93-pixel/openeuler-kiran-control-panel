@@ -18,6 +18,7 @@
 #include "plugin-manager.h"
 
 #include <glib.h>
+#include <qobject.h>
 #include <qt5-log-i.h>
 #include <QDir>
 #include <QMutex>
@@ -194,7 +195,8 @@ bool CategoryManager::loadAllSubItem()
     }
 
     QList<Plugin*> plugins = pluginManager->getPlugins();
-
+    
+    QSignalBlocker blocker(this);
     QSet<QString> subitemIDs;
     for (auto plugin : plugins)
     {
@@ -271,6 +273,7 @@ void CategoryManager::addSubItemToCategory(Plugin* plugin, KiranControlPanel::Su
 
     Category* category = categoryIter.value();
     category->appendSubItem(subitem);
+    emit subItemAdded(categoryID, subitemID);
 }
 
 void CategoryManager::removeSubItem(const QString& categoryID, Plugin* plugin, const QString& subitemID)
@@ -286,6 +289,7 @@ void CategoryManager::removeSubItem(const QString& categoryID, Plugin* plugin, c
             break;
         }
     }
+    emit subItemDeleted(categoryID, subitemID);
 }
 
 /**

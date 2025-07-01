@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include <QVariant>
 #include <QString>
 
 namespace KiranControlPanel
@@ -22,9 +23,11 @@ namespace KiranControlPanel
 class PanelInterface
 {
 public:
-    //通知控制中心主面板功能项信息变化
+    // 通知控制中心主面板功能项信息变化
     virtual void handlePluginSubItemInfoChanged(const QString& subItemID) = 0;
-    //通知控制中心主面板 功能项 发生改变,调用该接口,控制中心将重新加载该插件下的功能项信息
+    // 通知控制中心主面板 功能项 发生改变,调用该接口,控制中心将重新加载该插件下的功能项信息
     virtual void handlePluginSubItemChanged() = 0;
+    // 从面板GSettings中获取插件内部相关的配置项
+    virtual QVariant queryCofnig(const QString& key,const QVariant& default_var=QVariant()) = 0; 
 };
 }  // namespace KiranControlPanel

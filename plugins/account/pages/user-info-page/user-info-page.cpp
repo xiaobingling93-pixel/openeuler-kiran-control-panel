@@ -112,7 +112,6 @@ void UserInfoPage::setAvatarIconPath(const QString &iconPath)
 void UserInfoPage::initUI()
 {
     ui->btn_changePasswd->setFontUnderLine(true);
-    ui->btn_authManager->setFontUnderLine(true);
     ui->btn_passwdExpirationPolicy->setFontUnderLine(true);
 
     m_errorTip = new KiranTips(this);
@@ -178,30 +177,13 @@ void UserInfoPage::initUI()
         m_errorTip->hideTip();
         ui->stackedWidget->setCurrentIndex(PAGE_USER_INFO); });
 
-    // 不启用老版本认证管理,新版本认证管理已移入到认证管理分类下
-#if 0
-    QSettings biometricsSettings("/etc/kiran-biometrics/settings.conf", QSettings::IniFormat);
-    bool supportFinger = biometricsSettings.value("SupportFinger", QVariant(false)).toBool();
-    bool supportFace = biometricsSettings.value("SupportFace", QVariant(false)).toBool();
-
-    if (supportFace || supportFinger)
-    {
-        connect(ui->btn_authManager, &QPushButton::clicked, [this]() {
-            emit sigAuthManager(m_curShowUserPath);
-        });
-    }
-    else
-#endif
-    {
-        ui->btn_authManager->setVisible(false);
-    }
-
-#ifdef PASSWD_EXPIRATION_POLICY
     connect(ui->btn_passwdExpirationPolicy, &QPushButton::clicked, [this]()
             { emit requestPasswordExpirationPolicy(m_curShowUserPath); });
-#else
-    ui->btn_passwdExpirationPolicy->setVisible(false);
-#endif
+
+    if( !AccountsGlobalInfo::instance()->getShowPasswordExpirationPolicy() )
+    {
+        ui->btn_passwdExpirationPolicy->setVisible(false);
+    }
 }
 
 void UserInfoPage::resetPageSetPasswd()

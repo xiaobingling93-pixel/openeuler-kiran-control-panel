@@ -20,9 +20,10 @@
 
 class QButtonGroup;
 class QAbstractButton;
-class QLayout;
+class QVBoxLayout;
 class QFrame;
 class QGraphicsDropShadowEffect;
+class CategoryItem;
 class CategorySideBar : public KiranColorBlock
 {
     Q_OBJECT
@@ -49,13 +50,13 @@ protected:
 private:
     QButtonGroup* m_categoryBtnGroup;
     QWidget* m_contentWidget = nullptr;
-    QLayout* m_contentLayout = nullptr;
+    QVBoxLayout* m_contentLayout = nullptr;
 
     QString m_curCategoryID;
     bool m_isExpaned = false;
 
-    /// @brief QMap<Category ID,Categorys Button Group ID>
-    QMap<QString, int> m_categorysIDMap;
+    /// @brief QMap<Category ID,Categorys Sidebar Item>
+    QMap<QString, CategoryItem*> m_categorysIDMap;
 };
 
 #endif  // KCP_CATEGORY_CATEGORY_WIDGET_H

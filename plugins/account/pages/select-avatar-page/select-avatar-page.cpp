@@ -190,6 +190,7 @@ void SelectAvatarPage::initUI()
         QString dstImagePath;
         if (AvatarEditorWrapper::exec(fileName, dstImagePath))
         {
+            KLOG_INFO() << "exec avatar editor success." << dstImagePath;
             addAvatar(dstImagePath, AVATAR_CUSTOM, false);
             moveAddButtonToEnd();
         } });
@@ -223,7 +224,7 @@ AvatarButton *SelectAvatarPage::addAvatar(const QString &iconPath, AvatarTypeEnu
         btn->setObjectName(CUSTOM_AVATAR_OBJ_NAME);
         break;
     }
-    btn->setIcon(QIcon::fromTheme(iconPath));
+    btn->setIcon(iconPath);
     btn->setFixedSize(80, 80);
     btn->setAccessibleName(QString("AvatarButton::%1").arg(iconPath));
     if (type != AVATAR_ADD)

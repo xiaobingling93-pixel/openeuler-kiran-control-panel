@@ -15,6 +15,7 @@
 
 #include "plugin.h"
 
+class PluginPrefs;
 class PluginManager
 {
 public:
@@ -34,6 +35,7 @@ private:
 
 private:
     static PluginManager* _instance;
+    PluginPrefs* m_pluginPrefs = nullptr;
     QList<Plugin*> m_plugins;
     bool m_isInited = false;
 };
