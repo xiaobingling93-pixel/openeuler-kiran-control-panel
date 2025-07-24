@@ -292,7 +292,7 @@ void OutputPage::changeDefaultOutputCard(int index)
     for (auto sink : sinksList)
     {
         AudioDeviceInterface audioSink(AUDIO_DBUS_NAME, sink, QDBusConnection::sessionBus(), this);
-        if (cardIndex == audioSink.card_index() && audioSink.isAvailablePorts())
+        if (cardIndex == (int)audioSink.card_index() && audioSink.isAvailablePorts())
         {
             sinkIndex = audioSink.index();
             break;
@@ -310,7 +310,7 @@ void OutputPage::changeDefaultOutputCard(int index)
     QDBusPendingReply<QString> dbusReply = m_audioInterface->GetDefaultSink();
     QString defaultSinkPath = dbusReply.value();
     AudioDeviceInterface defaultSink(AUDIO_DBUS_NAME, defaultSinkPath, QDBusConnection::sessionBus(), this);
-    if (sinkIndex == defaultSink.index())
+    if (sinkIndex == (int)defaultSink.index())
     {
         KLOG_DEBUG(qLcAudio) << "current default sink:" << sinkIndex;
         reload();

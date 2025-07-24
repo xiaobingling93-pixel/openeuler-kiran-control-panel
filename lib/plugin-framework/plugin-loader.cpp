@@ -26,7 +26,7 @@
 
 QString getPluginIDFromFile(QString baseName)
 {
-    static char* prefixs[] = {"kiran-cpnael-", "libkiran-cpanel-", NULL};
+    static const char* prefixs[] = {"kiran-cpnael-", "libkiran-cpanel-", NULL};
     for (int i = 0; prefixs[i]; i++)
     {
         if (baseName.startsWith(prefixs[i]))

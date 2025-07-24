@@ -131,7 +131,7 @@ void ScreensaverPage::processSettingsChanged(const QString& key)
         QSignalBlocker blocker(ui->combo_themes);
         auto idx = ui->combo_themes->findData(m_gSettings->get(KEY_SCREENSAVER_THEME).toString());
         if( idx == -1 )
-            idx == 0;
+            idx = 0;
         ui->combo_themes->setCurrentIndex(idx);
         break;
     }

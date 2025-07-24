@@ -75,8 +75,10 @@ int conv_func(int num_msg, const struct pam_message **msg,
         {
             goto failed;
         }
-        reply[replies].resp = new char[strlen(passwd) + 1]();
-        strncpy(reply[replies].resp, passwd,strlen(passwd));
+        std::string passwdStr(passwd);
+        reply[replies].resp = new char[passwdStr.size() + 1]();
+        std::copy(passwdStr.begin(), passwdStr.end(), reply[replies].resp);
+        reply[replies].resp[passwdStr.size()] = '\0';
         reply[replies].resp_retcode = PAM_SUCCESS;
     }
     *resp = reply;

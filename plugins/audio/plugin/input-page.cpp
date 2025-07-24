@@ -347,7 +347,7 @@ void InputPage::changeDefaultInputCard(int index)
     for (auto source : sourcesList)
     {
         AudioDeviceInterface audioSource(AUDIO_DBUS_NAME, source, QDBusConnection::sessionBus(), this);
-        if ((cardIndex == audioSource.card_index()) &&
+        if ((cardIndex == (int)audioSource.card_index()) &&
             (audioSource.isAvailablePorts()))
         {
             sourceIndex = audioSource.index();
@@ -367,7 +367,7 @@ void InputPage::changeDefaultInputCard(int index)
     QString defaultSourcePath = dbusReply.value();
     AudioDeviceInterface defaultSource(AUDIO_DBUS_NAME, defaultSourcePath, QDBusConnection::sessionBus(), this);
 
-    if (sourceIndex == defaultSource.index())
+    if (sourceIndex == (int)defaultSource.index())
     {
         KLOG_INFO(qLcAudio) << "current default source:" << sourceIndex;
         reload();
