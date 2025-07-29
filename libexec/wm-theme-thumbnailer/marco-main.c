@@ -4,6 +4,7 @@
 #include <marco-private/theme-parser.h>
 #include <marco-private/theme.h>
 #include <marco-private/util.h>
+#include <stdint.h>
 
 // 定义命令行选项的结构体
 typedef struct
@@ -265,7 +266,8 @@ int main(int argc, char *argv[])
     const gchar *directory = options.thumbnail_directory;
     const uint32_t width = options.thumbnail_width;
     const uint32_t height = options.thumbnail_height;
-    for (int i = 0; options.theme_names[i]; i++)
+    int i;
+    for (i = 0; options.theme_names[i]; i++)
     {
         const gchar *name = options.theme_names[i];
         g_print("Processing theme %s\n", name);
