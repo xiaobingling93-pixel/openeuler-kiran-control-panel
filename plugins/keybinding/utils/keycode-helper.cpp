@@ -15,6 +15,7 @@
 #include "keycode-helper.h"
 
 #include <X11/Xlib.h>
+#include <X11/XKBlib.h>
 
 namespace KeycodeHelper
 {
@@ -28,7 +29,7 @@ unsigned long keycode2Keysym(unsigned long keycode)
         return keysym;
     }
 
-    keysym = XKeycodeToKeysym(display, keycode, 0);
+    keysym = XkbKeycodeToKeysym(display, keycode, 0, 0);
     if (keysym != NoSymbol)
     {
         KLOG_INFO(qLcKeybinding) << "convert KeyCode:" << keycode << "to KeySym:" << keysym;

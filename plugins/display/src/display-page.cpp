@@ -26,8 +26,8 @@ DisplayPage::DisplayPage(QWidget *parent)
     : QWidget(parent),
       ui(new Ui::DisplayPage),
       m_displayConfig(),
-      m_displayConfigData(nullptr),
       m_currentMonitorData(nullptr),
+      m_displayConfigData(nullptr),
       m_btnGroup(nullptr)
 {
     ui->setupUi(this);
@@ -61,7 +61,11 @@ void DisplayPage::init()
 
 void DisplayPage::initConnect()
 {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
     connect(m_btnGroup, QOverload<int, bool>::of(&QButtonGroup::buttonToggled), this, &DisplayPage::switchDisplayConfigMode);
+#else
+    connect(m_btnGroup, &QButtonGroup::idToggled, this, &DisplayPage::switchDisplayConfigMode);
+#endif
     connect(ui->panel, &DevicePanel::screenItemChecked, this, &DisplayPage::onScreenItemChecked);
 
     connect(m_displayConfig, &DisplayConfig::dbusPropertyChanged, this, &DisplayPage::handleDbusPropertiesChanged);
@@ -282,7 +286,7 @@ void DisplayPage::initExtraComboBoxRefreshRate(QComboBox *comboBox, const QList<
         comboBox->addItem(text, r);
     }
 
-    for (size_t i = 0; i < comboBox->count(); i++)
+    for (int i = 0; i < comboBox->count(); i++)
     {
         double refreshRate = comboBox->itemData(i).toDouble();
         if (QString::asprintf("%.2f", refreshRate) == QString::asprintf("%.2f", recommendRefreshRate))

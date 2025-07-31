@@ -78,12 +78,13 @@ private:
     bool extraPrimaryBtnStatus(const bool &onlyEnableScreen, const bool &enable);
 
 private:
+    Ui::DisplayPage *ui;
+
     DisplayConfig *m_displayConfig;
 
     MonitorConfigDataPtr m_currentMonitorData;
     DisplayConfigDataPtr m_displayConfigData;
 
-    Ui::DisplayPage *ui;
     QString m_curMonitorPath;
     QButtonGroup *m_btnGroup;
     QStringList m_listMonitors;  //用于处理虚拟机中，没有勾选显示器，xrandr返回两个显示器，但是部分显示器的dbus却无法调用的情况。
