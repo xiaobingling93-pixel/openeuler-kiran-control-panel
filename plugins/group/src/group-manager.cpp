@@ -16,6 +16,7 @@
 #include "ksd_group_admin_list_proxy.h"
 #include "ksd_group_admin_proxy.h"
 
+#include <kiran-system-daemon/groups-i.h>
 #include <qt5-log-i.h>
 #include <QDBusObjectPath>
 #include <QDBusPendingCall>
@@ -24,7 +25,7 @@
 
 GroupManager::GroupManager(QObject *parent)
     : QObject(parent),
-      m_groupAdminProxy(new KSDGroupAdminProxy(GROUP_ADMIN_DBUS_NAME, GROUP_ADMIN_OBJECT_PATH, QDBusConnection::systemBus())),
+      m_groupAdminProxy(new KSDGroupAdminProxy(GROUPS_DBUS_NAME, GROUPS_OBJECT_PATH, QDBusConnection::systemBus())),
       m_groupInterface(new GroupInterface())
 {
 }
@@ -112,15 +113,20 @@ QList<QString> GroupManager::getGroupList()
     return groupObjPathList;
 }
 
-bool GroupManager::getGroupInfo(const QString groupPath, GroupManager::GroupInfo &groupInfo)
+bool GroupManager::getGroupInfo(const QString &groupPath, GroupManager::GroupInfo &groupInfo)
 {
-    KSDGroupAdminListProxy interface(GROUP_ADMIN_DBUS_NAME, groupPath, QDBusConnection::systemBus());
+    KSDGroupAdminListProxy interface(GROUPS_DBUS_NAME, groupPath, QDBusConnection::systemBus());
     if (!interface.isValid())
     {
         KLOG_WARNING() << "Failed to get group info:" << interface.lastError().message();
         return false;
     }
-    groupInfo.name = interface.groupName();
+    KLOG_DEBUG() << "Get group info of" << groupPath << "from dbus:"
+                 << "name:" << interface.name()
+                 << "gid:" << interface.gid()
+                 << "users:" << interface.users();
+
+    groupInfo.name = interface.name();
     groupInfo.gid = interface.gid();
     groupInfo.users = interface.users();
     groupInfo.isNotSystemGroup = interface.gid() >= 1000 && interface.gid() < 65534;
@@ -133,7 +139,7 @@ bool GroupManager::checkGroupNameAvaliable(const QString &groupName)
 
     for (auto iter : m_groupsMap)
     {
-        if (iter.data()->groupName() == groupName)  // KSDGroupAdminListProxy的成员函数groupName()
+        if (iter.data()->name() == groupName)  // KSDGroupAdminListProxy的成员函数groupName()
         {
             isValid = false;
             break;
@@ -150,15 +156,15 @@ void GroupManager::addGroupToMap(const QDBusObjectPath &group)
         return;
     }
 
-    auto groupProxy = QSharedPointer<KSDGroupAdminListProxy>::create(GROUP_ADMIN_DBUS_NAME,
+    auto groupProxy = QSharedPointer<KSDGroupAdminListProxy>::create(GROUPS_DBUS_NAME,
                                                                      group.path(),
                                                                      QDBusConnection::systemBus(),
                                                                      this);
 
     connect(groupProxy.data(),
-            &KSDGroupAdminListProxy::dbusPropertyChanged,
+            &KSDGroupAdminListProxy::GroupChanged,
             this,
-            &GroupManager::handlerPropertyChanged);
+            &GroupManager::handlerGroupChanged);
 
     m_groupsMap.insert(group.path(), groupProxy);
 
@@ -174,20 +180,14 @@ void GroupManager::deleteGroupFromMap(const QDBusObjectPath &group)
 
     auto groupProxy = m_groupsMap.take(group.path());
     disconnect(groupProxy.data(),
-               &KSDGroupAdminListProxy::dbusPropertyChanged,
+               &KSDGroupAdminListProxy::GroupChanged,
                this,
-               &GroupManager::handlerPropertyChanged);
+               &GroupManager::handlerGroupChanged);
 
     emit GroupDeleted(group.path());
 }
 
-void GroupManager::handlerPropertyChanged(const QString &propertyName, const QVariant &value)
+void GroupManager::handlerGroupChanged(const QDBusObjectPath &group)
 {
-    auto groupProxy = qobject_cast<KSDGroupAdminListProxy *>(sender());
-
-    KLOG_DEBUG() << "property changed:" << groupProxy->path();
-    KLOG_DEBUG() << "\tname: " << propertyName;
-    KLOG_DEBUG() << "\tvalue:" << value;
-
-    emit GroupPropertyChanged(groupProxy->path(), propertyName, value);
+    emit GroupChanged(group.path());
 }

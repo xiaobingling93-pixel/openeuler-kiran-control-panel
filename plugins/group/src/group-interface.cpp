@@ -12,10 +12,11 @@
  * Author:     wangshichang <shichang@isrc.iscas.ac.cn>
  */
 #include "group-interface.h"
-#include "group-manager.h"
+#include "group-name-checker.h"
 #include "ksd_group_admin_list_proxy.h"
 #include "ksd_group_admin_proxy.h"
 
+#include <kiran-system-daemon/groups-i.h>
 #include <qt5-log-i.h>
 #include <QDBusObjectPath>
 
@@ -27,17 +28,17 @@ GroupInterface::~GroupInterface()
 {
 }
 
-void GroupInterface::doCreateGroup(QString groupName)
+void GroupInterface::doCreateGroup(const QString &groupName, const QStringList &users)
 {
     KLOG_INFO() << "current Thread:" << QThread::currentThreadId();
-    KSDGroupAdminProxy groupAdmin(GROUP_ADMIN_DBUS_NAME,
-                                  GROUP_ADMIN_OBJECT_PATH,
+    KSDGroupAdminProxy groupAdmin(GROUPS_DBUS_NAME,
+                                  GROUPS_OBJECT_PATH,
                                   QDBusConnection::systemBus());
     QString groupObjPath;
     QString errMsg;
 
     QDBusPendingReply<QDBusObjectPath> reply;
-    reply = groupAdmin.CreateGroup(groupName);
+    reply = groupAdmin.CreateGroup(groupName, users);
     reply.waitForFinished();
     if (reply.isError())
     {
@@ -53,12 +54,12 @@ void GroupInterface::doCreateGroup(QString groupName)
     emit sigCreateGroupDone(groupObjPath, "");
 }
 
-void GroupInterface::doDeleteGroup(int gid, QString groupName)
+void GroupInterface::doDeleteGroup(int gid, const QString &groupName)
 {
     KLOG_INFO() << "current Thread:" << QThread::currentThreadId();
 
-    KSDGroupAdminProxy groupAdmin(GROUP_ADMIN_DBUS_NAME,
-                                  GROUP_ADMIN_OBJECT_PATH,
+    KSDGroupAdminProxy groupAdmin(GROUPS_DBUS_NAME,
+                                  GROUPS_OBJECT_PATH,
                                   QDBusConnection::systemBus());
     // 删除用户
     auto reply = groupAdmin.DeleteGroup(gid);
@@ -76,10 +77,10 @@ void GroupInterface::doDeleteGroup(int gid, QString groupName)
     }
 }
 
-void GroupInterface::doAddUserToGroup(QString groupPath, QStringList userNameList)
+void GroupInterface::doAddUserToGroup(const QString &groupPath, const QStringList &userNameList)
 {
     QString errMsg;
-    KSDGroupAdminListProxy groupProxy(GROUP_ADMIN_DBUS_NAME, groupPath,
+    KSDGroupAdminListProxy groupProxy(GROUPS_DBUS_NAME, groupPath,
                                       QDBusConnection::systemBus());
 
     for (auto &userName : userNameList)
@@ -101,9 +102,9 @@ void GroupInterface::doAddUserToGroup(QString groupPath, QStringList userNameLis
     emit sigAddUserToGroupDone(errMsg);
 }
 
-void GroupInterface::doRemoveMemberFromGroup(QString groupPath, QString userName)
+void GroupInterface::doRemoveMemberFromGroup(const QString &groupPath, const QString &userName)
 {
-    KSDGroupAdminListProxy groupProxy(GROUP_ADMIN_DBUS_NAME, groupPath,
+    KSDGroupAdminListProxy groupProxy(GROUPS_DBUS_NAME, groupPath,
                                       QDBusConnection::systemBus());
 
     auto reply = groupProxy.RemoveUserFromGroup(userName);
@@ -121,33 +122,36 @@ void GroupInterface::doRemoveMemberFromGroup(QString groupPath, QString userName
     }
 }
 
-void GroupInterface::doChangeGroupName(QString groupPath, QString groupName)
+void GroupInterface::doChangeGroupName(const QString &groupPath, const QString &groupName)
 {
     KLOG_INFO() << "current Thread:" << QThread::currentThreadId();
 
-    KSDGroupAdminListProxy groupProxy(GROUP_ADMIN_DBUS_NAME, groupPath,
+    KSDGroupAdminListProxy groupProxy(GROUPS_DBUS_NAME, groupPath,
                                       QDBusConnection::systemBus());
 
-    if (GroupManager::instance()->checkGroupNameAvaliable(groupName))
+    auto originName = groupProxy.name();
+    QString error;
+
+    if (GroupNameChecker::isValid(groupName, error))
     {
         auto reply = groupProxy.ChangeGroupName(groupName);
         reply.waitForFinished();
         if (reply.isError())
         {
-            KLOG_WARNING() << "change group name for " << groupProxy.groupName() << "( to name " << groupName << ") failed, " << reply.error();
+            KLOG_WARNING() << "change group name for " << originName << "( to name " << groupName << ") failed, " << reply.error();
             auto errMsg = QString(tr("Failed to change group name to %1, %2")).arg(groupName).arg(reply.error().message());
             emit sigChangeGroupNameDone("", errMsg);
         }
         else
         {
-            KLOG_INFO() << "change group name for " << groupProxy.groupName() << "( to name " << groupName << "is done";
+            KLOG_INFO() << "change group name for " << originName << "( to name " << groupName << ") is done";
             emit sigChangeGroupNameDone(groupPath, "");
         }
     }
     else
     {
-        KLOG_WARNING() << "change group name for " << groupProxy.groupName() << "( to name " << groupName << ") failed, the new group name is occupied";
-        auto errMsg = QString(tr("Failed to change group name to %1, the new group name is occupied!")).arg(groupName);
+        KLOG_WARNING() << "change group name for " << originName << "( to name " << groupName << ") failed, the new group name is occupied";
+        auto errMsg = QString(tr("Failed to change group name to %1, %2")).arg(groupName).arg(error);
         emit sigChangeGroupNameDone("", errMsg);
     }
 }

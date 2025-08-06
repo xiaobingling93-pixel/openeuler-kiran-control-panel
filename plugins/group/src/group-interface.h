@@ -28,47 +28,47 @@ public slots:
 
     /// 通过groupAdmin创建用户组
     /// \param groupName         用户组名
-    void doCreateGroup(QString groupName);
+    void doCreateGroup(const QString &groupName, const QStringList &users);
 
     /// 通过groupAdmin删除用户组
     /// \param groupid  删除用户组的ID
-    void doDeleteGroup(int gid, QString groupName);
+    void doDeleteGroup(int gid, const QString &groupName);
 
     /// 通过groupAdminList将用户添加到用户组
     /// \param groupPath  需要执行添加成员操作的用户组DBus对象路径
     /// \param userName   要添加的用户名
-    void doAddUserToGroup(QString groupPath, QStringList userNameList);
+    void doAddUserToGroup(const QString &groupPath, const QStringList &userNameList);
 
     /// 通过groupAdminList将成员移出用户组
     /// \param groupPath  需要执行移出成员操作的用户组DBus对象路径
     /// \param userName   要移出的成员名列表
-    void doRemoveMemberFromGroup(QString groupPath, QString userName);
+    void doRemoveMemberFromGroup(const QString &groupPath, const QString &userName);
 
     /// 通过groupAdminList修改组名
     /// \param groupPath  需要修改组名的用户组DBus对象路径
     /// \param groupName  目标组名
-    void doChangeGroupName(QString groupPath, QString groupName);
+    void doChangeGroupName(const QString &groupPath, const QString &groupName);
 
 signals:
 
     /// 创建用户组完成信号
     /// \param userPath 创建完成的用户组DBus对象路径,若创建用户都失败，则为空
     /// \param errMsg   错误消息框，收到弹出提示框
-    void sigCreateGroupDone(QString userPath, QString errMsg);
+    void sigCreateGroupDone(const QString &userPath, const QString &errMsg);
 
     /// 删除用户组完成信号
     /// \param errMsg 错误消息，不为空表示失败，弹出提示框
-    void sigDeleteGroupDone(QString groupName, QString errMsg);
+    void sigDeleteGroupDone(const QString &groupName, const QString &errMsg);
 
     /// 添加用户完成信号
     /// \param errMsg 错误信息，不为空表示失败，弹出提示框
-    void sigAddUserToGroupDone(QString errMsg);
+    void sigAddUserToGroupDone(const QString &errMsg);
 
     /// 移出成员完成信号
     /// \param errMsg 错误信息，不为空表示失败，弹出提示框
-    void sigRemoveMemberFromGroupDone(QString errMsg);
+    void sigRemoveMemberFromGroupDone(const QString &errMsg);
 
     /// 修改组名完成信号
     /// \param errMsg 错误信息，不为空表示失败，弹出提示框
-    void sigChangeGroupNameDone(QString groupPath, QString errMsg);
+    void sigChangeGroupNameDone(const QString &groupPath, const QString &errMsg);
 };

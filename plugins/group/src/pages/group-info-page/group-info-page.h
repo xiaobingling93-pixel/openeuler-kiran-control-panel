@@ -38,28 +38,28 @@ public:
     QString getGroupName() { return this->m_curShowGroupName; }
 
 signals:
-    void requestAddUsersPage(QString groupPath);
+    void requestAddUsersPage(const QString &groupPath);
 
     /// 向GroupInterface发送移除成员的信号
     /// \param groupPath 要移除成员的用户组DBus对象路径
     /// \param userName 要被移除的成员名
-    void requestRemoveMember(QString groupPath, QString userName);
+    void requestRemoveMember(const QString &groupPath, const QString &userName);
 
     /// 向GroupInterface发送移除用户组的信号
     /// \param gid 要移除的用户组id
-    void requestDeleteGroup(int gid, QString groupName);
+    void requestDeleteGroup(int gid, const QString &groupName);
 
     /// 向GroupInterface发送更改用户组名称的信号
     /// \param groupPath 要更改名称的用户组DBus对象路径
     /// \param groupName 新的用户组名
-    void requestChangeGroupName(QString groupPath, QString groupName);
+    void requestChangeGroupName(const QString &groupPath, const QString &groupName);
 
 public Q_SLOTS:
     void changeGroupName();
-    void handleMemberRemoved(QString errMsg);
-    void handleMemberAdded(QString errMsg);
-    void handleGroupDeleted(QString groupPath, QString errMsg);
-    void handleGroupNameChanged(QString groupPath, QString errMsg);
+    void handleMemberRemoved(const QString &errMsg);
+    void handleMemberAdded(const QString &errMsg);
+    void handleGroupDeleted(const QString &groupPath, const QString &errMsg);
+    void handleGroupNameChanged(const QString &groupPath, const QString &errMsg);
 
 private:
     /// 初始化界面

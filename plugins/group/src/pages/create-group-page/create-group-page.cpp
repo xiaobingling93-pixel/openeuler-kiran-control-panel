@@ -92,26 +92,6 @@ void CreateGroupPage::createGroup()
         return;
     }
 
-    ui->btn_confirm->setBusy(true);
-    emit requestCreateGroup(groupName);
-}
-
-void CreateGroupPage::addUserToGroup(QString groupPath, QString errMsg)
-{
-    ui->btn_confirm->setBusy(false);
-
-    if (!errMsg.isEmpty())
-    {
-        KiranMessageBox::message(nullptr, tr("Error"),
-                                 errMsg, KiranMessageBox::Ok);
-        return;
-    }
-
-    if (groupPath.isEmpty())
-    {
-        return;
-    }
-
     // 添加用户到用户组
     QStringList userNameList;
     auto items = m_userContainter->getSelectedItems();
@@ -120,22 +100,19 @@ void CreateGroupPage::addUserToGroup(QString groupPath, QString errMsg)
         userNameList.append(item->name());
     }
 
-    if (!userNameList.isEmpty())
-    {
-        ui->btn_confirm->setBusy(true);
-        emit requestAddUserToGroup(groupPath, userNameList);
-    }
+    ui->btn_confirm->setBusy(true);
+    emit requestCreateGroup(groupName, userNameList);
 }
 
-void CreateGroupPage::updateUI(QString errMsg)
+void CreateGroupPage::handleGroupAdded(const QString &groupPath, const QString &errMsg)
 {
+    Q_UNUSED(groupPath);
     ui->btn_confirm->setBusy(false);
     if (!errMsg.isEmpty())
     {
         KiranMessageBox::message(nullptr, tr("Error"),
                                  errMsg, KiranMessageBox::Ok);
     }
-    reset();
 }
 
 void CreateGroupPage::reset()

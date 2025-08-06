@@ -152,7 +152,7 @@ void GroupInfoPage::changeGroupName()
     ui->edit_name->clear();
 }
 
-void GroupInfoPage::handleMemberRemoved(QString errMsg)
+void GroupInfoPage::handleMemberRemoved(const QString &errMsg)
 {
     ui->btn_add_user->setBusy(false);
     if (!errMsg.isEmpty())
@@ -161,10 +161,9 @@ void GroupInfoPage::handleMemberRemoved(QString errMsg)
                                  errMsg, KiranMessageBox::Ok);
         return;
     }
-    updateInfo();
 }
 
-void GroupInfoPage::handleMemberAdded(QString errMsg)
+void GroupInfoPage::handleMemberAdded(const QString &errMsg)
 {
     if (!errMsg.isEmpty())
     {
@@ -172,10 +171,9 @@ void GroupInfoPage::handleMemberAdded(QString errMsg)
                                  errMsg, KiranMessageBox::Ok);
         return;
     }
-    updateInfo();
 }
 
-void GroupInfoPage::handleGroupDeleted(QString groupName, QString errMsg)
+void GroupInfoPage::handleGroupDeleted(const QString &groupName, const QString &errMsg)
 {
     ui->btn_delete->setBusy(false);
     if (!errMsg.isEmpty())
@@ -185,14 +183,13 @@ void GroupInfoPage::handleGroupDeleted(QString groupName, QString errMsg)
     }
 }
 
-void GroupInfoPage::handleGroupNameChanged(QString groupPath, QString errMsg)
+void GroupInfoPage::handleGroupNameChanged(const QString &groupPath, const QString &errMsg)
 {
     if (!errMsg.isEmpty())
     {
         KiranMessageBox::message(nullptr, tr("Error"),
                                  errMsg, KiranMessageBox::Ok);
     }
-    updateInfo();
 }
 
 bool GroupInfoPage::eventFilter(QObject *watched, QEvent *event)
