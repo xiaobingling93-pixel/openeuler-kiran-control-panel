@@ -24,7 +24,7 @@
 #include <kiranwidgets-qt5/kiran-message-box.h>
 
 ChangeHostNameWidget::ChangeHostNameWidget(QWidget* parent)
-    : KiranTitlebarWindow(parent),
+    : KiranTitlebarWindow(parent,Qt::Dialog),
       ui(new Ui::ChangeHostNameWidget)
 {
     ui->setupUi(getWindowContentWidget());
