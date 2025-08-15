@@ -33,7 +33,7 @@ Fonts::Fonts(QWidget* parent)
 {
     ui->setupUi(this);
     m_comboFontTypesMap = {
-        {ui->combo_system, {APPEARANCE_FONT_TYPE_APPLICATION, APPEARANCE_FONT_TYPE_WINDOW_TITLE}},
+        {ui->combo_system, {APPEARANCE_FONT_TYPE_APPLICATION, APPEARANCE_FONT_TYPE_WINDOW_TITLE, APPEARANCE_FONT_TYPE_DESKTOP}},
         {ui->combo_monospace, {APPEARANCE_FONT_TYPE_MONOSPACE}}};
 
     initUI();

@@ -486,7 +486,7 @@ void IpSettingsWidget::saveIpv4Settings()
     else
     {
         // 非手动配置清理静态地址配置
-        m_ipv4Setting->setAddresses({});
+        m_ipv4Setting->setAddresses({IpAddress()});
     }
 
     // 写入DNS配置
@@ -531,7 +531,7 @@ void IpSettingsWidget::saveIpv6Settings()
     }
     else
     {
-        m_ipv6Setting->setAddresses({});
+        m_ipv6Setting->setAddresses({IpAddress()});
     }
 
     m_ipv6Setting->setDns({});
