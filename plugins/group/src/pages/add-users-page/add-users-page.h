@@ -39,12 +39,12 @@ signals:
     /// 向用户组添加成员的信号
     /// \param groupPath 要添加成员的用户组DBus对象路径
     /// \param userName 要添加进用户组的成员名
-    void requestAddUserToGroup(QString groupPath, QStringList userName);
+    void requestAddUserToGroup(const QString &groupPath, const QStringList &userName);
 
 public Q_SLOTS:
-    void searchFilter(QString filterString);
+    void searchFilter(const QString &filterString);
 
-    void updateUI(QString errMsg);
+    void updateUI(const QString &errMsg);
 
 private:
     /// 初始化界面
@@ -55,6 +55,7 @@ private:
 private:
     Ui::AddUsersPage *ui;
     QStringList m_allUserName;
+    QStringList m_usersInGroup;
     UsersContainer *m_usersContainer;
     QString m_curShowGroupPath;
 };

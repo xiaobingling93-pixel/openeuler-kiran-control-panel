@@ -41,12 +41,10 @@ private Q_SLOTS:
     void createGroup();
 
 public Q_SLOTS:
-    void addUserToGroup(QString groupPath, QString errMsg);
-    void updateUI(QString errMsg);
+    void handleGroupAdded(const QString &groupPath, const QString &errMsg);
 
 signals:
-    void requestCreateGroup(const QString groupName);
-    void requestAddUserToGroup(const QString groupPath, const QStringList userName);
+    void requestCreateGroup(const QString groupName, const QStringList &users);
 
 private:
     Ui::CreateGroupPage *ui;

@@ -46,9 +46,7 @@ public:
 private Q_SLOTS:
     void addGroup(const QString &groupPath);
     void deleteGroup(const QString &groupPath);
-    void handleGroupProperty(QString groupPath,
-                             QString propertyName,
-                             QVariant value);
+    void handleGroupChanged(const QString &groupPath);
 
     void appendSidebarItem(const QString &groupPath);
     void deleteSidebarItem(const QString &groupPath);

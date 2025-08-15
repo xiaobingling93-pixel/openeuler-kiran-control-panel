@@ -64,9 +64,9 @@ private:
 signals:
     void UserAdded(const QDBusObjectPath &obj);
     void UserDeleted(const QDBusObjectPath &obj);
-    void UserPropertyChanged(QString userPath,
-                             QString propertyName,
-                             QVariant value);
+    void UserPropertyChanged(const QString &userPath,
+                             const QString &propertyName,
+                             const QVariant &value);
 
 private Q_SLOTS:
     void handlerPropertyChanged(const QString &propertyName, const QVariant &value);

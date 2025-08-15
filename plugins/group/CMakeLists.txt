@@ -10,7 +10,7 @@ qt5_create_translation(GROUP_QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} "translations/
 #DBus代理代码生成
 set(DBUS_SRC_LIST "")
 ##group admin service
-set(KSD_GROUP_ADMIN_XML data/org.group.admin.xml)
+set(KSD_GROUP_ADMIN_XML data/com.kylinsec.Kiran.SystemDaemon.Groups.xml)
 set_source_files_properties(${KSD_GROUP_ADMIN_XML}
         PROPERTIES
         CLASSNAME KSDGroupAdminProxy
@@ -18,7 +18,7 @@ set_source_files_properties(${KSD_GROUP_ADMIN_XML}
 kiran_qt5_add_dbus_interface(KSD_GROUP_ADMIN_SRC ${KSD_GROUP_ADMIN_XML} ksd_group_admin_proxy)
 list(APPEND DBUS_SRC_LIST ${KSD_GROUP_ADMIN_SRC})
 ##group admin list
-set(KSD_GROUP_ADMIN_LIST_XML data/org.group.admin.list.xml)
+set(KSD_GROUP_ADMIN_LIST_XML data/com.kylinsec.Kiran.SystemDaemon.Groups.Group.xml)
 set_source_files_properties(${KSD_GROUP_ADMIN_LIST_XML}
         PROPERTIES
         CLASSNAME KSDGroupAdminListProxy

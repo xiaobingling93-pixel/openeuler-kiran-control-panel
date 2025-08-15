@@ -20,6 +20,7 @@
 #include "user-list-item.h"
 #include "users-container.h"
 
+#include <kiran-message-box.h>
 #include <kiran-push-button.h>
 #include <qt5-log-i.h>
 
@@ -86,15 +87,16 @@ void AddUsersPage::updateUsersList(const QString &groupObj)
     m_curShowGroupPath = groupObj;
 
     m_usersContainer->clear();
+    m_usersInGroup.clear();
 
     GroupManager::GroupInfo groupInfo;
     if (GroupManager::instance()->getGroupInfo(m_curShowGroupPath, groupInfo))
     {
         /// 加载不在用户组中的用户
-        auto usersInGroup = groupInfo.users;
+        m_usersInGroup = groupInfo.users;
         for (auto name : m_allUserName)
         {
-            if (!usersInGroup.contains(name))
+            if (!m_usersInGroup.contains(name))
             {
                 appendUserListItem(name);
             }
@@ -115,16 +117,11 @@ void AddUsersPage::appendUserListItem(const QString &userName)
     m_usersContainer->addItem(item);
 }
 
-void AddUsersPage::searchFilter(QString filterString)
+void AddUsersPage::searchFilter(const QString &filterString)
 {
-    GroupManager::GroupInfo groupInfo;
-    if (!GroupManager::instance()->getGroupInfo(m_curShowGroupPath, groupInfo))
-        return;
-
-    auto usersInGroup = groupInfo.users;
     for (auto name : m_allUserName)
     {
-        if (!usersInGroup.contains(name))
+        if (!m_usersInGroup.contains(name))
         {
             bool isVisible = filterString.isEmpty() || name.contains(filterString);
             m_usersContainer->setItemVisible(name, isVisible);
@@ -132,8 +129,12 @@ void AddUsersPage::searchFilter(QString filterString)
     }
 }
 
-void AddUsersPage::updateUI(QString errMsg)
+void AddUsersPage::updateUI(const QString &errMsg)
 {
     ui->btn_save->setBusy(false);
-    emit requestGroupInfoPage();
+    if (!errMsg.isEmpty())
+    {
+        KiranMessageBox::message(nullptr, tr("Error"),
+                                 errMsg, KiranMessageBox::Ok);
+    }
 }
