@@ -15,10 +15,40 @@
 #include "custom-line-edit.h"
 #include <kiran-log/qt5-log-i.h>
 #include <QInputMethodEvent>
+#include <QMetaEnum>
 #include <QPainter>
 #include <QStyleOption>
+#include "keybinding_def.h"
+#include "keycode-helper.h"
 #include "keycode-translator.h"
 #include "logging-category.h"
+
+static const QList<int> ignoreKeys =
+    {
+        Qt::Key_VolumeDown,
+        Qt::Key_VolumeMute,
+        Qt::Key_VolumeUp,
+        Qt::Key_MediaPlay,
+        Qt::Key_MediaStop,
+        Qt::Key_MediaPrevious,
+        Qt::Key_MediaNext,
+        Qt::Key_MediaRecord,
+        Qt::Key_MediaPause,
+        Qt::Key_MediaTogglePlayPause,
+        Qt::Key_HomePage,
+        Qt::Key_Favorites,
+        Qt::Key_Search,
+        Qt::Key_Standby,
+        Qt::Key_OpenUrl,
+        Qt::Key_LaunchMail,
+        Qt::Key_LaunchMedia,
+        Qt::Key_Launch0,
+        Qt::Key_Launch1,
+        Qt::Key_Eject,
+        Qt::Key_WWW,
+        Qt::Key_Explorer,
+        Qt::Key_Tools,
+        Qt::Key_MicMute};
 
 CustomLineEdit::CustomLineEdit(QWidget *parent) : QLineEdit(parent)
 {
@@ -44,7 +74,7 @@ void CustomLineEdit::keyReleaseEvent(QKeyEvent *event)
     QList<int> keycodes;
     int qtkey = 0;
 
-    KLOG_DEBUG(qLcKeybinding) << "Key Release Event:" << event->key() << "Modifiers:" << event->modifiers();
+    KLOG_DEBUG(qLcKeybinding) << "Key Release Event: Key:" << event->key() << "Text:" << event->text() << "Modifiers:" << event->modifiers();
 
     // 忽略无效按键
     if (event->key() == 0 || event->key() == Qt::Key_unknown)
@@ -52,13 +82,27 @@ void CustomLineEdit::keyReleaseEvent(QKeyEvent *event)
         return;
     }
 
-    // 特殊处理单独按下Backspace
+    // 忽略单独按下Backspace
     if (event->key() == Qt::Key_Backspace && event->modifiers() == Qt::NoModifier)
     {
         return;
     }
 
-    // 处理shift修饰的快捷键组合，按键不经过shift转化，将原始按键keycode转化为对应的Qt::Key
+    // 忽略数字键盘按键
+    if (KeycodeHelper::isKeypad(KeycodeHelper::keycode2Keysym(event->nativeScanCode())))
+    {
+        KLOG_WARNING(qLcKeybinding) << "Not support keypad key which keycode is" << event->nativeScanCode();
+        return;
+    }
+
+    // 忽略多媒体按键
+    if (ignoreKeys.contains(event->key()))
+    {
+        KLOG_WARNING(qLcKeybinding) << "Not support media key which keycode is" << event->key();
+        return;
+    }
+
+    // 处理含shift修饰的快捷键组合，按键不经过shift转化，将原始按键keycode转化为对应的Qt::Key
     if (event->modifiers() & Qt::ShiftModifier)
     {
 #if QT_VERSION < QT_VERSION_CHECK(5, 12, 2)
@@ -69,17 +113,57 @@ void CustomLineEdit::keyReleaseEvent(QKeyEvent *event)
         KLOG_INFO(qLcKeybinding) << "convert KeyCode:" << event->nativeScanCode() << "to Qt::Key:" << qtkey;
     }
 
-    // 定义修饰键
-    static QList<Qt::KeyboardModifier> modifierOrder = {Qt::ControlModifier,
-                                                        Qt::AltModifier,
-                                                        Qt::ShiftModifier,
-                                                        Qt::MetaModifier};
+    // 特殊处理修饰键为主键的情况
+    // QKeySequence无法转换Qt::Key_Shift等修饰键对应的Qt::Key
+    if (event->key() == Qt::Key_Shift ||
+        event->key() == Qt::Key_Alt ||
+        event->key() == Qt::Key_Meta ||
+        event->key() == Qt::Key_Control)
+    {
+        keycodes << getModifierKeycodes(event->modifiers());
+        auto keyString = keycode2KeyString(keycodes);
 
-    // 定义修饰键与按键的映射关系
-    static QHash<Qt::KeyboardModifier, int> modifierToKey = {{Qt::ControlModifier, Qt::Key_Control},
-                                                             {Qt::AltModifier, Qt::Key_Alt},
-                                                             {Qt::ShiftModifier, Qt::Key_Shift},
-                                                             {Qt::MetaModifier, Qt::Key_Meta}};
+        auto key = qtkey ? qtkey : event->key();
+
+        switch (key)
+        {
+        case Qt::Key_Shift:
+            keyString << MODIFIER_KEY_SHIFT;
+            break;
+        case Qt::Key_Alt:
+        {
+            /** NOTE: 去重
+             * 若按下shift+Alt（Alt作为主键）：
+             * keyrelease信息为：event->key()=Qt::Key_Meta，经过上面keycode2QtKey()函数转换后，主键为Qt::Key_Alt;
+             *                  event->modifiers()=ShiftModifier|AltModifier|MetaModifier
+             * 其中，修饰键包含MetaModifier原因：通过查看xmodmap -pm， Alt 键会被映射为Meta键
+             */
+            if (event->modifiers() & Qt::ShiftModifier)
+            {
+                // 去除Meta和Alt修饰键
+                auto modifiersFiltered = event->modifiers();
+                modifiersFiltered &= ~Qt::MetaModifier;
+                modifiersFiltered &= ~Qt::AltModifier;
+                KLOG_DEBUG(qLcKeybinding) << "remove Alt and Meta modifier:" << modifiersFiltered;
+                keycodes = getModifierKeycodes(modifiersFiltered);
+                keyString = keycode2KeyString(keycodes);
+            }
+            keyString << MODIFIER_KEY_ALT;
+            break;
+        }
+        case Qt::Key_Meta:
+            keyString << MODIFIER_KEY_META;
+            break;
+        case Qt::Key_Control:
+            keyString << MODIFIER_KEY_CTRL;
+            break;
+        default:
+            break;
+        }
+
+        emit inputKeybinding(keyString);
+        return;
+    }
 
     // 特殊处理super键为主键的情况：
     /** NOTE:
@@ -92,37 +176,22 @@ void CustomLineEdit::keyReleaseEvent(QKeyEvent *event)
         // 添加除Qt::MetaModifier之外的修饰键
         auto modifiersWithoutMeta = event->modifiers();
         modifiersWithoutMeta &= ~Qt::MetaModifier;
-        for (auto mod : modifierOrder)
-        {
-            if (modifiersWithoutMeta & mod)
-            {
-                keycodes.append(modifierToKey.value(mod));
-            }
-        }
+
+        keycodes << getModifierKeycodes(modifiersWithoutMeta);
+
+        auto keyString = keycode2KeyString(keycodes);
 
         // 添加主键
-        keycodes.append(event->key());
-        emit inputKeyCodes(keycodes);
+        keyString.append(event->key() == Qt::Key_Super_L ? "Super_L" : "Super_R");
+
+        emit inputKeybinding(keyString);
         return;
     }
 
     // 添加修饰键
-    for (auto mod : modifierOrder)
-    {
-        if (event->modifiers() & mod)
-        {
-            keycodes.append(modifierToKey.value(mod));
-        }
-    }
+    keycodes << getModifierKeycodes(event->modifiers());
 
     // 添加主键
-    /** NOTE: 去重
-     * 若按下shift+Alt（Alt作为主键）：
-     * keyrelease信息为：event->key()=Qt::Key_Meta，经过上面keycode2QtKey()函数转换后，主键为Qt::Key_Alt;
-     *                  event->modifiers()=ShiftModifier|AltModifier|MetaModifier
-     * 其中，修饰键包含MetaModifier原因：通过查看xmodmap -pm， Alt 键会被映射为Meta键，
-     * 因此，若修饰键传入Qt::Key_Alt，主键也会传入Qt::Key_Alt，导致误解
-     */
     auto key = qtkey ? qtkey : event->key();
     if (!keycodes.contains(key))
     {
@@ -131,7 +200,7 @@ void CustomLineEdit::keyReleaseEvent(QKeyEvent *event)
 
     if (keycodes.size() > 0)
     {
-        emit inputKeyCodes(keycodes);
+        emit inputKeybinding(keycode2KeyString(keycodes));
     }
 }
 
@@ -156,4 +225,40 @@ void CustomLineEdit::focusOutEvent(QFocusEvent *e)
 {
     releaseKeyboard();
     update();
+}
+
+QStringList CustomLineEdit::keycode2KeyString(const QList<int> &keycodes)
+{
+    if (keycodes.isEmpty())
+        return QStringList();
+
+    QStringList keyStrings;
+    for (auto keycode : keycodes)
+    {
+        keyStrings << QKeySequence(keycode).toString();
+    }
+    return keyStrings;
+}
+
+QList<int> CustomLineEdit::getModifierKeycodes(Qt::KeyboardModifiers modifiers)
+{
+    if (modifiers == Qt::NoModifier)
+        return QList<int>();
+
+    QList<int> keycodes;
+
+    // 定义修饰键
+    static QList<Qt::KeyboardModifier> modifierOrder = {Qt::ControlModifier,
+                                                        Qt::AltModifier,
+                                                        Qt::ShiftModifier,
+                                                        Qt::MetaModifier};
+
+    for (auto mod : modifierOrder)
+    {
+        if (modifiers & mod)
+        {
+            keycodes.append(mod);
+        }
+    }
+    return keycodes;
 }

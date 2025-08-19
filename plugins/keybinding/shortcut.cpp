@@ -138,14 +138,14 @@ void Shortcut::initUI()
     m_lECustomKey->setAccessibleName("EditCustomPressNewShotcut");
     m_lECustomKey->installEventFilter(this);
     ui->vlayout_custom_key->addWidget(m_lECustomKey);
-    connect(m_lECustomKey, &CustomLineEdit::inputKeyCodes, this, &Shortcut::handleInputKeycode);
+    connect(m_lECustomKey, &CustomLineEdit::inputKeybinding, this, &Shortcut::handleInputKeycode);
 
     m_lEModifyKey = new CustomLineEdit;
     m_lEModifyKey->setPlaceholderText(tr("Please press the new shortcut key"));
     m_lEModifyKey->setAccessibleName("EditPressNewShotcut");
     m_lEModifyKey->installEventFilter(this);
     ui->vlayout_modify_key->addWidget(m_lEModifyKey);
-    connect(m_lEModifyKey, &CustomLineEdit::inputKeyCodes, this, &Shortcut::handleInputKeycode);
+    connect(m_lEModifyKey, &CustomLineEdit::inputKeybinding, this, &Shortcut::handleInputKeycode);
 
     // getAllShortcuts();
     m_loadShortcutsFuture = QtConcurrent::run(this, &Shortcut::loadShortcuts);
@@ -345,16 +345,17 @@ bool Shortcut::isConflict(QString &originName, QString newKeyCombination)
 }
 
 // 判断是否都是修饰键
-bool Shortcut::isValidKeycode(QList<int> keycodes)
+bool Shortcut::isPureModifierKeys(const QString &keybinding)
 {
-    static QSet<int> modifierSets = {
-        Qt::Key_Shift, Qt::Key_Control, Qt::Key_Alt, Qt::Key_Meta};
+    static QSet<QString> modifierSets = {
+        MODIFIER_KEY_SHIFT, MODIFIER_KEY_CTRL, MODIFIER_KEY_ALT, MODIFIER_KEY_META};
 
     bool pureModifier = true;
+    auto keys = keybinding.split("+");
 
-    foreach (int keycode, keycodes)
+    foreach (auto key, keys)
     {
-        if (!modifierSets.contains(keycode))
+        if (!modifierSets.contains(key))
         {
             pureModifier = false;
             break;
@@ -719,7 +720,7 @@ void Shortcut::handleSaveClicked()
         return;
     }
     else
-        newKeyCombination = KeycodeTranslator::readableKeyString2Backend(m_lEModifyKey->text());
+        newKeyCombination = KeycodeTranslator::readable2BackendKeyString(m_lEModifyKey->text());
 
     KLOG_DEBUG(qLcKeybinding) << "Modify new keybind to backend: " << newKeyCombination;
 
@@ -779,7 +780,7 @@ void Shortcut::handleAppendClicked()
     }
 
     // dbus ->AddCustomShortcut
-    QString keyCombination = newKey.isEmpty() ? "disabled" : KeycodeTranslator::readableKeyString2Backend(newKey);
+    QString keyCombination = newKey.isEmpty() ? "disabled" : KeycodeTranslator::readable2BackendKeyString(newKey);
 
     KLOG_DEBUG(qLcKeybinding) << "Add custom shortcut to backend:" << newName << keyCombination << newAction;
 
@@ -830,16 +831,16 @@ void Shortcut::handleCustomAppTextChanged(const QString &text)
     }
 }
 
-void Shortcut::handleInputKeycode(QList<int> keycodes)
+void Shortcut::handleInputKeycode(const QStringList &keys)
 {
     CustomLineEdit *senderLineEdit = qobject_cast<CustomLineEdit *>(sender());
 
     // 转化成字符串列表,用于显示
-    QString keyStr = KeycodeTranslator::keycode2ReadableString(keycodes);
-    KLOG_DEBUG(qLcKeybinding) << "The input key code: " << keycodes << "Readable string: " << keyStr;
+    QString keyStr = KeycodeTranslator::keyStrings2ReadableString(keys);
+    KLOG_DEBUG(qLcKeybinding) << "The input keys: " << keys << "Readable string: " << keyStr;
 
     // 判断快捷键输入是否合法（排除都是修饰键的情况）
-    if (!isValidKeycode(keycodes))
+    if (!isPureModifierKeys(keyStr))
     {
         KiranMessageBox::message(nullptr,
                                  tr("Failed"),
@@ -851,29 +852,34 @@ void Shortcut::handleInputKeycode(QList<int> keycodes)
         return;
     }
 
-    // 判断单个key是否在ignoreKey中
-    if (keycodes.size() == 1)
+    // 不支持单个按键作为快捷键
+    if (keys.size() == 1)
     {
-        if (ignoreKeys.contains(keyStr, Qt::CaseInsensitive) ||
-            keyStr.contains(QRegExp("[A-Z]")) ||
-            keyStr.contains(QRegExp("[0-9]")))
-        {
-            KiranMessageBox::message(nullptr,
-                                     tr("Failed"),
-                                     QString(tr("Cannot use shortcut \"%1\","
-                                                "Please keep pressing the modifier keys such as Ctrl,"
-                                                "Alt, and Shift before pressing the last key of the shortcut key"))
-                                         .arg(keyStr),
-                                     KiranMessageBox::Ok);
-            return;
-        }
+        KiranMessageBox::message(nullptr,
+                                 tr("Failed"),
+                                 QString(tr("Cannot use shortcut \"%1\","
+                                            "Please keep pressing the modifier keys such as Ctrl,"
+                                            "Alt, and Shift before pressing the last key of the shortcut key"))
+                                     .arg(keyStr),
+                                 KiranMessageBox::Ok);
+        return;
     }
 
-    QString keyCombination = KeycodeTranslator::readableKeyString2Backend(keyStr);
+    // 不支持shift+主键
+    if (keys.size() == 2 && keyStr.contains(MODIFIER_KEY_SHIFT))
+    {
+        KiranMessageBox::message(nullptr,
+                                 tr("Failed"),
+                                 QString(tr("Cannot use shortcut \"%1\","
+                                            "Please continue to input modifier keys like Ctrl, Alt, and Meta."))
+                                     .arg(keyStr),
+                                 KiranMessageBox::Ok);
+        return;
+    }
 
     // 判断是否重复
     QString originName;
-    if (isConflict(originName, keyCombination))
+    if (isConflict(originName, keyStr))
     {
         KiranMessageBox::message(nullptr,
                                  QString(tr("Failed")),

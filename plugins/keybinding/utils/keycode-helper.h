@@ -14,10 +14,12 @@
 
 #pragma once
 
+#include <xkbcommon/xkbcommon.h>
 #include <QX11Info>
 #include "logging-category.h"
 
 namespace KeycodeHelper
 {
 unsigned long keycode2Keysym(unsigned long keycode);
+bool isKeypad(xkb_keysym_t sym);
 }  // namespace KeycodeHelper

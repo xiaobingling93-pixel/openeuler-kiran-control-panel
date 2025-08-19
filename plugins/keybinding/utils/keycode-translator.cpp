@@ -20,71 +20,12 @@
 #include <QMetaEnum>
 #include "keycode-helper.h"
 
-static QMetaEnum keyMetaEnum = QMetaEnum::fromType<KeycodeTranslator::Key>();
-
 // clang-format off
 static const QMap<QString, QString> SpecialKeyMap = {
-        {"exclam", "!"},
-        {"at", "@"},
-        {"numbersign", "#"},
-        {"dollar", "$"},
-        {"percent", "%"},
-        {"asciicircum", "^"},
-        {"ampersand", "&"},
-        {"asterisk", "*"},
-        {"parenleft", "("},
-        {"parenRight", ")"},
-        {"underscore", "_"},
-        {"plus", "+"},
-        {"braceleft", "{"},
-        {"braceright", "}"},
-        {"bar", "|"},
-        {"colon", ":"},
-        {"quotedbl", "\""},
-        {"quoteleft", "`"},
-        {"less", "<"},
-        {"greater", ">"},
-        {"question", "?"},
-        {"minus", "-"},
-        {"equal", "="},
-        {"bracketleft", "["},
-        {"bracketright", "]"},
-        {"backslash", "\\"},
-        {"semicolon", ";"},
-        {"apostrophe", "'"},
-        {"comma", ","},
-        {"period", "."},
-        {"slash", "/"},
-        {"up", "↑"},
-        {"left", "←"},
-        {"down", "↓"},
-        {"right", "→"},
-        {"asciitilde", "~"},
-        {"grave", "`"},
-        {"control", "Ctrl"},
-        {"super_l", "Super_L"},
-        {"super_r", "Super_R"},
-        {"meta", "Super"}
-};
-
-static const QMap<QString, QString> MediaKeyMap = {
-        {"XF86AudioPlay", QT_TRANSLATE_NOOP("Media Key", "Audio Play")},
-        {"XF86Search", QT_TRANSLATE_NOOP("Media Key", "Search")},
-        {"XF86WWW", QT_TRANSLATE_NOOP("Media Key", "WWW")},
-        {"XF86AudioLowerVolume", QT_TRANSLATE_NOOP("Media Key", "Audio Lower Volume")},
-        {"XF86AudioRaiseVolume", QT_TRANSLATE_NOOP("Media Key", "Audio Raise Volume")},
-        {"XF86AudioMicMute", QT_TRANSLATE_NOOP("Media Key", "Mic Mute")},
-        {"XF86AudioStop", QT_TRANSLATE_NOOP("Media Key", "Audio Stop")},
-        {"XF86Explorer", QT_TRANSLATE_NOOP("Media Key", "Explorer")},
-        {"XF86Calculator", QT_TRANSLATE_NOOP("Media Key", "Calculator")},
-        {"XF86AudioMute", QT_TRANSLATE_NOOP("Media Key", "Audio Mute")},
-        {"XF86AudioPause", QT_TRANSLATE_NOOP("Media Key", "Audio Pause")},
-        {"XF86AudioPrev", QT_TRANSLATE_NOOP("Media Key", "Audio Prev")},
-        {"XF86AudioMedia", QT_TRANSLATE_NOOP("Media Key", "Audio Media")},
-        {"XF86AudioNext", QT_TRANSLATE_NOOP("Media Key", "Audio Next")},
-        {"XF86Mail", QT_TRANSLATE_NOOP("Media Key", "Mail")},
-        {"XF86Tools", QT_TRANSLATE_NOOP("Media Key", "Tools")},
-        {"XF86Eject", QT_TRANSLATE_NOOP("Media Key", "Eject")}
+        {"Up", "↑"},
+        {"Left", "←"},
+        {"Down", "↓"},
+        {"Right", "→"}
 };
 // clang-format on
 
@@ -93,43 +34,35 @@ KeycodeTranslator::KeycodeTranslator(QObject *parent)
 {
 }
 
-QString KeycodeTranslator::keycode2ReadableString(const QList<int> &keycodes)
+QString KeycodeTranslator::keyStrings2ReadableString(const QStringList &keyStrings)
 {
-    QStringList keyStrings;
-
-    for (int key : keycodes)
+    QStringList readableStrings = keyStrings;
+    for (auto keyStr : readableStrings)
     {
-        if ((key >= Qt::Key_0) && (key <= Qt::Key_9))
-        {
-            keyStrings.append(QString::number(key - Qt::Key_0));
-            continue;
-        }
-
-        const char *keyValue = keyMetaEnum.valueToKey(key);
-        if (keyValue == nullptr)
-        {
-            KLOG_WARNING(qLcKeybinding) << "can't convert key:" << key;
-            continue;
-        }
-
-        QString keyStr(keyValue);
         // 特殊按键经QMetaEnum翻译之后再经过SpecialKeyMap翻译
-        if (SpecialKeyMap.contains(keyStr.toLower()))
+        if (SpecialKeyMap.contains(keyStr))
         {
-            keyStrings.append(SpecialKeyMap.value(keyStr.toLower()));
-        }
-        // 特殊按键 "_" 转换成 " "
-        else if ((key >= Audio_Lower_Volume) && (key <= Audio_Mic_Mute))
-        {
-            keyStrings.append(keyStr.split("_").join(" "));
-        }
-        else
-        {
-            keyStrings.append(keyStr);
+            readableStrings.replace(readableStrings.indexOf(keyStr), SpecialKeyMap.value(keyStr));
         }
     }
 
-    return keyStrings.join('+');
+    return readableStrings.join("");
+}
+
+QString KeycodeTranslator::readable2BackendKeyString(const QString &readableString)
+{
+    auto keystrings = readableString.split('+');
+    for (int i = 0; i < keystrings.count(); i++)
+    {
+        auto key = keystrings.at(i);
+        // special key
+        if (SpecialKeyMap.values().contains(key))
+        {
+            keystrings.replace(i, SpecialKeyMap.key(key));
+        }
+    }
+
+    return keystrings.join("+");
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 12, 2)
@@ -174,62 +107,21 @@ QString KeycodeTranslator::backendKeyString2Readable(const QString &keyString)
     }
     else
     {
-        QString temp = keyString;
-        temp = temp.replace("<", "");
-        temp = temp.replace(">", "-");
+        auto temp = keyString;
 #if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
-        QStringList keyList = temp.split("-", QString::SkipEmptyParts);
+        auto keyList = temp.split("+", QString::SkipEmptyParts);
 #else
-        QStringList keyList = temp.split("-", Qt::SkipEmptyParts);
+        auto keyList = temp.split("+", Qt::SkipEmptyParts);
 #endif
         for (int i = 0; i < keyList.size(); i++)
         {
-            if (SpecialKeyMap.contains(keyList.at(i).toLower()))
+            if (SpecialKeyMap.contains(keyList.at(i)))
             {
-                keyList.replace(i, SpecialKeyMap.value(keyList.at(i).toLower()));
-            }
-            else if (MediaKeyMap.contains(keyList.at(i)))
-            {
-                QString media = QApplication::translate("Media Key", MediaKeyMap.value(keyList.at(i)).toStdString().c_str());
-                keyList.replace(i, media);
+                keyList.replace(i, SpecialKeyMap.value(keyList.at(i)));
             }
         }
         readableString = keyList.join('+');
     }
 
     return readableString;
-}
-
-QString KeycodeTranslator::readableKeyString2Backend(const QString &keyString)
-{
-    QStringList keystrings = keyString.split('+');
-    for (int i = 0; i < keystrings.count(); i++)
-    {
-        QString key = keystrings.at(i);
-
-        // modifier
-        if (!key.compare("Alt", Qt::CaseInsensitive) ||
-            !key.compare("Shift", Qt::CaseInsensitive) ||
-            !key.compare("Ctrl", Qt::CaseInsensitive) ||
-            !key.compare("Super", Qt::CaseInsensitive))
-        {
-            QString str = "<" + key + ">";
-            keystrings.replace(i, str);
-        }
-        // media key
-        else if (key.contains(" "))
-        {
-            QString str = QString("XF86%1").arg(key.split(" ").join(""));
-            keystrings.replace(i, str);
-        }
-        // special key
-        else if (!key.contains(QRegExp("[A-Z]")) &&
-                 !key.contains(QRegExp("[a-z]")) &&
-                 !key.contains(QRegExp("[0-9]")))
-        {
-            keystrings.replace(i, SpecialKeyMap.key(key));
-        }
-    }
-
-    return keystrings.join("");
 }

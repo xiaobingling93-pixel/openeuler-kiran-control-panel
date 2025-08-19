@@ -18,12 +18,12 @@
 #include "keybinding_def.h"
 
 #include <QFile>
+#include <QFuture>
 #include <QLineEdit>
 #include <QTimer>
 #include <QToolButton>
 #include <QVBoxLayout>
 #include <QWidget>
-#include <QFuture>
 
 namespace Ui
 {
@@ -51,17 +51,17 @@ private:
     void init();
     void initUI();
 
-    //从Json对象之中提取信息至ShortcutInfo
-    static void fetchShortcutInfoFromJson(const QJsonObject&obj, ShortcutInfoPtr &info);
-    //加载全部快捷键
+    // 从Json对象之中提取信息至ShortcutInfo
+    static void fetchShortcutInfoFromJson(const QJsonObject &obj, ShortcutInfoPtr &info);
+    // 加载全部快捷键
     void loadShortcuts();
     bool getShortcutInfo(const QString &uid, ShortcutInfoPtr &info);
 
 private:
     ShortcutItem *createShortcutItem(QVBoxLayout *parent, ShortcutInfoPtr shortcutInfo, int type);
     bool isConflict(QString &originName, QString newKeyCombination);
-    bool isValidKeycode(QList<int> keycodes);
-    bool extractDesktopInfo(const QString& fileName, QString &exec, QString &icon);
+    bool isPureModifierKeys(const QString &keys);
+    bool extractDesktopInfo(const QString &fileName, QString &exec, QString &icon);
     void updateShorcut(ShortcutInfoPtr newShortcut);
     void insertShortcut(ShortcutInfoPtr shortcutInfo);
     void clearFilterItems();
@@ -74,8 +74,8 @@ public slots:
     void handledShortcutDeleted(QString result);
     void handleShortcutChanged(QString result);
 
-    void handleCustomAppTextChanged(const QString& text);
-    void handleInputKeycode(QList<int> keycodes);
+    void handleCustomAppTextChanged(const QString &text);
+    void handleInputKeycode(const QStringList &keys);
 
     void handleItemDeleteClicked(QString uid);
     void handleItemClicked(int type, QString uid, QString name, QString keyCombination, QString action = nullptr);
@@ -99,7 +99,7 @@ private:
     QList<ShortcutItem *> m_shortcutItem;
     QList<ShortcutItem *> m_filterItem;
 
-    //记录上次通过应用打开的desktop文件记录的Exec和Icon
+    // 记录上次通过应用打开的desktop文件记录的Exec和Icon
     QString m_lastIconExec;
     QString m_lastIcon;
 
