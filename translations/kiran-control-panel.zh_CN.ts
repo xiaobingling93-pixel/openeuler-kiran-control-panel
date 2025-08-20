@@ -193,17 +193,6 @@
     </message>
 </context>
 <context>
-    <name>AudioSystemTray</name>
-    <message>
-        <source>Volume Setting</source>
-        <translation type="vanished">声音设置</translation>
-    </message>
-    <message>
-        <source>Mixed Setting</source>
-        <translation type="vanished">混合设置</translation>
-    </message>
-</context>
-<context>
     <name>AuthPlugin</name>
     <message>
         <location filename="../plugins/authentication/auth-plugin.cpp" line="91"/>
@@ -1663,14 +1652,6 @@
         <translation type="unfinished">删除用户</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation type="obsolete">保存</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">取消</translation>
-    </message>
-    <message>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="160"/>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="170"/>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="181"/>
@@ -2058,6 +2039,39 @@
         <location filename="../plugins/authentication/pages/iris-page.cpp" line="178"/>
         <source>Failed to record biometrics(%1), Please try again</source>
         <translation>录入特征失败(%1),请重试</translation>
+    </message>
+</context>
+<context>
+    <name>KADAuthType</name>
+    <message>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="35"/>
+        <source>password</source>
+        <translation>密码</translation>
+    </message>
+    <message>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="36"/>
+        <source>fingerprint</source>
+        <translation>指纹</translation>
+    </message>
+    <message>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="37"/>
+        <source>face</source>
+        <translation>人脸</translation>
+    </message>
+    <message>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="38"/>
+        <source>ukey</source>
+        <translation>UKey</translation>
+    </message>
+    <message>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="39"/>
+        <source>fingervein</source>
+        <translation>指静脉</translation>
+    </message>
+    <message>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="40"/>
+        <source>iris</source>
+        <translation>虹膜</translation>
     </message>
 </context>
 <context>
@@ -3229,29 +3243,6 @@ This is line 50 of the test text</source>
     </message>
 </context>
 <context>
-    <name>Popup</name>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/popup.cpp" line="23"/>
-        <source>cancel</source>
-        <translation type="unfinished">取消</translation>
-    </message>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/popup.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/popup.ui" line="26"/>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/popup.ui" line="39"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>PowerPlugin</name>
     <message>
         <location filename="../plugins/power/power-plugin.cpp" line="71"/>
@@ -3326,66 +3317,39 @@ This is line 50 of the test text</source>
 <context>
     <name>PrefsPage</name>
     <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="64"/>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="80"/>
         <source>Authentication type Enabled status</source>
         <translation>认证类型启用状态</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="75"/>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="178"/>
-        <source>fingerprint</source>
-        <translation>指纹</translation>
-    </message>
-    <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="76"/>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="178"/>
-        <source>fingervein</source>
-        <translation>指静脉</translation>
-    </message>
-    <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="115"/>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="128"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="130"/>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="143"/>
         <source>Return</source>
         <translation>返回</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="138"/>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="151"/>
         <source>login</source>
         <translation>登录</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="139"/>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="152"/>
         <source>unlock</source>
         <translation>解锁</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="140"/>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="153"/>
         <source>empowerment</source>
         <translation>授权</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="179"/>
+        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="192"/>
         <source>Apply the %1 authentication to the following applications</source>
         <translation>启用%1认证在以下的认证应用中</translation>
-    </message>
-    <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="77"/>
-        <source>ukey</source>
-        <translation>UKey</translation>
-    </message>
-    <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="78"/>
-        <source>iris</source>
-        <translation>虹膜</translation>
-    </message>
-    <message>
-        <location filename="../plugins/authentication/pages/prefs-page.cpp" line="79"/>
-        <source>face</source>
-        <translation>人脸</translation>
     </message>
 </context>
 <context>
@@ -3855,10 +3819,10 @@ This is line 50 of the test text</source>
     </message>
     <message>
         <source>Cannot use shortcut &quot;%1&quot;,Super key is currently not supported for shortcut.Please try again.</source>
-        <translation type="vanished">无法使用快捷键&quot;%1&quot;,暂不支持设置包含Super键的快捷键。请重新输入。</translation>
+        <translation>无法使用快捷键&quot;%1&quot;,暂不支持设置包含Super键的快捷键。请重新输入。</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="860"/>
+    <message>
         <source>Cannot use shortcut &quot;%1&quot;,Please keep pressing the modifier keys such as Ctrl,Alt, and Shift before pressing the last key of the shortcut key</source>
         <translation>无法使用快捷键&quot;%1&quot;, 请保持按压Ctrl、Alt、Shift等修饰键后，再按压快捷键的最后一个键</translation>
     </message>
@@ -3885,37 +3849,6 @@ This is line 50 of the test text</source>
         <location filename="../plugins/keybinding/utils/shortcut-item.ui" line="73"/>
         <source>TextLabel</source>
         <translation></translation>
-    </message>
-</context>
-<context>
-    <name>SubItem1</name>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/subitem1.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/subitem1.ui" line="20"/>
-        <source>弹窗</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/subitem1.ui" line="27"/>
-        <source>SubItem1</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SubItem2</name>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/subitem2.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/kiran-cpanel-demo/src/subitem/subitem2.ui" line="20"/>
-        <source>SubItem2</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4415,11 +4348,12 @@ This is line 50 of the test text</source>
         <translation>启用用户</translation>
     </message>
     <message>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="367"/>
         <source>auth manager</source>
-        <translation type="vanished">认证管理</translation>
+        <translation>认证管理</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="361"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="396"/>
         <source>Password expiration policy</source>
         <translation>密码过期策略</translation>
     </message>
@@ -4573,13 +4507,6 @@ This is line 50 of the test text</source>
         <location filename="../plugins/audio/plugin/volume-output-subitem.h" line="45"/>
         <source>VolumeOutput</source>
         <translation>输出</translation>
-    </message>
-</context>
-<context>
-    <name>VolumeSettingPage</name>
-    <message>
-        <source>Volume</source>
-        <translation type="vanished">音量</translation>
     </message>
 </context>
 <context>
