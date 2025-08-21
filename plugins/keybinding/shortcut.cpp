@@ -155,6 +155,8 @@ void Shortcut::initUI()
             {
                 ui->stackedWidget->setCurrentWidget(ui->page_add);
                 ui->lineEdit_custom_app->clear();
+                // 将应用图标初始化为默认图标
+                m_customAppIcon->setPixmap(QIcon::fromTheme(DEFAULT_APP_ICON).pixmap(20, 20));
                 ui->lineEdit_custom_name->clear();
                 ui->lineEdit_custom_name->setFocus();
                 m_lECustomKey->clear();
@@ -232,6 +234,10 @@ void Shortcut::loadShortcuts()
     auto funcParseShortcutArray =
         [](const QJsonObject &rootObj, ShortcutType type, QList<ShortcutInfoPtr> &shortcuts) -> bool
     {
+        // <type <uid,key>>
+        static QMultiMap<int, QPair<QString, QString>> blackKeybindings{
+            {SHORTCUT_TYPE_SYSTEM, {"6468861322e474631c60f6b98b583eb6", "显示面板主菜单"}}};
+
         static QMap<ShortcutType, QString> typeJsonKeyMap{
             {SHORTCUT_TYPE_SYSTEM, KEYBINDING_SHORTCUT_JK_SYSTEM},
             {SHORTCUT_TYPE_CUSTOM, KEYBINDING_SHORTCUT_JK_CUSTOM}};
@@ -254,6 +260,13 @@ void Shortcut::loadShortcuts()
             shortcutInfo->type = type;
 
             Shortcut::fetchShortcutInfoFromJson(obj, shortcutInfo);
+            // 过滤黑名单中的快捷键
+            auto value = QPair<QString, QString>(shortcutInfo->uid, shortcutInfo->name);
+            if (blackKeybindings.contains(shortcutInfo->type, value))
+            {
+                KLOG_DEBUG(qLcKeybinding) << "Shortcut" << shortcutInfo->name << "is blacklisted";
+                continue;
+            }
             shortcuts.append(shortcutInfo);
         }
 
