@@ -7,7 +7,7 @@
 1. 安装编译依赖
 
    ```bash
-   $ sudo yum install gcc-c++ qt5-qtbase qt5-qtbase-devel qt5-qtbase-gui qt5-qtx11extras qt5-qtx11extras-devel qt5-qtsvg glibc glibc-devel libX11 libX11-devel kiranwidgets-qt5 kiran-widgets-qt5-devel qt5-qtbase-static qt5-qtbase-private-devel group-service
+   $ sudo yum install gcc-c++ qt5-qtbase qt5-qtbase-devel qt5-qtbase-gui qt5-qtx11extras qt5-qtx11extras-devel qt5-qtsvg glibc glibc-devel libX11 libX11-devel kiranwidgets-qt5 kiran-widgets-qt5-devel qt5-qtbase-static qt5-qtbase-private-devel group-service libxkbcommon-devel
    ```
 
 2. **源码根目录下创建**build**目录`mkdir build`

@@ -34,8 +34,12 @@ protected:
     virtual void focusInEvent(QFocusEvent *e);
     virtual void focusOutEvent(QFocusEvent *e);
 
+private:
+    QStringList keycode2KeyString(const QList<int> &keycodes);
+    QList<int> getModifierKeycodes(Qt::KeyboardModifiers modifiers);
+
 signals:
-    void inputKeyCodes(QList<int> keycodes);
+    void inputKeybinding(QStringList keys);
 
 private:
     void initUI();

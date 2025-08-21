@@ -14,8 +14,8 @@
 
 #include "keycode-helper.h"
 
-#include <X11/Xlib.h>
 #include <X11/XKBlib.h>
+#include <X11/Xlib.h>
 
 namespace KeycodeHelper
 {
@@ -39,5 +39,10 @@ unsigned long keycode2Keysym(unsigned long keycode)
         KLOG_INFO(qLcKeybinding) << "no corresponding" << keycode << "KeySym found.";
     }
     return keysym;
+}
+
+bool isKeypad(xkb_keysym_t sym)
+{
+    return sym >= XKB_KEY_KP_Space && sym <= XKB_KEY_KP_9;
 }
 }  // namespace KeycodeHelper

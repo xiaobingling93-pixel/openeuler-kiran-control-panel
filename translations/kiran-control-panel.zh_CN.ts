@@ -17,19 +17,19 @@
 <context>
     <name>AccountWidget</name>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="97"/>
-        <location filename="../plugins/account/account-widget.cpp" line="398"/>
+        <location filename="../plugins/account/account-widget.cpp" line="96"/>
+        <location filename="../plugins/account/account-widget.cpp" line="397"/>
         <source>disable</source>
         <translation>禁用</translation>
     </message>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="97"/>
-        <location filename="../plugins/account/account-widget.cpp" line="398"/>
+        <location filename="../plugins/account/account-widget.cpp" line="96"/>
+        <location filename="../plugins/account/account-widget.cpp" line="397"/>
         <source>enable</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="219"/>
+        <location filename="../plugins/account/account-widget.cpp" line="218"/>
         <source>Create new user</source>
         <translation>创建新用户</translation>
     </message>
@@ -57,9 +57,14 @@
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../plugins/group/src/pages/add-users-page/add-users-page.cpp" line="49"/>
+        <location filename="../plugins/group/src/pages/add-users-page/add-users-page.cpp" line="50"/>
         <source>Please input keys for search...</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/group/src/pages/add-users-page/add-users-page.cpp" line="137"/>
+        <source>Error</source>
+        <translation type="unfinished">错误</translation>
     </message>
 </context>
 <context>
@@ -437,12 +442,12 @@
 <context>
     <name>CheckpasswdDialog</name>
     <message>
-        <location filename="../plugins/authentication/checkpasswd-dialog.cpp" line="115"/>
+        <location filename="../plugins/authentication/checkpasswd-dialog.cpp" line="117"/>
         <source>Check password</source>
         <translation>校验当前用户密码</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/checkpasswd-dialog.cpp" line="116"/>
+        <location filename="../plugins/authentication/checkpasswd-dialog.cpp" line="118"/>
         <source>Check the current password before you enroll the feature</source>
         <translation>录入特征之前需要校验当前密码</translation>
     </message>
@@ -529,8 +534,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/group/src/pages/create-group-page/create-group-page.cpp" line="105"/>
-        <location filename="../plugins/group/src/pages/create-group-page/create-group-page.cpp" line="135"/>
+        <location filename="../plugins/group/src/pages/create-group-page/create-group-page.cpp" line="113"/>
         <source>Error</source>
         <translation type="unfinished">错误</translation>
     </message>
@@ -1104,28 +1108,28 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="254"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="272"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="258"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="276"/>
         <source> (recommended)</source>
         <translation> (推荐)</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="363"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="367"/>
         <source>Is the display normal?</source>
         <translation>显示是否正常?</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="366"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="370"/>
         <source>Save current configuration(K)</source>
         <translation>保存当前配置(K)</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="370"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="374"/>
         <source>Restore previous configuration(R)</source>
         <translation>恢复之前的配置(R)</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="378"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="382"/>
         <source>The display will resume the previous configuration in %1 seconds</source>
         <translation>显示将会在 %1 秒后恢复之前的配置</translation>
     </message>
@@ -1668,9 +1672,9 @@
     </message>
     <message>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="160"/>
-        <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="171"/>
-        <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="183"/>
-        <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="192"/>
+        <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="170"/>
+        <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="181"/>
+        <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="190"/>
         <source>Error</source>
         <translation type="unfinished">错误</translation>
     </message>
@@ -1678,33 +1682,29 @@
 <context>
     <name>GroupInterface</name>
     <message>
-        <location filename="../plugins/group/src/group-interface.cpp" line="45"/>
+        <location filename="../plugins/group/src/group-interface.cpp" line="46"/>
         <source>Failed to create group, %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/group/src/group-interface.cpp" line="69"/>
+        <location filename="../plugins/group/src/group-interface.cpp" line="70"/>
         <source>Failed to delete group, %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/group/src/group-interface.cpp" line="92"/>
+        <location filename="../plugins/group/src/group-interface.cpp" line="93"/>
         <source>Failed to add %1 to group, %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/group/src/group-interface.cpp" line="114"/>
+        <location filename="../plugins/group/src/group-interface.cpp" line="115"/>
         <source>Failed to remove %1 from group, %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/group/src/group-interface.cpp" line="138"/>
+        <location filename="../plugins/group/src/group-interface.cpp" line="142"/>
+        <location filename="../plugins/group/src/group-interface.cpp" line="154"/>
         <source>Failed to change group name to %1, %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/group/src/group-interface.cpp" line="150"/>
-        <source>Failed to change group name to %1, the new group name is occupied!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2071,12 +2071,12 @@
 <context>
     <name>KeycodeTranslator</name>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="169"/>
+        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="86"/>
         <source>None</source>
         <translation>暂无</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="173"/>
+        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="90"/>
         <source>disabled</source>
         <translation>禁用</translation>
     </message>
@@ -2777,89 +2777,72 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Media Key</name>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="71"/>
         <source>Audio Play</source>
-        <translation>音频播放</translation>
+        <translation type="vanished">音频播放</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="72"/>
         <source>Search</source>
-        <translation>搜索</translation>
+        <translation type="vanished">搜索</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="73"/>
         <source>WWW</source>
-        <translation>万维网</translation>
+        <translation type="vanished">万维网</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="74"/>
         <source>Audio Lower Volume</source>
-        <translation>减小音量</translation>
+        <translation type="vanished">减小音量</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="75"/>
         <source>Audio Raise Volume</source>
-        <translation>增大音量</translation>
+        <translation type="vanished">增大音量</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="76"/>
         <source>Mic Mute</source>
-        <translation>输入静音</translation>
+        <translation type="vanished">输入静音</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="77"/>
         <source>Audio Stop</source>
-        <translation>音频停止</translation>
+        <translation type="vanished">音频停止</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="78"/>
         <source>Explorer</source>
-        <translation>浏览</translation>
+        <translation type="vanished">浏览</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="79"/>
         <source>Calculator</source>
-        <translation>计算器</translation>
+        <translation type="vanished">计算器</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="80"/>
         <source>Audio Mute</source>
-        <translation>音频暂停</translation>
+        <translation type="vanished">音频暂停</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="81"/>
         <source>Audio Pause</source>
-        <translation>音频暂停</translation>
+        <translation type="vanished">音频暂停</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="82"/>
         <source>Audio Prev</source>
-        <translation>音频上一个</translation>
+        <translation type="vanished">音频上一个</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="83"/>
         <source>Audio Media</source>
-        <translation>音频媒体</translation>
+        <translation type="vanished">音频媒体</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="84"/>
         <source>Audio Next</source>
-        <translation>音频下一个</translation>
+        <translation type="vanished">音频下一个</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="85"/>
         <source>Mail</source>
-        <translation>邮件</translation>
+        <translation type="vanished">邮件</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="86"/>
         <source>Tools</source>
-        <translation>工具</translation>
+        <translation type="vanished">工具</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="87"/>
         <source>Eject</source>
-        <translation>弹出</translation>
+        <translation type="vanished">弹出</translation>
     </message>
 </context>
 <context>
@@ -3271,18 +3254,18 @@ This is line 50 of the test text</source>
 <context>
     <name>PowerPlugin</name>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="72"/>
-        <location filename="../plugins/power/power-plugin.cpp" line="114"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="71"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="113"/>
         <source>General Settings</source>
         <translation>通用设置</translation>
     </message>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="81"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="80"/>
         <source>Power Settings</source>
         <translation>电源设置</translation>
     </message>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="96"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="95"/>
         <source>Battery Settings</source>
         <translation>电池设置</translation>
     </message>
@@ -3435,26 +3418,26 @@ This is line 50 of the test text</source>
     <message>
         <location filename="../plugins/display/src/display-config.cpp" line="468"/>
         <location filename="../plugins/display/src/display-config.h" line="134"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="398"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="416"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="402"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="420"/>
         <source>Tips</source>
         <translation>提示</translation>
     </message>
     <message>
         <location filename="../plugins/display/src/display-config.cpp" line="471"/>
         <location filename="../plugins/display/src/display-config.h" line="137"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="401"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="419"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="405"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="423"/>
         <source>OK(K)</source>
         <translation>确定(K)</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="405"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="409"/>
         <source>Failed to apply display settings!%1</source>
         <translation>应用显示设置失败!%1</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="423"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="427"/>
         <source>Fallback display setting failed! %1</source>
         <translation>回撤显示设置失败! %1</translation>
     </message>
@@ -3630,7 +3613,7 @@ This is line 50 of the test text</source>
     <message>
         <location filename="../plugins/keybinding/shortcut.ui" line="210"/>
         <location filename="../plugins/keybinding/shortcut.cpp" line="173"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="578"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="579"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
@@ -3771,7 +3754,7 @@ This is line 50 of the test text</source>
     </message>
     <message>
         <location filename="../plugins/keybinding/shortcut.cpp" line="310"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="405"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="406"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -3781,91 +3764,92 @@ This is line 50 of the test text</source>
         <translation>获取快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="394"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="395"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="396"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="397"/>
         <source>Desktop entries(*.desktop)</source>
         <translation>桌面文件(*.desktop)</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="630"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="631"/>
         <source>System</source>
         <translation>系统</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="632"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="633"/>
         <source>Sound</source>
         <translation>声音</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="634"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="635"/>
         <source>Accessibility</source>
         <translation>辅助功能</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="684"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="736"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="757"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="794"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="815"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="845"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="862"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="879"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="685"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="737"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="758"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="795"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="816"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="846"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="859"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="872"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="885"/>
         <source>Failed</source>
         <translation>失败</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="685"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="686"/>
         <source>Delete shortcut failed,error:</source>
         <translation>删除快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="698"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="775"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="699"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="776"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="699"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="776"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="700"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="777"/>
         <source>Please complete the shortcut information!</source>
         <translation>请完善快捷键信息！</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="708"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="709"/>
         <source>Set shortcut</source>
         <translation>设置快捷键</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="709"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="710"/>
         <source>Are you sure you want to disable this shortcut?</source>
         <translation>是否确定要禁用此快捷键？</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="737"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="738"/>
         <source>Modify system shortcut failed,error:</source>
         <translation>修改系统快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="758"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="759"/>
         <source>Modify custom shortcut failed,error:</source>
         <translation>修改自定义快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="795"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="796"/>
         <source>Add custom shortcut failed,error:</source>
         <translation>添加自定义快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="816"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="817"/>
         <source>Reset shortcut failed,error:</source>
         <translation>重置快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="846"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="847"/>
         <source>Cannot use shortcut &quot;%1&quot;,Shortcuts cannot be set to only modifier keys. Please add a regular key, like A-Z, and so on.</source>
         <translation>无法使用快捷键&quot;%1&quot;, 快捷键不能仅包含修饰键。请添加一个主键，如A-Z等。</translation>
     </message>
@@ -3874,12 +3858,17 @@ This is line 50 of the test text</source>
         <translation type="vanished">无法使用快捷键&quot;%1&quot;,暂不支持设置包含Super键的快捷键。请重新输入。</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="863"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="860"/>
         <source>Cannot use shortcut &quot;%1&quot;,Please keep pressing the modifier keys such as Ctrl,Alt, and Shift before pressing the last key of the shortcut key</source>
         <translation>无法使用快捷键&quot;%1&quot;, 请保持按压Ctrl、Alt、Shift等修饰键后，再按压快捷键的最后一个键</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="880"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="873"/>
+        <source>Cannot use shortcut &quot;%1&quot;,Please continue to input modifier keys like Ctrl, Alt, and Meta.</source>
+        <translation>无法使用快捷键&quot;%1&quot;,暂不支持设置仅包含Shift修饰键的快捷键。请重新输入。</translation>
+    </message>
+    <message>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="886"/>
         <source>Shortcut keys %1 are already used in %2,Please try again!</source>
         <translation>快捷键%1已用于%2，请再试一次！</translation>
     </message>
@@ -4426,147 +4415,146 @@ This is line 50 of the test text</source>
         <translation>启用用户</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="367"/>
         <source>auth manager</source>
-        <translation>认证管理</translation>
+        <translation type="vanished">认证管理</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="396"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="361"/>
         <source>Password expiration policy</source>
         <translation>密码过期策略</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="461"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="426"/>
         <source>Confirm</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="502"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="467"/>
         <source>Delete</source>
         <translation>删除用户</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="577"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="542"/>
         <source>Current password</source>
         <translation>当前密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="623"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="588"/>
         <source>EditCurrentPasswd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="641"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="606"/>
         <source>New password</source>
         <translation>新密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="676"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="641"/>
         <source>EditNewPasswd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="693"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="658"/>
         <source>Enter the new password again</source>
         <translation>再次输入新密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="728"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="693"/>
         <source>EditNewPasswdAgain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="789"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="754"/>
         <source>EditPasswdSave</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="792"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="757"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="833"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="798"/>
         <source>EditPasswdCancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="836"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="801"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="140"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="139"/>
         <source>standard</source>
         <translation>普通用户</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="141"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="140"/>
         <source>administrator</source>
         <translation>管理员</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="220"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="202"/>
         <source>Please enter the new user password</source>
         <translation>请输入新密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="228"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="210"/>
         <source>Please enter the password again</source>
         <translation>请再次输入密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="234"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="216"/>
         <source>The password you enter must be the same as the former one</source>
         <translation>两次密码不相同，请核对后，再次输入</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="246"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="228"/>
         <source>Please enter the current user password</source>
         <translation>请输入当前密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="252"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="234"/>
         <source>The current password is incorrect</source>
         <translation>当前密码错误，请再次输入</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="259"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="241"/>
         <source>The new password cannot be the same as the current password</source>
         <translation>新密码不能和旧密码相同，请重新输入</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="265"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="273"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="311"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="330"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="364"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="247"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="255"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="293"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="312"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="346"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="265"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="273"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="247"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="255"/>
         <source>Password encryption failed</source>
         <translation>密码加密失败</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="316"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="298"/>
         <source>user information updated successfully</source>
         <translation>用户信息更新成功</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="336"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="318"/>
         <source>Password updated successfully</source>
         <translation>密码更新成功</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="342"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="324"/>
         <source>The directory and files under the user&apos;s home directory are deleted with the user.Are you sure you want to delete the user(%1)?</source>
         <translation>用户目录下的目录和文件会随用户一起删除，确定要删除%1用户吗？</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="345"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="327"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>

@@ -27,6 +27,10 @@
 #define SHORTCUT_KIND_DESKTOP "桌面"
 #define SHORTCUT_KIND_CUSTOM "自定义"
 
+#define MODIFIER_KEY_SHIFT "Shift"
+#define MODIFIER_KEY_CTRL "Ctrl"
+#define MODIFIER_KEY_ALT "Alt"
+#define MODIFIER_KEY_META "Meta"
 struct ShortcutInfo
 {
     int type;
@@ -37,24 +41,6 @@ struct ShortcutInfo
     QString keyCombination;
 };
 typedef QSharedPointer<ShortcutInfo> ShortcutInfoPtr;
-
-static QStringList ignoreKeys = {
-    "Tab",
-    "Return",
-    "Enter",
-    "Space",
-    "Esc",
-    "Home",
-    "End",
-    "PgUp",
-    "PgDown",
-    "Up",
-    "Down",
-    "Left",
-    "Right",
-    "Shift",
-    "Ctrl",
-    "Alt"};
 
 enum ShortcutType
 {
