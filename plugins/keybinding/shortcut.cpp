@@ -155,6 +155,8 @@ void Shortcut::initUI()
             {
                 ui->stackedWidget->setCurrentWidget(ui->page_add);
                 ui->lineEdit_custom_app->clear();
+                // 将应用图标初始化为默认图标
+                m_customAppIcon->setPixmap(QIcon::fromTheme(DEFAULT_APP_ICON).pixmap(20, 20));
                 ui->lineEdit_custom_name->clear();
                 ui->lineEdit_custom_name->setFocus();
                 m_lECustomKey->clear();
