@@ -55,6 +55,7 @@ file(GLOB_RECURSE LAUNCHER_SRC "./launcher/*.cpp" "./launcher/*.h")
 #NOTE: 资源文件名不能与插件资源名相同，否则会导致插件中部分图片无法正常加载显示。
 set(RESOURCE ./resources/control-panel-resources.qrc)
 
+## 翻译文件
 file(GLOB TS_FILES "translations/*.ts")
 set(PANEL_ALL_TRANSLATION_SRC_DIR
         ${PROJECT_SOURCE_DIR}/common
@@ -95,6 +96,14 @@ target_link_libraries(${PROJECT_NAME}
         ${KIRAN_WIDGETS_LIBRARIES}
         ${KIRAN_INTEGRATION_THEME_LIBRARIES}
         ${GLIB_2_LIBRARIES})
+        
+## 更新翻译文件
+add_custom_target(update_translations
+    COMMAND ${Qt5_LUPDATE_EXECUTABLE} -no-obsolete ${PANEL_ALL_TRANSLATION_SRC_DIR} -ts ${TS_FILES}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Updating translations and removing obsolete entries"
+)
+add_dependencies(${PROJECT_NAME} update_translations)
 
 install(FILES ${INCLUDE_SRC} DESTINATION ${KCP_INCLUDEDIR})
 install(FILES ${PANEL_QM_FILES} DESTINATION ${TRANSLATION_DIR})
