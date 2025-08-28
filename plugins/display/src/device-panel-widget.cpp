@@ -269,8 +269,11 @@ void DevicePanelWidget::handleConfigModeChanged(ConfigMode mode)
 
 void DevicePanelWidget::updateScreenGeometry()
 {
-    QAbstractButton *btn = static_cast<QAbstractButton *>(sender());
-    onItemEndDrag(btn);
+    DevicePanelItem *item = static_cast<DevicePanelItem *>(sender());
+    // 根据屏幕锚定位置重新更新虚拟屏幕显示几何位置信息
+    item->updateScreenGeometry();
+    // 更新预览
+    updatePreview();
 }
 
 void DevicePanelWidget::resizeEvent(QResizeEvent *event)

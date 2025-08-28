@@ -74,6 +74,8 @@ public:
     void changeEnabled(const bool &enabled);
     bool enabled() const;
 
+    void updateScreenGeometry();
+
 signals:
     void drag(QAbstractButton *btn);
     void endDrag(QAbstractButton *btn);
@@ -89,7 +91,6 @@ private:
     void mouseReleaseEvent(QMouseEvent *e);
     bool eventFilter(QObject *obj, QEvent *event);
 
-    void updateScreenGeometry();
     void updateOffset(DevicePanelItem *anchorByBtn, const AnchorByDrect &anchorByDrect, const bool &isDrag);
     DisplayRotationType rotationType(const DisplayRotationType &curType, const int &step);
 
