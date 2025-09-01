@@ -1882,19 +1882,6 @@
     </message>
 </context>
 <context>
-    <name>InputDialog</name>
-    <message>
-        <location filename="../lib/common-widgets/input-dialog/input-dialog.cpp" line="116"/>
-        <source>Confirm</source>
-        <translation>确认</translation>
-    </message>
-    <message>
-        <location filename="../lib/common-widgets/input-dialog/input-dialog.cpp" line="128"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
-    </message>
-</context>
-<context>
     <name>InputPage</name>
     <message>
         <location filename="../plugins/audio/plugin/input-page.ui" line="14"/>
@@ -2085,12 +2072,12 @@
 <context>
     <name>KeycodeTranslator</name>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="86"/>
+        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="102"/>
         <source>None</source>
         <translation>暂无</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="90"/>
+        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="106"/>
         <source>disabled</source>
         <translation>禁用</translation>
     </message>
@@ -2466,14 +2453,6 @@
     </message>
 </context>
 <context>
-    <name>KiranCollapse</name>
-    <message>
-        <location filename="../lib/common-widgets/kiran-collapse/kiran-collapse.ui" line="20"/>
-        <source>ListExpansionSpace</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>KiranDatePickerWidget</name>
     <message>
         <location filename="../plugins/timedate/widgets/kiran-date-picker-widget.ui" line="14"/>
@@ -2778,85 +2757,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="269"/>
         <source>Privacy Policy</source>
         <translation>隐私协议</translation>
-    </message>
-</context>
-<context>
-    <name>ListExpansionSpace</name>
-    <message>
-        <location filename="../lib/common-widgets/kiran-collapse/list-expansion-space.ui" line="20"/>
-        <source>ListExpansionSpace</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Media Key</name>
-    <message>
-        <source>Audio Play</source>
-        <translation type="vanished">音频播放</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">搜索</translation>
-    </message>
-    <message>
-        <source>WWW</source>
-        <translation type="vanished">万维网</translation>
-    </message>
-    <message>
-        <source>Audio Lower Volume</source>
-        <translation type="vanished">减小音量</translation>
-    </message>
-    <message>
-        <source>Audio Raise Volume</source>
-        <translation type="vanished">增大音量</translation>
-    </message>
-    <message>
-        <source>Mic Mute</source>
-        <translation type="vanished">输入静音</translation>
-    </message>
-    <message>
-        <source>Audio Stop</source>
-        <translation type="vanished">音频停止</translation>
-    </message>
-    <message>
-        <source>Explorer</source>
-        <translation type="vanished">浏览</translation>
-    </message>
-    <message>
-        <source>Calculator</source>
-        <translation type="vanished">计算器</translation>
-    </message>
-    <message>
-        <source>Audio Mute</source>
-        <translation type="vanished">音频暂停</translation>
-    </message>
-    <message>
-        <source>Audio Pause</source>
-        <translation type="vanished">音频暂停</translation>
-    </message>
-    <message>
-        <source>Audio Prev</source>
-        <translation type="vanished">音频上一个</translation>
-    </message>
-    <message>
-        <source>Audio Media</source>
-        <translation type="vanished">音频媒体</translation>
-    </message>
-    <message>
-        <source>Audio Next</source>
-        <translation type="vanished">音频下一个</translation>
-    </message>
-    <message>
-        <source>Mail</source>
-        <translation type="vanished">邮件</translation>
-    </message>
-    <message>
-        <source>Tools</source>
-        <translation type="vanished">工具</translation>
-    </message>
-    <message>
-        <source>Eject</source>
-        <translation type="vanished">弹出</translation>
     </message>
 </context>
 <context>
@@ -3576,8 +3476,8 @@ This is line 50 of the test text</source>
     </message>
     <message>
         <location filename="../plugins/keybinding/shortcut.ui" line="210"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="173"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="579"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="175"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="592"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
@@ -3702,118 +3602,118 @@ This is line 50 of the test text</source>
         <translation>请输入新快捷键</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="171"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="173"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="225"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="227"/>
         <source>failed to load shortcut key data!</source>
         <translation>加载快捷键数据失败！</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="267"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="280"/>
         <source>List shortcut failed,error:%1</source>
         <translation>列出快捷键失败，错误:%1</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="310"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="406"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="323"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="419"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="311"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="324"/>
         <source>Get shortcut failed,error:</source>
         <translation>获取快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="395"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="408"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="397"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="410"/>
         <source>Desktop entries(*.desktop)</source>
         <translation>桌面文件(*.desktop)</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="631"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="644"/>
         <source>System</source>
         <translation>系统</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="633"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="646"/>
         <source>Sound</source>
         <translation>声音</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="635"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="648"/>
         <source>Accessibility</source>
         <translation>辅助功能</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="685"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="737"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="758"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="795"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="816"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="846"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="698"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="750"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="771"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="808"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="829"/>
         <location filename="../plugins/keybinding/shortcut.cpp" line="859"/>
         <location filename="../plugins/keybinding/shortcut.cpp" line="872"/>
         <location filename="../plugins/keybinding/shortcut.cpp" line="885"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="898"/>
         <source>Failed</source>
         <translation>失败</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="686"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="699"/>
         <source>Delete shortcut failed,error:</source>
         <translation>删除快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="699"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="776"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="712"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="789"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="700"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="777"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="713"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="790"/>
         <source>Please complete the shortcut information!</source>
         <translation>请完善快捷键信息！</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="709"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="722"/>
         <source>Set shortcut</source>
         <translation>设置快捷键</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="710"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="723"/>
         <source>Are you sure you want to disable this shortcut?</source>
         <translation>是否确定要禁用此快捷键？</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="738"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="751"/>
         <source>Modify system shortcut failed,error:</source>
         <translation>修改系统快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="759"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="772"/>
         <source>Modify custom shortcut failed,error:</source>
         <translation>修改自定义快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="796"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="809"/>
         <source>Add custom shortcut failed,error:</source>
         <translation>添加自定义快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="817"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="830"/>
         <source>Reset shortcut failed,error:</source>
         <translation>重置快捷键失败，错误：</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="847"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="860"/>
         <source>Cannot use shortcut &quot;%1&quot;,Shortcuts cannot be set to only modifier keys. Please add a regular key, like A-Z, and so on.</source>
         <translation>无法使用快捷键&quot;%1&quot;, 快捷键不能仅包含修饰键。请添加一个主键，如A-Z等。</translation>
     </message>
@@ -3822,17 +3722,16 @@ This is line 50 of the test text</source>
         <translation>无法使用快捷键&quot;%1&quot;,暂不支持设置包含Super键的快捷键。请重新输入。</translation>
     </message>
     <message>
-    <message>
         <source>Cannot use shortcut &quot;%1&quot;,Please keep pressing the modifier keys such as Ctrl,Alt, and Shift before pressing the last key of the shortcut key</source>
         <translation>无法使用快捷键&quot;%1&quot;, 请保持按压Ctrl、Alt、Shift等修饰键后，再按压快捷键的最后一个键</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="873"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="886"/>
         <source>Cannot use shortcut &quot;%1&quot;,Please continue to input modifier keys like Ctrl, Alt, and Meta.</source>
         <translation>无法使用快捷键&quot;%1&quot;,暂不支持设置仅包含Shift修饰键的快捷键。请重新输入。</translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="886"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="899"/>
         <source>Shortcut keys %1 are already used in %2,Please try again!</source>
         <translation>快捷键%1已用于%2，请再试一次！</translation>
     </message>
@@ -4127,19 +4026,6 @@ This is line 50 of the test text</source>
     </message>
 </context>
 <context>
-    <name>TopBar</name>
-    <message>
-        <location filename="../lib/common-widgets/kiran-collapse/top-bar.ui" line="20"/>
-        <source>ListExpansionSpace</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/common-widgets/kiran-collapse/top-bar.ui" line="43"/>
-        <source>TITLE</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>TouchPadPage</name>
     <message>
         <location filename="../plugins/mouse/pages/touchpad-page.ui" line="14"/>
@@ -4348,12 +4234,7 @@ This is line 50 of the test text</source>
         <translation>启用用户</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="367"/>
-        <source>auth manager</source>
-        <translation>认证管理</translation>
-    </message>
-    <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="396"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.ui" line="361"/>
         <source>Password expiration policy</source>
         <translation>密码过期策略</translation>
     </message>

@@ -13,7 +13,7 @@
  */
 #pragma once
 #include <NetworkManagerQt/WirelessDevice>
-#include "kiran-collapse/kiran-collapse.h"
+#include <kiran-collapse.h>
 
 class QVBoxLayout;
 class QLabel;

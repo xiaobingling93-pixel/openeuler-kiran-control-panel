@@ -15,11 +15,11 @@
 #include "auth-setting-container.h"
 #include "auth-setting-item.h"
 #include "checkpasswd-dialog.h"
-#include "input-dialog/input-dialog.h"
 #include "logging-category.h"
 #include "utils/kiran-auth-dbus-proxy.h"
 
 #include <kiran-message-box.h>
+#include <kiran-input-dialog.h>
 #include <kiran-push-button.h>
 #include <qt5-log-i.h>
 #include <QBoxLayout>
@@ -167,7 +167,7 @@ void GeneralBioPage::renameFeature()
                                  << "iid" << iid << ","
                                  << "name" << name;
 
-    InputDialog renameDialog(this);
+    KiranInputDialog renameDialog(this);
     renameDialog.setTitle(tr("Rename Feature"));
     renameDialog.setDesc(tr("Please enter the renamed feature name"));
     renameDialog.setInputMode(QLineEdit::Normal, 32);
@@ -177,7 +177,7 @@ void GeneralBioPage::renameFeature()
         return;
     }
 
-    QString newName = renameDialog.getText();
+    QString newName = renameDialog.getUserInput();
     m_proxy->renameIdentification(iid, newName);
 
     KLOG_INFO(qLcAuthentication) << "feature renamed:" << iid
@@ -229,7 +229,7 @@ void GeneralBioPage::startEnrollFeature()
     }
     dialog.hide();
 
-    auto passwd = dialog.getText();
+    auto passwd = dialog.getUserInput();
     if (!dialog.checkPasswd(passwd))
     {
         KiranMessageBox::message(this, tr("Error"),

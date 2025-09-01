@@ -18,7 +18,7 @@ namespace Kiran
 namespace Network
 {
 WirelessDialog::WirelessDialog(DialogType type, QWidget* parent)
-    : InputDialog(parent),
+    : KiranInputDialog(parent),
       m_type(type)
 {
     init();
@@ -38,7 +38,7 @@ bool WirelessDialog::getNetworkPasswd(QWidget* w, const QString& ssid, QString& 
 
     if (dialog.exec())
     {
-        passwd = dialog.getText();
+        passwd = dialog.getUserInput();
         return true;
     }
     return false;
@@ -54,7 +54,7 @@ bool WirelessDialog::getHiddenNetworkSsid(QWidget* w, QString& ssid)
 
     if (dialog.exec())
     {
-        ssid = dialog.getText();
+        ssid = dialog.getUserInput();
         return true;
     }
     return false;
