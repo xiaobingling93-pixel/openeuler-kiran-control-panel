@@ -57,7 +57,7 @@ void WiredDeviceWidget::initUI()
     m_contentLayout->setContentsMargins(0, 0, 0, 0);
     m_contentLayout->setSpacing(0);
     addExpansionSpaceWidget(contentWidget);
-    setTobBarFixedHeight(36);
+    setTopBarFixedHeight(36);
 
     setTitle(tr("Network card: %1").arg(m_device->interfaceName()));
 

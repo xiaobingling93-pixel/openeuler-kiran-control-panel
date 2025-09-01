@@ -12,7 +12,7 @@
  * Author:     liuxinhao <liuxinhao@kylinsec.com.cn>
  */
 #pragma once
-#include <kiran-collapse/kiran-collapse.h>
+#include <kiran-collapse.h>
 #include <NetworkManagerQt/WiredDevice>
 #include <QWidget>
 

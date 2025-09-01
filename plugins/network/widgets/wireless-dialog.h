@@ -12,14 +12,14 @@
  * Author:     liuxinhao <liuxinhao@kylinsec.com.cn>
  */
 #pragma once
-#include "input-dialog/input-dialog.h"
+#include <kiran-input-dialog.h>
 
 namespace Kiran
 {
 namespace Network
 {
 
-class WirelessDialog : public InputDialog
+class WirelessDialog : public KiranInputDialog
 {
     Q_OBJECT
     enum DialogType

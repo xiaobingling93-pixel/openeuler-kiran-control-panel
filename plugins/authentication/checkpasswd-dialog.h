@@ -12,9 +12,9 @@
  * Author:     liuxinhao <liuxinhao@kylinsec.com.cn>
  */
 #pragma once
-#include "input-dialog/input-dialog.h"
+#include <kiran-input-dialog.h>
 
-class CheckpasswdDialog:public InputDialog
+class CheckpasswdDialog:public KiranInputDialog
 {
     Q_OBJECT
 public:

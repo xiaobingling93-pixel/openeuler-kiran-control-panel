@@ -112,7 +112,7 @@ QString getCurrentUser()
 }
 
 CheckpasswdDialog::CheckpasswdDialog(QWidget *parent)
-    : InputDialog(parent)
+    : KiranInputDialog(parent)
 {
     setTitle(tr("Check password"));
     setDesc(tr("Check the current password before you enroll the feature"));

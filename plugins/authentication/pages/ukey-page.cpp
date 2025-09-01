@@ -12,7 +12,6 @@
  * Author:     liuxinhao <liuxinhao@kylinsec.com.cn>
  */
 #include "ukey-page.h"
-#include "input-dialog/input-dialog.h"
 #include "logging-category.h"
 #include "utils/auth-setting-container.h"
 #include "utils/auth-setting-item.h"
@@ -21,6 +20,7 @@
 
 #include <kiran-authentication-service/kas-authentication-i.h>
 #include <kiran-message-box.h>
+#include <kiran-input-dialog.h>
 #include <qt5-log-i.h>
 #include <QBoxLayout>
 #include <QJsonDocument>
@@ -91,7 +91,7 @@ void UKeyPage::startEnroll()
         return;
     }
 
-    InputDialog dialog;
+    KiranInputDialog dialog;
     dialog.setTitle(tr("UKey Enroll"));
     dialog.setDesc(tr("Please enter the ukey pin code"));
     dialog.setInputMode(QLineEdit::Password, 32);
@@ -100,7 +100,7 @@ void UKeyPage::startEnroll()
         return;
     }
 
-    m_pinCode = dialog.getText();
+    m_pinCode = dialog.getUserInput();
     doEnroll(false);
 }
 
