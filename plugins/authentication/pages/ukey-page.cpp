@@ -122,7 +122,7 @@ void UKeyPage::updateEnrollStatus(const QString& iid, bool isComplete,
         }
         else
         {
-            QString tips = QString("Failed to record UKey device features %1").arg(message.isEmpty() ? "." : message);
+            QString tips = QString(tr("Failed to record UKey device features %1")).arg(message.isEmpty() ? "." : message);
             KiranMessageBox::message(this, tr("error"), tips, KiranMessageBox::Ok);
         }
     }
