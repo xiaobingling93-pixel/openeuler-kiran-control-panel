@@ -3718,10 +3718,7 @@ This is line 50 of the test text</source>
         <translation>无法使用快捷键&quot;%1&quot;, 快捷键不能仅包含修饰键。请添加一个主键，如A-Z等。</translation>
     </message>
     <message>
-        <source>Cannot use shortcut &quot;%1&quot;,Super key is currently not supported for shortcut.Please try again.</source>
-        <translation>无法使用快捷键&quot;%1&quot;,暂不支持设置包含Super键的快捷键。请重新输入。</translation>
-    </message>
-    <message>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="873"/>
         <source>Cannot use shortcut &quot;%1&quot;,Please keep pressing the modifier keys such as Ctrl,Alt, and Shift before pressing the last key of the shortcut key</source>
         <translation>无法使用快捷键&quot;%1&quot;, 请保持按压Ctrl、Alt、Shift等修饰键后，再按压快捷键的最后一个键</translation>
     </message>
@@ -4193,12 +4190,17 @@ This is line 50 of the test text</source>
     <message>
         <location filename="../plugins/authentication/pages/ukey-page.cpp" line="95"/>
         <source>UKey Enroll</source>
-        <translation type="unfinished">UKey录入</translation>
+        <translation>UKey录入</translation>
     </message>
     <message>
         <location filename="../plugins/authentication/pages/ukey-page.cpp" line="96"/>
         <source>Please enter the ukey pin code</source>
-        <translation type="unfinished">请输入UKey PIN码</translation>
+        <translation>请输入UKey PIN码</translation>
+    </message>
+    <message>
+        <location filename="../plugins/authentication/pages/ukey-page.cpp" line="125"/>
+        <source>Failed to record UKey device features %1</source>
+        <translation>录入UKey设备特征失败: %1</translation>
     </message>
 </context>
 <context>
