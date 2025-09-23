@@ -35,7 +35,7 @@ private:
     void initUI();
 
 signals:
-    void sigChangeNameSuccessful(bool isChanged, QString name);
+    void hostnameChanged(QString name);
 
 private slots:
     void setNewHostName();

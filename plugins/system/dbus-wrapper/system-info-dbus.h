@@ -21,7 +21,7 @@
 namespace SystemInfoDBus
 {
     bool getSystemInfo(SystemInfoType infoType, QString &info);
-    bool setHostName(QString name);
+    bool setHostName(QString name, QString& errorMsg);
 }  // namespace SystemInfo
 
 #endif  // SYSTEMINFODBUS_H

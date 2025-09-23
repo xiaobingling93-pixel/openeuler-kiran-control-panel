@@ -63,24 +63,23 @@ void ChangeHostNameWidget::initUI()
 
 void ChangeHostNameWidget::setNewHostName()
 {
+    QString errorMsg;
     QString newName = ui->lineEdit_input_name->text();
-    if (!SystemInfoDBus::setHostName(newName))  // 调用Dbus接口不成功，弹出警告窗口
+    if (!SystemInfoDBus::setHostName(newName, errorMsg))  // 调用Dbus接口不成功，弹出警告窗口
     {
-        emit sigChangeNameSuccessful(false, newName);
-        QString boxTitle = QString(tr("Warning"));
-        QString boxText = QString(tr("Change host name failed! Please check the Dbus service!"));
-
-        KiranMessageBox::KiranStandardButton button = KiranMessageBox::message(nullptr, boxTitle, boxText, KiranMessageBox::Ok);
-        if (button == KiranMessageBox::Ok)
+        QString title = QString(tr("Warning"));
+        if( errorMsg.isEmpty())
         {
-            return;
+            errorMsg = tr("Unknown error");
         }
+        QString text = QString(tr("Change host name failed, %1").arg(errorMsg));
+        KiranMessageBox::message(nullptr, title, text, KiranMessageBox::Ok);
     }
     else
     {
-        emit sigChangeNameSuccessful(true, newName);
-        this->close();
+        emit hostnameChanged(newName);
     }
+    this->close();
 }
 
 void ChangeHostNameWidget::setInputEditStatus()

@@ -68,7 +68,7 @@ failed:
     return false;
 }
 
-bool SystemInfoDBus::setHostName(QString name)
+bool SystemInfoDBus::setHostName(QString name,QString& errorgMsg)
 {
     QDBusMessage msgMethodCall = QDBusMessage::createMethodCall(SYSTEMINFO_DBUS_NAME,
                                                                 SYSTEMINFO_OBJECT_PATH,
@@ -81,19 +81,18 @@ bool SystemInfoDBus::setHostName(QString name)
                                                               QDBus::Block,
                                                               TIMEOUT_MS);
 
-    QString errorMsg;
     if (msgReply.type() == QDBusMessage::ReplyMessage)
     {
         return true;
     }
     else if (msgReply.type() == QDBusMessage::ErrorMessage)
     {
-        errorMsg = "";
+        errorgMsg = msgReply.errorMessage();
         goto failed;
     }
 
 failed:
     KLOG_WARNING() << SYSTEMINFO_DBUS_NAME << METHOD_SET_HOSTNAME
-                   << msgReply.errorName() << msgReply.errorMessage() << errorMsg;
+                   << msgReply.errorName() << msgReply.errorMessage();
     return false;
 }
