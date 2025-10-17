@@ -423,9 +423,14 @@
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/change-host-name-widget.cpp" line="71"/>
-        <source>Change host name failed! Please check the Dbus service!</source>
-        <translation>修改主机名失败！请 检查Dbus服务!</translation>
+        <location filename="../plugins/system/pages/system-information/change-host-name-widget.cpp" line="73"/>
+        <source>Unknown error</source>
+        <translation>未知错误</translation>
+    </message>
+    <message>
+        <location filename="../plugins/system/pages/system-information/change-host-name-widget.cpp" line="75"/>
+        <source>Change host name failed, %1</source>
+        <translation>修改主机名失败，%1</translation>
     </message>
 </context>
 <context>
@@ -3855,40 +3860,40 @@ This is line 50 of the test text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="109"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="110"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="111"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="112"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="154"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="155"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="156"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="157"/>
         <source>Unknow</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="249"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="263"/>
         <source>UnActivated</source>
         <translation>未激活</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="258"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="272"/>
         <source>Activation code has expired</source>
         <translation>激活码已过期</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="263"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="277"/>
         <source>Permanently activated</source>
         <translation>永久激活</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="268"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="282"/>
         <source>Activated</source>
         <translation>已激活</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="311"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="312"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="311"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="312"/>
         <source>Failed to open the license activator</source>
         <translation>启动激活许可证弹窗失败</translation>
     </message>

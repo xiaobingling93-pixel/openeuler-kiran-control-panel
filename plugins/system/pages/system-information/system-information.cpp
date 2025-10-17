@@ -16,9 +16,9 @@
 #include "dbus-wrapper/system-info-dbus.h"
 #include "dbus_license_dbus.h"
 #include "license-agreement.h"
+#include "logging-category.h"
 #include "ui_system-information.h"
 
-#include <kiran-log/qt5-log-i.h>
 #include <kiran-message-box.h>
 #include <kiran-push-button.h>
 #include <QDBusConnection>
@@ -102,30 +102,7 @@ void SystemInformation::init()
 
 bool SystemInformation::initUI()
 {
-    QString systemInfoJson;
-    bool bRes = SystemInfoDBus::getSystemInfo(SYSTEMINFO_TYPE_SOFTWARE, systemInfoJson);
-    if (!bRes)
-    {
-        ui->lab_name_info->setText(tr("Unknow"));
-        ui->lab_core_version_info->setText(tr("Unknow"));
-        ui->lab_system_arch_info->setText(tr("Unknow"));
-        ui->lab_system_version_info->setText(tr("Unknow"));
-        ui->btn_change_name->hide();
-    }
-    else
-    {
-        QString hostname, arch, systemVersion, kernelVersion;
-        parseSoftwareInfoJson(systemInfoJson,
-                              hostname,
-                              arch,
-                              systemVersion,
-                              kernelVersion);
-        KLOG_DEBUG() << hostname << arch << systemVersion << kernelVersion;
-        ui->lab_name_info->setText(hostname);
-        ui->lab_system_arch_info->setText(arch);
-        ui->lab_system_version_info->setText(systemVersion);
-        ui->lab_core_version_info->setText(kernelVersion);
-    }
+    updateSystemInformation();
 
     QString licenseDesc;
     if (!checkLicensEnable() || !getLicenseDesc(licenseDesc))
@@ -151,6 +128,7 @@ bool SystemInformation::initUI()
         frame->setRadius(6);
         frame->setDrawBroder(false);
     }
+
     // #35818 在系统中不再单独提供隐私协议
     ui->widget_privacy_policy->hide();
 
@@ -165,6 +143,42 @@ bool SystemInformation::hasUnsavedOptions()
     }
     else
         return false;
+}
+
+void SystemInformation::updateSystemInformation()
+{
+    QString systemInfoJson;
+    bool bRes = SystemInfoDBus::getSystemInfo(SYSTEMINFO_TYPE_SOFTWARE, systemInfoJson);
+    if (!bRes)
+    {
+        ui->lab_name_info->setText(tr("Unknow"));
+        ui->lab_core_version_info->setText(tr("Unknow"));
+        ui->lab_system_arch_info->setText(tr("Unknow"));
+        ui->lab_system_version_info->setText(tr("Unknow"));
+        ui->btn_change_name->hide();
+    }
+    else
+    {
+        QString hostname, arch, systemVersion, kernelVersion;
+
+        parseSoftwareInfoJson(systemInfoJson,
+                              hostname,
+                              arch,
+                              systemVersion,
+                              kernelVersion);
+
+        ui->lab_name_info->setText(hostname);
+        ui->lab_system_arch_info->setText(arch);
+        ui->lab_system_version_info->setText(systemVersion);
+        ui->lab_core_version_info->setText(kernelVersion);
+
+        KLOG_DEBUG(qLcSystem) << "update system information:"
+                              << "\n"
+                              << "\t hostname: " << hostname << "\n"
+                              << "\t arch: " << arch << "\n"
+                              << "\t system version: " << systemVersion << "\n"
+                              << "\t kernel version: " << kernelVersion;
+    }
 }
 
 void SystemInformation::parseSoftwareInfoJson(QString jsonString,
@@ -283,25 +297,12 @@ void SystemInformation::handleChangeHostName()
     {
         hostNameWidget = new ChangeHostNameWidget(this);
     }
+    connect(hostNameWidget, &ChangeHostNameWidget::hostnameChanged,
+            ui->lab_name_info, &QLabel::setText, Qt::UniqueConnection);
     hostNameWidget->setAttribute(Qt::WA_QuitOnClose, false);
     hostNameWidget->installEventFilter(this);
-    connect(hostNameWidget, SIGNAL(sigChangeNameSuccessful(bool, QString)), this,
-            SLOT(updateHostName(bool, QString)));
     hostNameWidget->raise();
     hostNameWidget->show();
-}
-
-void SystemInformation::updateHostName(bool isChanged, QString name)
-{
-    if (isChanged)
-    {
-        KLOG_INFO() << "new host name is" << name;
-        ui->lab_name_info->setText(name);
-    }
-    else
-    {
-        return;
-    }
 }
 
 void SystemInformation::handleShowLicenseDialog()

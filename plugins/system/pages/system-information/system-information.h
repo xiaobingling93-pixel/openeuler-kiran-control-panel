@@ -36,7 +36,7 @@ public:
     bool hasUnsavedOptions();
 
 private:
-    bool readSystemInfo();
+    void updateSystemInformation();
     void parseSoftwareInfoJson(QString jsonString,
                                QString &hostName,
                                QString &arch,
@@ -48,7 +48,6 @@ private:
 
 private slots:
     void handleChangeHostName(void);
-    void updateHostName(bool isChanged, QString name);
     void handleShowLicenseDialog();
 
 protected:
