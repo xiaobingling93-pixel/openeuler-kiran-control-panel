@@ -269,10 +269,16 @@ void DevicePanelWidget::handleConfigModeChanged(ConfigMode mode)
 
 void DevicePanelWidget::updateScreenGeometry()
 {
-    DevicePanelItem *item = static_cast<DevicePanelItem *>(sender());
-    // 根据屏幕锚定位置重新更新虚拟屏幕显示几何位置信息
-    item->updateScreenGeometry();
-    // 更新预览
+    // 根据各个屏幕锚定位置重新更新所有虚拟屏幕显示几何位置信息
+    QButtonGroup *btnGroup = m_btnGroup;
+    const int count = btnGroup? btnGroup->buttons().count() : 0;
+    for ( int i = 0; i < count; i++ )
+    {
+        DevicePanelItem *monitorItem = static_cast<DevicePanelItem *>(btnGroup->button(i));
+        monitorItem->updateScreenGeometry();
+    }
+
+    // 更新预览，更新缩放率，以及偏移量。
     updatePreview();
 }
 

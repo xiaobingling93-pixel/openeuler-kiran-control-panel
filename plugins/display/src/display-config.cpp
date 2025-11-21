@@ -282,10 +282,10 @@ MonitorConfigDataList DisplayConfig::initExtraMode()
         {
             displayModeStu = monitor->GetCurrentMode();
         }
-        //当显示器关闭时，大小将为0。
+        //当显示器关闭时，大小将为0，此时使用默认大小1920x1080, 强制让其放置在右侧。
         if (displayModeStu.w == 0 || displayModeStu.h == 0)
         {
-            monitorConfigData->setX(99999);  //让x足够大，保证从右侧合并过来。
+            monitorConfigData->setX(99999);
             displayModeStu.w = 1920;
             displayModeStu.h = 1080;
         }
