@@ -11,60 +11,54 @@
  *
  * Author:     liuxinhao <liuxinhao@kylinsec.com.cn>
  */
-#include "theme-preview-widget.h"
+#include "theme-preview.h"
 #include <kiran-frame/kiran-frame.h>
 #include <QBoxLayout>
 #include <QEvent>
 #include <QLabel>
 #include <QVariant>
 
-ThemePreviewWidget::ThemePreviewWidget(QWidget* parent)
+static const char* theme_preview_tag_property = "_theme_preview_flag_";
+static const char* selected_indicator_pixmap = ":/kcp-appearance/images/indicator-selected.png";
+
+ThemePreview::ThemePreview(QWidget* parent)
     : ExclusionWidget(parent)
 {
     initUI();
 }
 
-ThemePreviewWidget::~ThemePreviewWidget()
+ThemePreview::~ThemePreview()
 {
 }
 
-void ThemePreviewWidget::setPreviewFixedHeight(int height)
+void ThemePreview::setPreviewFixedHeight(int height)
 {
     m_frame->setFixedHeight(height);
 }
 
-void ThemePreviewWidget::setPreviewFixedSize(QSize size)
+void ThemePreview::setPreviewFixedSize(QSize size)
 {
     m_frame->setFixedSize(size);
 }
 
-void ThemePreviewWidget::setSpacingAndMargin(int spacing, QMargins margins)
+void ThemePreview::setSpacingAndMargin(int spacing, QMargins margins)
 {
     m_frameLayout->setSpacing(spacing);
     m_frameLayout->setContentsMargins(margins);
 }
 
-void ThemePreviewWidget::setSelectedIndicatorEnable(bool enable)
+void ThemePreview::setSelectedIndicatorEnable(bool enable)
 {
     m_selectedIndicatorEnable = enable;
-
-    if (m_selectedIndicator->isVisible())
-    {
-        m_selectedIndicator->setVisible(false);
-    }
-
-    if (!m_selectedIndicatorEnable)
-    {
-        m_frame->setDrawBroder(false);
-    }
+    m_selectedIndicator->setVisible(enable);
 }
 
-void ThemePreviewWidget::setSelectedBorderWidth(int width)
+void ThemePreview::setSelectedBorderWidth(int width)
 {
     m_frame->setBorderWidth(width);
 }
 
-void ThemePreviewWidget::setThemeInfo(const QString& name,
+void ThemePreview::setThemeInfo(const QString& name,
                                       const QString& id)
 {
     m_themeName = name;
@@ -73,22 +67,36 @@ void ThemePreviewWidget::setThemeInfo(const QString& name,
     m_labelThemeName->setText(m_themeName);
 }
 
-void ThemePreviewWidget::setPreviewPixmapSize(QSize size)
+void ThemePreview::setPreviewPixmaps(const QList<QPixmap>& pixmaps,const QSize& size)
 {
-    m_previewSize = size;
+    clearPreview();
+    for (auto pixmap : pixmaps)
+    {
+        auto labelPixmap = new QLabel(this);
+        labelPixmap->setProperty(theme_preview_tag_property, QVariant(1));
+        labelPixmap->setFixedSize(size);
+        labelPixmap->setPixmap(pixmap.scaled(size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+        m_frameLayout->insertWidget(m_frameLayout->count(), labelPixmap, 0, Qt::AlignCenter);
+    }
 }
 
-void ThemePreviewWidget::setPreviewPixmaps(const QList<QPixmap>& pixmaps)
+void ThemePreview::setPreviewWidget(QWidget* widget)
 {
-    static const char* preview_pixmap_property = "_theme_preview_flag_";
+    clearPreview();
+    widget->setProperty(theme_preview_tag_property, QVariant(1));
+    widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    m_frameLayout->insertWidget(m_frameLayout->count() - 1, widget, 10,Qt::AlignHCenter);
+    
+}
 
-    // 清理
+void ThemePreview::clearPreview()
+{
     for (int i = 0; i < m_frameLayout->count();)
     {
         auto item = m_frameLayout->itemAt(i);
         auto widget = item->widget();
 
-        if (widget && !widget->property(preview_pixmap_property).isNull())
+        if (widget && !widget->property(theme_preview_tag_property).isNull())
         {
             m_frameLayout->removeWidget(widget);
             delete widget;
@@ -97,44 +105,33 @@ void ThemePreviewWidget::setPreviewPixmaps(const QList<QPixmap>& pixmaps)
 
         i++;
     }
-
-    for (auto pixmap : pixmaps)
-    {
-        auto labelPixmap = new QLabel(this);
-        labelPixmap->setProperty(preview_pixmap_property, QVariant(1));
-        labelPixmap->setFixedSize(m_previewSize);
-        labelPixmap->setPixmap(pixmap.scaled(m_previewSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
-
-        // 插入在选择指示器之前
-        m_frameLayout->insertWidget(m_frameLayout->count() - 2, labelPixmap, 0, Qt::AlignCenter);
-    }
 }
 
-QString ThemePreviewWidget::getID() const
+QString ThemePreview::getID() const
 {
     return m_themeID;
 }
 
-void ThemePreviewWidget::setSelected(bool selected)
+void ThemePreview::setSelected(bool selected)
 {
     if (selected)
     {
         if (m_selectedIndicatorEnable)
         {
-            m_selectedIndicator->setVisible(true);
+            m_selectedIndicator->setPixmap(QPixmap(selected_indicator_pixmap));
             m_frame->setDrawBroder(true);
         }
     }
     else
     {
-        m_selectedIndicator->setVisible(false);
+        m_selectedIndicator->setPixmap(QPixmap());
         m_frame->setDrawBroder(false);
     }
 
     ExclusionWidget::setSelected(selected);
 }
 
-void ThemePreviewWidget::initUI()
+void ThemePreview::initUI()
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
@@ -156,12 +153,7 @@ void ThemePreviewWidget::initUI()
 
     m_selectedIndicator = new QLabel(m_frame);
     m_selectedIndicator->setFixedSize(QSize(16, 16));
-    m_selectedIndicator->setVisible(false);
-    m_selectedIndicator->setPixmap(QPixmap(":/kcp-appearance/images/indicator-selected.png"));
-
-    auto spacerItem = new QSpacerItem(0, 10, QSizePolicy::Expanding, QSizePolicy::Preferred);
-    m_frameLayout->addSpacerItem(spacerItem);
-    m_frameLayout->addWidget(m_selectedIndicator);
+    m_frameLayout->addWidget(m_selectedIndicator,0,Qt::AlignHCenter|Qt::AlignRight);
 
     mainLayout->addWidget(m_frame);
 
@@ -175,7 +167,7 @@ void ThemePreviewWidget::initUI()
     mainLayout->addWidget(m_labelThemeName, Qt::AlignHCenter);
 }
 
-bool ThemePreviewWidget::eventFilter(QObject* watched, QEvent* event)
+bool ThemePreview::eventFilter(QObject* watched, QEvent* event)
 {
     if (watched == m_frame && event->type() == QEvent::MouseButtonPress)
     {

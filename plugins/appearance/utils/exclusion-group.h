@@ -61,10 +61,14 @@ public:
 
     void setCurrent(const QString& id);
     void setCurrent(ExclusionWidget* widget);
+
     ExclusionWidget* getCurrent() const;
+    QString getCurrentID() const;
+    QSet<QString> getExclusionItemIDs() const;
 
     void addExclusionItem(ExclusionWidget* widget);
     void removeExclusionItem(ExclusionWidget* widget);
+
 signals:
     void currentItemChanged();
 

@@ -18,15 +18,14 @@ class KiranFrame;
 class QLabel;
 class QHBoxLayout;
 
-class ThemePreviewWidget : public ExclusionWidget
+class ThemePreview : public ExclusionWidget
 {
     Q_OBJECT
 public:
-    ThemePreviewWidget(QWidget* parent = nullptr);
-    ~ThemePreviewWidget();
+    ThemePreview(QWidget* parent = nullptr);
+    ~ThemePreview();
 
     void setPreviewFixedHeight(int height);
-
     void setPreviewFixedSize(QSize size);
 
     // 设置图片展示区域的间距以及margin
@@ -41,11 +40,11 @@ public:
     // 设置当前展示的图片信息
     void setThemeInfo(const QString& name,const QString& id);
 
-    // 设置展示图片的大小
-    void setPreviewPixmapSize(QSize size);
-
-    // 追加展示的预览图片
-    void setPreviewPixmaps(const QList<QPixmap>& pixmaps);
+    // 设置展示图片
+    void setPreviewPixmaps(const QList<QPixmap>& pixmaps,const QSize& size);
+    // 设置展示控件
+    void setPreviewWidget(QWidget* widget);
+    void clearPreview();
 
     // 获取该展示控件的主题ID
     QString getID() const override;
@@ -63,7 +62,6 @@ private:
     bool m_selectedIndicatorEnable = false;
     QString m_themeName;
     QString m_themeID;
-    QSize m_previewSize;
     KiranFrame* m_frame;
     QHBoxLayout* m_frameLayout;
     QLabel* m_labelThemeName = nullptr;

@@ -79,6 +79,21 @@ ExclusionWidget* ExclusionGroup::getCurrent() const
     return m_current;
 }
 
+QString ExclusionGroup::getCurrentID() const
+{
+    return m_current != nullptr ? m_current->getID() : QString();
+}
+
+QSet<QString> ExclusionGroup::getExclusionItemIDs() const
+{
+    QSet<QString> ids;
+    for( auto item : m_exclusionItems )
+    {
+        ids << item->getID();
+    }
+    return ids;
+}
+
 void ExclusionGroup::addExclusionItem(ExclusionWidget* widget)
 {
     if (m_exclusionItems.contains(widget))

@@ -15,19 +15,24 @@
 #include <kiran-session-daemon/appearance-i.h>
 #include <QDesktopServices>
 #include <QDir>
+#include <QElapsedTimer>
 #include <QFileInfo>
 #include <QProcess>
 #include <QTimer>
 #include "appearance-global-info.h"
 #include "config.h"
+#include "decoration-config.h"
+#include "decoration-preview-widget.h"
 #include "exclusion-group.h"
-#include "theme-preview-widget.h"
+#include "theme-preview.h"
 #include "ui_wm-theme-page.h"
 
-#define WINDOW_THUMBNAIL_WIDTH 420
-#define WINDOW_THUMBNAIL_HEIGHT 60
+#define WINDOW_PREVIEW_WIDTH 350
+#define WINDOW_PREVIEW_HEIGHT 250
 
-WMThemePage::WMThemePage(QWidget *parent)
+using namespace Kiran::Decoration;
+
+WMThemePage::WMThemePage(QWidget* parent)
     : QWidget(parent),
       ui(new Ui::WMThemePage)
 {
@@ -40,166 +45,93 @@ WMThemePage::~WMThemePage()
     delete ui;
 }
 
-void WMThemePage::updateCurrentTheme(QString newTheme)
+QString WMThemePage::currentTheme() const
 {
-    QSignalBlocker blocker(m_exclusionGroup);
-    m_exclusionGroup->setCurrent(newTheme);
+    auto currentTheme = m_decorationConfig->currentTheme();
+    return currentTheme.visibleName;
 }
 
-ThemePreviewWidget *WMThemePage::createPreviewWidget(const QString &themeName, const QList<QPixmap> pixmaps, bool selected)
+ThemePreview* WMThemePage::createPreviewWidget(const Kiran::Decoration::ThemeEntry* themeConfig, bool selected)
 {
-    auto previewWidget = new ThemePreviewWidget(this);
-    previewWidget->setSpacingAndMargin(0, QMargins(24, 0, 24, 0));
-    previewWidget->setSelectedIndicatorEnable(true);
-    previewWidget->setSelected(selected);
-    previewWidget->setThemeInfo(themeName, themeName);
-    previewWidget->setPreviewPixmapSize(QSize(WINDOW_THUMBNAIL_WIDTH, WINDOW_THUMBNAIL_HEIGHT));
-    previewWidget->setPreviewPixmaps(pixmaps);
-    connect(previewWidget, &ThemePreviewWidget::pressed, this, [this]()
+    QElapsedTimer timer;
+    timer.start();
+
+    const QString& plugin = themeConfig->plugin;
+    const QString& theme = themeConfig->theme;
+    const QString& visibleName = themeConfig->visibleName;
+    const QString themeID = QString("%1:%2").arg(plugin).arg(theme);
+    const QMargins previewMargin(24 + 16, 0, 24, 0);  // 考虑右侧选中框，保证两边对齐
+
+    // 创建主题预览窗口
+    auto themePreview = new ThemePreview(this);
+    themePreview->setSelectedIndicatorEnable(true);
+    themePreview->setSelected(selected);
+    themePreview->setSpacingAndMargin(0, previewMargin);
+    themePreview->setThemeInfo(visibleName, themeID);
+
+    // 创建装饰预览窗口
+    const auto previewSize = QSize(WINDOW_PREVIEW_WIDTH, WINDOW_PREVIEW_HEIGHT);
+    auto decorationPreviewWidget = new DecorationPreviewWidget(themePreview);
+    decorationPreviewWidget->setFixedSize(previewSize);
+    decorationPreviewWidget->setThemeData(plugin, theme, visibleName);
+    themePreview->setPreviewWidget(decorationPreviewWidget);
+    KLOG_DEBUG(qLcAppearance) << "preview" << plugin << "," << theme << "widget create time : " << timer.elapsed();
+
+    connect(themePreview, &ThemePreview::pressed, this, [this]()
             { emit requestReturn(); });
-    m_exclusionGroup->addExclusionItem(previewWidget);
-    return previewWidget;
+    m_exclusionGroup->addExclusionItem(themePreview);
+
+    return themePreview;
 }
 
-void WMThemePage::processThumbnailCacheChanged()
+void WMThemePage::updateExclusionGroupCurrent(const QString& plugin, const QString& theme)
 {
-    QDir dir(m_thumbaniPath);
-    auto fileInfos = dir.entryInfoList(QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot);
-
-    QMap<QString, ThemePreviewWidget *> previewWidgetMap;
-    const auto contentLayout = ui->layout_scrollAreaWidgetContents;
-    for (int i = 0; i < contentLayout->count(); i++)
-    {
-        auto item = contentLayout->itemAt(i);
-        if (!item->widget())
-            continue;
-
-        auto previewWidget = qobject_cast<ThemePreviewWidget *>(item->widget());
-        if (!previewWidget)
-            continue;
-
-        previewWidgetMap[previewWidget->getID()] = previewWidget;
-    }
-
-    for (auto fileInfo : fileInfos)
-    {
-        if (fileInfo.suffix() != "png" ||
-            !previewWidgetMap.contains(fileInfo.baseName()))
-        {
-            continue;
-        }
-
-        auto themeName = fileInfo.baseName();
-        auto preview = loadPreview(themeName);
-        auto previewWidget = previewWidgetMap[themeName];
-        previewWidget->setPreviewPixmaps({preview});
-    }
-}
-
-void WMThemePage::createThumbnailCache()
-{
-    const QString cacheLocation = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation);
-    m_thumbaniPath = QString("%1/wm-thumbnails").arg(cacheLocation);
-
-    QDir thumbaniDir(m_thumbaniPath);
-    if (!thumbaniDir.exists())
-    {
-        thumbaniDir.mkpath(".");
-    }
-
-    // 避免短时间多次写入多次触发
-    m_loadThumbnailTimer = new QTimer(this);
-    m_loadThumbnailTimer->setSingleShot(true);
-    m_loadThumbnailTimer->setInterval(200);
-    connect(m_loadThumbnailTimer, &QTimer::timeout, this, &WMThemePage::processThumbnailCacheChanged);
-
-    // 缩略图缓存目录发生改变触发重新加载
-    QFileSystemWatcher *watcher = new QFileSystemWatcher({m_thumbaniPath}, this);
-    connect(watcher, &QFileSystemWatcher::directoryChanged, this, [this]()
-            { m_loadThumbnailTimer->start(); });
+    m_exclusionGroup->setCurrent(QString("%1:%2").arg(plugin).arg(theme));
 }
 
 void WMThemePage::init()
 {
-    createThumbnailCache();
-
+    m_decorationConfig = new DecorationConfig(this);
     m_exclusionGroup = new ExclusionGroup(this);
-    connect(m_exclusionGroup, &ExclusionGroup::currentItemChanged, this, &WMThemePage::processCurrentItemChanged);
 
-    QString currentTheme;
-    AppearanceGlobalInfo::instance()->getTheme(APPEARANCE_THEME_TYPE_METACITY, currentTheme);
-
-    QStringList noThumbnailerThemes;
-    auto themeInfos = AppearanceGlobalInfo::instance()->getAllThemes(APPEARANCE_THEME_TYPE_METACITY);
-    for (auto themeInfo : themeInfos)
+    auto themes = m_decorationConfig->availableThemes();
+    for (auto theme : themes)
     {
-        auto preview = loadPreview(themeInfo.name);
-        if (!preview)
-        {
-            noThumbnailerThemes.append(themeInfo.name);
-        }
-        auto widget = createPreviewWidget(themeInfo.name, {preview}, themeInfo.name == currentTheme);
-        ui->layout_scrollAreaWidgetContents->addWidget(widget);
+        auto themePreview = createPreviewWidget(&theme, false);
+        ui->layout_scrollAreaWidgetContents->addWidget(themePreview);
     }
+    
+    auto currentTheme = m_decorationConfig->currentTheme();
+    updateExclusionGroupCurrent(currentTheme.plugin, currentTheme.theme);
 
-    // 缺失部分主题缩略图，调用生成命令
-    if (!noThumbnailerThemes.isEmpty())
-    {
-        generateWMThemePreview(noThumbnailerThemes);
-    }
+    connect(m_decorationConfig, &DecorationConfig::currentThemeChanged,
+            this, [this](const ThemeEntry& theme)
+            {
+                updateExclusionGroupCurrent(theme.plugin, theme.theme);
+                emit currentThemeChanged(theme.visibleName);
+            });
+    connect(m_exclusionGroup, &ExclusionGroup::currentItemChanged,
+            this, &WMThemePage::exclusionGroupCurrentChanged);
 }
 
-void WMThemePage::processCurrentItemChanged()
+void WMThemePage::exclusionGroupCurrentChanged()
 {
-    auto current = m_exclusionGroup->getCurrent();
-    auto id = current->getID();
-
-    KLOG_INFO(qLcAppearance) << "wm theme ui current changed:" << id;
-    if (!AppearanceGlobalInfo::instance()->setTheme(APPEARANCE_THEME_TYPE_METACITY, id))
+    auto currentID = m_exclusionGroup->getCurrentID();
+    if (currentID.isEmpty())
     {
-        KLOG_WARNING(qLcAppearance) << "set currnet wm theme" << id << "failed!";
-    }
-    else
-    {
-        KLOG_INFO(qLcAppearance) << "wm theme updated:" << id;
-    }
-}
-
-QPixmap WMThemePage::loadPreview(const QString &themeName)
-{
-    QString previewPath = QString("%1/%2.png").arg(m_thumbaniPath, themeName);
-    if (QFileInfo::exists(previewPath))
-    {
-        QPixmap pixmap(previewPath);
-        if (pixmap.width() == WINDOW_THUMBNAIL_WIDTH &&
-            pixmap.height() == WINDOW_THUMBNAIL_HEIGHT)
-        {
-            return pixmap;
-        }
-        KLOG_DEBUG(qLcAppearance) << "window theme" << themeName << "thumbnail size invalid:" << pixmap.size();
-    }
-    else
-    {
-        KLOG_DEBUG(qLcAppearance) << previewPath << "thumbnail not exist";
-    }
-    return QPixmap();
-}
-
-// 启动初次加载所有窗口主题时调用，生成缺失的窗口主题缩略图
-void WMThemePage::generateWMThemePreview(const QStringList &themeNames)
-{
-    QStringList args = {
-        "--thumbnail-directory", m_thumbaniPath,
-        "--thumbnail-width", QString::number(WINDOW_THUMBNAIL_WIDTH),
-        "--thumbnail-height", QString::number(WINDOW_THUMBNAIL_HEIGHT)};
-
-    for (auto name : themeNames)
-    {
-        args << "--theme-name" << name;
+        KLOG_WARNING(qLcAppearance) << "window decoration theme current is empty";
+        return;
     }
 
-    static const char *thumbnailer = "/usr/libexec/wm-theme-thumbnailer";
-    KLOG_INFO(qLcAppearance) << thumbnailer << args;
+    auto splits = currentID.split(":");
+    if (splits.size() != 2)
+    {
+        KLOG_WARNING(qLcAppearance) << "window decoration theme current id format error:" << currentID;
+        return;
+    }
 
-    QProcess::startDetached(thumbnailer, args);
+    auto plugin = splits.first();
+    auto theme = splits.last();
+    KLOG_DEBUG(qLcAppearance) << "window decoration theme current changed:" << plugin << "," << theme;
+    m_decorationConfig->setCurrentTheme(plugin, theme);
 }

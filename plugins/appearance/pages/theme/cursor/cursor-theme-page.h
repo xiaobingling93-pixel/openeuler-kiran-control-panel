@@ -18,7 +18,7 @@
 
 class ExclusionGroup;
 class QVBoxLayout;
-class ThemePreviewWidget;
+class ThemePreview;
 class CursorThemePage : public QWidget
 {
     Q_OBJECT
@@ -35,7 +35,7 @@ private:
     void init();
     void initUI();
     void loadCurosrThemes();
-    ThemePreviewWidget* createPreviewWidget(const QString& themeName,
+    ThemePreview* createPreviewWidget(const QString& themeName,
                                             const QList<QPixmap> pixmaps,
                                             bool selected = false);
 private slots:

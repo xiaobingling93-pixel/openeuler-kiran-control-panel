@@ -26,7 +26,7 @@
 #include "appearance-global-info.h"
 #include "cursor-image-loader.h"
 #include "exclusion-group.h"
-#include "theme-preview-widget.h"
+#include "theme-preview.h"
 
 // 兼容不同开源版本光标名称，若光标名不存在，则使用默认光标
 static const std::vector<const char*> cursorNames[] = {
@@ -109,20 +109,19 @@ void CursorThemePage::loadCurosrThemes()
     }
 }
 
-ThemePreviewWidget* CursorThemePage::createPreviewWidget(const QString& themeName,
+ThemePreview* CursorThemePage::createPreviewWidget(const QString& themeName,
                                                          const QList<QPixmap> pixmaps,
                                                          bool selected)
 {
-    auto previewWidget = new ThemePreviewWidget(this);
+    auto previewWidget = new ThemePreview(this);
     previewWidget->setPreviewFixedHeight(40);
     previewWidget->setSpacingAndMargin(24, QMargins(24, 0, 24, 0));
     previewWidget->setSelectedIndicatorEnable(true);
     previewWidget->setThemeInfo(themeName, themeName);
-    previewWidget->setPreviewPixmapSize(QSize(22, 22));
-    previewWidget->setPreviewPixmaps(pixmaps);
+    previewWidget->setPreviewPixmaps(pixmaps, QSize(22, 22));
     previewWidget->setSelected(selected);
 
-    connect(previewWidget, &ThemePreviewWidget::pressed, this, [this]()
+    connect(previewWidget, &ThemePreview::pressed, this, [this]()
             { emit requestReturn(); });
     return previewWidget;
 }

@@ -18,38 +18,45 @@ namespace Ui
 {
 class WMThemePage;
 }
-class ThemePreviewWidget;
+
+namespace Kiran
+{
+namespace Decoration
+{
+class DecorationConfig;
+struct ThemeEntry;
+}
+}
+
+class ThemePreview;
 class ExclusionGroup;
 class QTimer;
 class WMThemePage : public QWidget
 {
     Q_OBJECT
+    Q_PROPERTY(QString currentTheme READ currentTheme NOTIFY currentThemeChanged)
 
 public:
     explicit WMThemePage(QWidget* parent = 0);
     ~WMThemePage();
 
-    void updateCurrentTheme(QString newTheme);
+    QString currentTheme() const;
 
 signals:
     void requestReturn();
+    void currentThemeChanged(const QString& theme);
 
 private slots:
-    void processCurrentItemChanged();
-    void processThumbnailCacheChanged();
+    void exclusionGroupCurrentChanged();
 
 private:
-    void createThumbnailCache();
     void init();
-    QPixmap loadPreview(const QString& themeName);
-    void generateWMThemePreview(const QStringList& themeNames);
-    ThemePreviewWidget* createPreviewWidget(const QString& themeName,
-                                            const QList<QPixmap> pixmaps,
-                                            bool selected);
+    ThemePreview* createPreviewWidget(const Kiran::Decoration::ThemeEntry* themeConfig,
+                                      bool selected = false);
+    void updateExclusionGroupCurrent(const QString& plugin, const QString& theme);
 
 private:
     Ui::WMThemePage* ui;
     ExclusionGroup* m_exclusionGroup = nullptr;
-    QString m_thumbaniPath;
-    QTimer* m_loadThumbnailTimer;
+    Kiran::Decoration::DecorationConfig* m_decorationConfig = nullptr;
 };

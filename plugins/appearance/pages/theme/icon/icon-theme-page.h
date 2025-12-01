@@ -30,7 +30,7 @@ class IconThemePage;
 }
 
 class ExclusionGroup;
-class ThemePreviewWidget;
+class ThemePreview;
 class IconThemePage : public QWidget
 {
     Q_OBJECT
@@ -50,7 +50,7 @@ private:
     void init();
     void initUI();
     void loadIconThemes();
-    ThemePreviewWidget* createPreviewWidget(const QString& themeName,
+    ThemePreview* createPreviewWidget(const QString& themeName,
                                             const QList<QPixmap> pixmaps,
                                             bool selected = false);
 
