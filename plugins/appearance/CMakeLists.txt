@@ -1,5 +1,11 @@
 set(TARGET_NAME kiran-cpanel-appearance)
 
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+    Config
+    ConfigWidgets
+    CoreAddons)
+find_package(KDecoration2  CONFIG REQUIRED)
+
 file(GLOB_RECURSE APPEARANCE_SRC
         ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/*.h
@@ -28,7 +34,12 @@ target_link_libraries(${TARGET_NAME}
         X11
         ${KIRANWIDGETS_LIBRARIES}
         ${KLOG_LIBRARIES}
-        ${KIRAN_INTEGRATION_THEME_LIBRARIES})
+        ${KIRAN_INTEGRATION_THEME_LIBRARIES}
+        KDecoration2::KDecoration
+        KDecoration2::KDecoration2Private
+        KF5::CoreAddons
+        KF5::ConfigCore
+        KF5::ConfigWidgets)
 
 install(TARGETS ${TARGET_NAME}
         DESTINATION ${PLUGIN_LIBS_DIR}/)

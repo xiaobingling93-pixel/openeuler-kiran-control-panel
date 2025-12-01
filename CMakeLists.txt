@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5..${CMKAE_VERSION})
 
 project(kiran-control-panel VERSION 2.5)
 
+set(KF5_MIN_VERSION "5.89")
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -14,6 +15,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include("options")
 include("kcp_variables")
 include("kcp-qdbus-wrapper")
+
+find_package(ECM REQUIRED NO_MODULE)
+list(APPEND CMAKE_MODULE_PATH "${ECM_MODULE_PATH}")
 
 configure_file(./config.h.in ${CMAKE_BINARY_DIR}/config.h)
 

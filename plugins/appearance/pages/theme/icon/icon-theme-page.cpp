@@ -24,7 +24,7 @@
 
 #include "appearance-global-info.h"
 #include "exclusion-group.h"
-#include "theme-preview-widget.h"
+#include "theme-preview.h"
 #include "ui_icon-theme-page.h"
 
 // clang-format off
@@ -164,19 +164,18 @@ void IconThemePage::loadIconThemes()
     }
 }
 
-ThemePreviewWidget* IconThemePage::createPreviewWidget(const QString& themeName,
+ThemePreview* IconThemePage::createPreviewWidget(const QString& themeName,
                                                        const QList<QPixmap> pixmaps,
                                                        bool selected)
 {
-    auto previewWidget = new ThemePreviewWidget(this);
+    auto previewWidget = new ThemePreview(this);
     previewWidget->setPreviewFixedHeight(70);
     previewWidget->setSpacingAndMargin(24, QMargins(24, 0, 24, 0));
     previewWidget->setSelectedIndicatorEnable(true);
     previewWidget->setSelected(selected);
     previewWidget->setThemeInfo(iconThemeWhiteList.value(themeName, themeName), themeName);
-    previewWidget->setPreviewPixmapSize(QSize(40, 40));
-    previewWidget->setPreviewPixmaps(pixmaps);
-    connect(previewWidget, &ThemePreviewWidget::pressed, this, [this]() { emit requestReturn(); });
+    previewWidget->setPreviewPixmaps(pixmaps, QSize(40, 40));
+    connect(previewWidget, &ThemePreview::pressed, this, [this]() { emit requestReturn(); });
 
     return previewWidget;
 }

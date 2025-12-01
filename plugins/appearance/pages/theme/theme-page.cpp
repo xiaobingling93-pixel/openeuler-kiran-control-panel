@@ -17,7 +17,7 @@
 #include "cursor/cursor-theme-page.h"
 #include "icon/icon-theme-page.h"
 #include "setting-brief-widget/setting-brief-widget.h"
-#include "theme-preview-widget.h"
+#include "theme-preview.h"
 #include "ui_theme-page.h"
 #include "wm/wm-theme-page.h"
 
@@ -149,18 +149,14 @@ bool ThemePage::initCursorTheme()
 
 void ThemePage::initWindowTheme()
 {
+    m_wmThemePage = new WMThemePage(ui->stackedWidget);
+    const QString currentTheme = m_wmThemePage->currentTheme();
+    ui->stackedWidget->addWidget(m_wmThemePage);
+
     m_chooseWMThemeWidget = new SettingBriefWidget(tr("Choose window Themes"));
     m_chooseWMThemeWidget->setObjectName("chooseWindowThemeWidget");
+    m_chooseWMThemeWidget->setName(currentTheme);
     ui->verticalLayout_choose_widget->addWidget(m_chooseWMThemeWidget);
-
-    if (!AppearanceGlobalInfo::instance()->getTheme(APPEARANCE_THEME_TYPE_METACITY, m_currWMTheme))
-    {
-        m_chooseWMThemeWidget->setName(tr("Unknown"));
-    }
-    m_chooseWMThemeWidget->setName(m_currWMTheme);
-
-    m_wmThemePage = new WMThemePage(ui->stackedWidget);
-    ui->stackedWidget->addWidget(m_wmThemePage);
 
     connect(m_chooseWMThemeWidget, &SettingBriefWidget::clicked, this,
             [this]
@@ -172,6 +168,12 @@ void ThemePage::initWindowTheme()
             [&, this]()
             {
                 ui->stackedWidget->setCurrentIndex(0);
+            });
+    connect(m_wmThemePage, &WMThemePage::currentThemeChanged, this, [this]()
+            {
+                auto wmTheme = m_wmThemePage->currentTheme();
+                KLOG_DEBUG(qLcAppearance) << "wm theme changed, update setting brief:" << wmTheme;
+                m_chooseWMThemeWidget->setName(wmTheme);
             });
 }
 
@@ -193,17 +195,16 @@ void ThemePage::createThemeWidget()
     {
         auto uiTheme = uiThemes.at(i);
 
-        auto previewWidget = new ThemePreviewWidget(this);
+        auto previewWidget = new ThemePreview(this);
         previewWidget->setPreviewFixedSize(QSize(140, 80));
         previewWidget->setSpacingAndMargin(0, QMargins(2, 2, 2, 2));
         previewWidget->setSelectedIndicatorEnable(false);
         previewWidget->setSelectedBorderWidth(2);
         previewWidget->setThemeInfo(uiTheme.name, uiTheme.id);
-        previewWidget->setPreviewPixmapSize(QSize(136, 76));
 
         QList<QPixmap> pixmaps;
         pixmaps << QPixmap(uiTheme.pixmap).scaled(QSize(136, 76), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        previewWidget->setPreviewPixmaps(pixmaps);
+        previewWidget->setPreviewPixmaps(pixmaps, QSize(136, 76));
         m_uiThemeExclusionGroup->addExclusionItem(previewWidget);
 
         ui->gridLayout_themes->addWidget(previewWidget, 0, i, Qt::AlignHCenter);
@@ -250,10 +251,8 @@ void ThemePage::handleThemeChange(int type)
     }
     case APPEARANCE_THEME_TYPE_METACITY:
     {
-        QString wmTheme;
-        AppearanceGlobalInfo::instance()->getTheme(APPEARANCE_THEME_TYPE_METACITY, wmTheme);
-        m_chooseWMThemeWidget->setName(wmTheme);
-        m_wmThemePage->updateCurrentTheme(wmTheme);
+        // 已废弃，前端不再从后端获取窗口管理器Metacity主题。
+        // 全面支持Kwin，前端内部自己实现Kwin窗口外边框主题管理。
         break;
     }
     default:
