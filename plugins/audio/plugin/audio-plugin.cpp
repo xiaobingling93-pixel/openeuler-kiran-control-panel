@@ -20,7 +20,8 @@
 #include <qt5-log-i.h>
 #include <QCoreApplication>
 #include <QFile>
-#include <QTranslator>
+
+Q_LOGGING_CATEGORY(qLcAudio,"kcp.audio",QtMsgType::QtDebugMsg)
 
 AudioPlugin::AudioPlugin(QObject* parent)
     : QObject(parent)

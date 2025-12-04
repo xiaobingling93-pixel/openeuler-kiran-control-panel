@@ -20,7 +20,6 @@
 #include "plugin-interface-v2.h"
 #include "plugin-subitem-interface.h"
 
-class QTranslator;
 class KeyboardPlugin
     : public QObject,
       public KiranControlPanel::PluginInterfaceV2

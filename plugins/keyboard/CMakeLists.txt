@@ -1,17 +1,10 @@
 set(TARGET_NAME kiran-cpanel-keyboard)
 
-option(MODIFIER_LOCK_TIPS_VISIBLE "Is modifire lock tips visible" OFF)
-
-file(GLOB TS_FILES "translation/*.ts")
-qt5_create_translation(KEYBOARD_QM ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
-
 kiran_qt5_add_dbus_interface_ex(KEYBOARD_PROXY
         data/com.kylinsec.Kiran.SessionDaemon.Keyboard.xml
         keyboard_backEnd_proxy
         KeyboardBackEndProxy)
-
 file(GLOB_RECURSE KEYBOARD_SRC "./*.cpp" "./*.h" "./*.ui" "./*.qrc")
-
 add_library(${TARGET_NAME} SHARED
         ${KEYBOARD_SRC}
         ${KEYBOARD_PROXY})
@@ -27,8 +20,8 @@ target_include_directories(${TARGET_NAME} PRIVATE
         ${KIRAN_CC_DAEMON_INCLUDE_DIRS}
         ${KIRAN_INTEGRATION_THEME_INCLUDE_DIRS})
 
-target_link_libraries(${TARGET_NAME}
-        common-widgets
+target_link_libraries(${TARGET_NAME} PRIVATE
+        plugin-devel
         Qt5::Widgets
         Qt5::DBus
         Qt5::Svg
@@ -40,7 +33,6 @@ target_link_libraries(${TARGET_NAME}
 if (MODIFIER_LOCK_TIPS_VISIBLE)
     add_definitions(-DMODIFIER_LOCK_TIPS)
 endif ()
-
 
 install(TARGETS ${TARGET_NAME}
         DESTINATION ${PLUGIN_LIBS_DIR}/)

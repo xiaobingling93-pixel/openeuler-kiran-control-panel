@@ -12,9 +12,11 @@
  * Author:     liuxinhao <liuxinhao@kylinsec.com.cn>
  */
 #include "account-widget.h"
+#include "account.h"
 #include "accounts-global-info.h"
 #include "config.h"
 #include "hard-worker.h"
+#include "logging-category.h"
 
 #include "create-user-page/create-user-page.h"
 #include "mask-widget/mask-widget.h"
@@ -79,7 +81,7 @@ void AccountWidget::setCurrentUser(const QString &userPath)
 
 void AccountWidget::appendUser(const QString &userPath)
 {
-    auto accountUserBackend = DBusWrapper::createKiranAccountServiceUserAPI(userPath);
+    auto accountUserBackend = DBusWrapper::Account::userInterface(userPath);
     QString iconFile = accountUserBackend->icon_file();
     QString userName = accountUserBackend->user_name();
     bool userLocked = accountUserBackend->locked();
@@ -192,27 +194,28 @@ void AccountWidget::initUserList()
 {
     connect(m_tabList, &KiranSidebarWidget::itemSelectionChanged, [this]()
             {
-        QList<QListWidgetItem *> selecteds = m_tabList->selectedItems();
-        if (selecteds.size() != 1)
-        {
-            return;
-        }
-        QListWidgetItem *item = selecteds.at(0);
-        if (item == m_createUserItem)
-        {
-            //重置创建用户页面
-            m_page_createUser->reset();
-            //切换到创建用户
-            m_stackWidget->setCurrentIndex(PAGE_CREATE_USER);
-        }
-        else
-        {
-            QString usrObjPath = item->data(ITEM_USER_OBJ_PATH_ROLE).toString();
-            //更新用户信息页面
-            m_page_userinfo->setCurrentShowUserPath(usrObjPath);
-            //切换到用户信息
-            m_stackWidget->setCurrentIndex(PAGE_USER_INFO);
-        } });
+                QList<QListWidgetItem *> selecteds = m_tabList->selectedItems();
+                if (selecteds.size() != 1)
+                {
+                    return;
+                }
+                QListWidgetItem *item = selecteds.at(0);
+                if (item == m_createUserItem)
+                {
+                    //重置创建用户页面
+                    m_page_createUser->reset();
+                    //切换到创建用户
+                    m_stackWidget->setCurrentIndex(PAGE_CREATE_USER);
+                }
+                else
+                {
+                    QString usrObjPath = item->data(ITEM_USER_OBJ_PATH_ROLE).toString();
+                    //更新用户信息页面
+                    m_page_userinfo->setCurrentShowUserPath(usrObjPath);
+                    //切换到用户信息
+                    m_stackWidget->setCurrentIndex(PAGE_USER_INFO);
+                }
+            });
 
     /// 创建用户按钮
     m_createUserItem = new QListWidgetItem(tr("Create new user"), m_tabList);
@@ -247,15 +250,17 @@ void AccountWidget::initPageUserInfo()
     // 用户信息页面处理头像点击
     connect(m_page_userinfo, &UserInfoPage::requestIconPage, [this](const QString &iconPath)
             {
-        m_page_selectAvatar->setMode(SelectAvatarPage::CHANGE_AVATAR_FOR_USER);
-        m_page_selectAvatar->setCurrentAvatar(iconPath);
-        m_stackWidget->setCurrentIndex(PAGE_SELECT_AVATAR); });
+                m_page_selectAvatar->setMode(SelectAvatarPage::CHANGE_AVATAR_FOR_USER);
+                m_page_selectAvatar->setCurrentAvatar(iconPath);
+                m_stackWidget->setCurrentIndex(PAGE_SELECT_AVATAR);
+            });
 
     // 用户信息页面，密码过期策略点击时请求跳转至密码过期策略页面
     connect(m_page_userinfo, &UserInfoPage::requestPasswordExpirationPolicy, [this](const QString &userObj)
             {
-        m_page_passwdExpirationPolicy->setCurrentUser(userObj);
-        m_stackWidget->setCurrentIndex(PAGE_PASSWD_EXPIRATION_POLICY); });
+                m_page_passwdExpirationPolicy->setCurrentUser(userObj);
+                m_stackWidget->setCurrentIndex(PAGE_PASSWD_EXPIRATION_POLICY);
+            });
 
     /// 修改属性
     connect(m_page_userinfo, &UserInfoPage::requestUpdateUserProperty,
@@ -382,7 +387,7 @@ void AccountWidget::onUserPropertyChanged(const QString &objectPath, const QStri
             {
                 continue;
             }
-            auto accountAPI = DBusWrapper::createKiranAccountServiceUserAPI(itemUserPath);
+            auto accountAPI = DBusWrapper::Account::userInterface(itemUserPath);
             QString userName = accountAPI->user_name();
             QString iconFile = accountAPI->icon_file();
             QPixmap tempPixmap;
@@ -422,18 +427,19 @@ void AccountWidget::onRequestSetCurrentUser(const QString &userPath)
     // 保证在设置当前行时,新用户已在侧边栏创建节点
     QTimer::singleShot(0, this, [=]()
                        {
-            int findIdx = -1;
-            for (int i = 0; i < m_tabList->count(); i++)
-            {
-                if (m_tabList->item(i)->data(ITEM_USER_OBJ_PATH_ROLE) != userPath)
-                {
-                    continue;
-                }
-                findIdx = i;
-                break;
-            }
-            Q_ASSERT(findIdx != -1);
-            m_tabList->setCurrentRow(findIdx); });
+                           int findIdx = -1;
+                           for (int i = 0; i < m_tabList->count(); i++)
+                           {
+                               if (m_tabList->item(i)->data(ITEM_USER_OBJ_PATH_ROLE) != userPath)
+                               {
+                                   continue;
+                               }
+                               findIdx = i;
+                               break;
+                           }
+                           Q_ASSERT(findIdx != -1);
+                           m_tabList->setCurrentRow(findIdx);
+                       });
 }
 
 QSize AccountWidget::sizeHint() const

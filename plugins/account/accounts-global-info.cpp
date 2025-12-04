@@ -26,7 +26,7 @@
 
 AccountsGlobalInfo::AccountsGlobalInfo(QObject *parent)
     : QObject(parent),
-      m_accountsInterface(DBusWrapper::createKiranAccountServiceAPI())
+      m_accountsInterface(DBusWrapper::Account::interface())
 {
 }
 
@@ -58,13 +58,13 @@ bool AccountsGlobalInfo::init(bool showRoot, bool showPasswordExpirationPolicy)
         return false;
     }
 
-    connect(m_accountsInterface.data(), &KiranAccountService::UserAdded,
+    connect(m_accountsInterface.data(), &AccountInterface::UserAdded,
             [this](const QDBusObjectPath &user)
             { addUserToMap(user); });
-    connect(m_accountsInterface.data(), &KiranAccountService::UserDeleted,
+    connect(m_accountsInterface.data(), &AccountInterface::UserDeleted,
             [this](const QDBusObjectPath &user)
             { deleteUserFromMap(user); });
-    connect(m_accountsInterface.data(), &KiranAccountService::rsa_public_keyChanged,
+    connect(m_accountsInterface.data(), &AccountInterface::rsa_public_keyChanged,
             [this](const QString &publicKey)
             { m_pubkey = publicKey; });
 
@@ -122,7 +122,7 @@ bool AccountsGlobalInfo::init(bool showRoot, bool showPasswordExpirationPolicy)
         }
 
         auto userObjectPath = findUserReply.value().path();
-        auto userAPI = DBusWrapper::createKiranAccountServiceUserAPI(userObjectPath);
+        auto userAPI = DBusWrapper::Account::userInterface(userObjectPath);
         if (userAPI.isNull())
         {
             KLOG_WARNING(qLcAccount) << "get current user name failed";
@@ -200,7 +200,7 @@ void AccountsGlobalInfo::addUserToMap(const QDBusObjectPath &user)
         return;
     }
 
-    auto accountAPI = DBusWrapper::createKiranAccountServiceUserAPI(user.path());
+    auto accountAPI = DBusWrapper::Account::userInterface(user.path());
     if (accountAPI.isNull())
     {
         KLOG_WARNING(qLcAccount) << "add user" << user.path() << "to cache failed!";
@@ -208,7 +208,7 @@ void AccountsGlobalInfo::addUserToMap(const QDBusObjectPath &user)
     }
 
     connect(accountAPI.data(),
-            &KiranAccountServiceUser::dbusPropertyChanged,
+            &AccountUserInterface::dbusPropertyChanged,
             this,
             &AccountsGlobalInfo::handlerPropertyChanged);
 
@@ -228,7 +228,7 @@ void AccountsGlobalInfo::deleteUserFromMap(const QDBusObjectPath &user)
     }
 
     disconnect(userIter.value().data(),
-               &KiranAccountServiceUser::dbusPropertyChanged,
+               &AccountUserInterface::dbusPropertyChanged,
                this,
                &AccountsGlobalInfo::handlerPropertyChanged);
 
@@ -238,7 +238,7 @@ void AccountsGlobalInfo::deleteUserFromMap(const QDBusObjectPath &user)
 
 void AccountsGlobalInfo::handlerPropertyChanged(const QString &propertyName, const QVariant &value)
 {
-    auto userProxy = qobject_cast<KiranAccountServiceUser *>(sender());
+    auto userProxy = qobject_cast<AccountUserInterface *>(sender());
 
     KLOG_DEBUG(qLcAccount) << "property changed:" << userProxy->path();
     KLOG_DEBUG(qLcAccount) << "\tname: " << propertyName;

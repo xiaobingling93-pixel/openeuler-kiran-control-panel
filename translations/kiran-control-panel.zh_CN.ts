@@ -17,19 +17,19 @@
 <context>
     <name>AccountWidget</name>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="96"/>
-        <location filename="../plugins/account/account-widget.cpp" line="397"/>
+        <location filename="../plugins/account/account-widget.cpp" line="98"/>
+        <location filename="../plugins/account/account-widget.cpp" line="402"/>
         <source>disable</source>
         <translation>禁用</translation>
     </message>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="96"/>
-        <location filename="../plugins/account/account-widget.cpp" line="397"/>
+        <location filename="../plugins/account/account-widget.cpp" line="98"/>
+        <location filename="../plugins/account/account-widget.cpp" line="402"/>
         <source>enable</source>
         <translation>启用</translation>
     </message>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="218"/>
+        <location filename="../plugins/account/account-widget.cpp" line="221"/>
         <source>Create new user</source>
         <translation>创建新用户</translation>
     </message>
@@ -39,32 +39,32 @@
     <message>
         <location filename="../plugins/group/src/pages/add-users-page/add-users-page.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/add-users-page/add-users-page.ui" line="40"/>
         <source>Add Member</source>
-        <translation type="unfinished"></translation>
+        <translation>添加组成员</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/add-users-page/add-users-page.ui" line="120"/>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/add-users-page/add-users-page.ui" line="167"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>返回</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/add-users-page/add-users-page.cpp" line="50"/>
         <source>Please input keys for search...</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入搜索关键词...</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/add-users-page/add-users-page.cpp" line="137"/>
         <source>Error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
 </context>
 <context>
@@ -159,22 +159,22 @@
 <context>
     <name>AppearancePlugin</name>
     <message>
-        <location filename="../plugins/appearance/appearance-plugin.cpp" line="68"/>
+        <location filename="../plugins/appearance/appearance-plugin.cpp" line="70"/>
         <source>Theme</source>
         <translation>主题</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/appearance-plugin.cpp" line="75"/>
+        <location filename="../plugins/appearance/appearance-plugin.cpp" line="77"/>
         <source>Wallpaper</source>
         <translation>壁纸</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/appearance-plugin.cpp" line="82"/>
+        <location filename="../plugins/appearance/appearance-plugin.cpp" line="84"/>
         <source>Font</source>
         <translation>字体</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/appearance-plugin.cpp" line="89"/>
+        <location filename="../plugins/appearance/appearance-plugin.cpp" line="91"/>
         <source>Screensaver</source>
         <translation>屏保</translation>
     </message>
@@ -182,12 +182,12 @@
 <context>
     <name>ApplicationPlugin</name>
     <message>
-        <location filename="../plugins/application/application-plugin.cpp" line="71"/>
+        <location filename="../plugins/application/application-plugin.cpp" line="74"/>
         <source>DefaultApp</source>
         <translation>默认程序</translation>
     </message>
     <message>
-        <location filename="../plugins/application/application-plugin.cpp" line="78"/>
+        <location filename="../plugins/application/application-plugin.cpp" line="81"/>
         <source>AutoStart</source>
         <translation>开机启动</translation>
     </message>
@@ -195,37 +195,37 @@
 <context>
     <name>AuthPlugin</name>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="91"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="92"/>
         <source>Fingerprint</source>
         <translation>指纹</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="98"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="99"/>
         <source>FingerVein</source>
         <translation>指静脉</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="126"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="127"/>
         <source>Driver Manager</source>
         <translation>驱动管理</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="133"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="134"/>
         <source>Prefs</source>
         <translation>配置</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="105"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="106"/>
         <source>UKey</source>
         <translation>UKey</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="112"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="113"/>
         <source>Iris</source>
         <translation>虹膜</translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="119"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="120"/>
         <source>Face</source>
         <translation>人脸</translation>
     </message>
@@ -510,84 +510,84 @@
     <message>
         <location filename="../plugins/group/src/pages/create-group-page/create-group-page.ui" line="20"/>
         <source>CreateGroupPage</source>
-        <translation type="unfinished"></translation>
+        <translation>创建用户组</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/create-group-page/create-group-page.ui" line="46"/>
         <source>Create Group</source>
-        <translation type="unfinished"></translation>
+        <translation>创建组</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/create-group-page/create-group-page.ui" line="76"/>
         <source>Add Group Members</source>
-        <translation type="unfinished"></translation>
+        <translation>添加组成员</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/create-group-page/create-group-page.ui" line="128"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>创建</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/create-group-page/create-group-page.cpp" line="113"/>
         <source>Error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
 </context>
 <context>
     <name>CreateUserPage</name>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="77"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="78"/>
         <source>standard</source>
         <translation>普通用户</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="78"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="79"/>
         <source>administrator</source>
         <translation>管理员</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="101"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="102"/>
         <source>Please enter user name first</source>
         <translation>请输入用户名</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="125"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="127"/>
         <source>Please enter your user name</source>
         <translation>请输入用户名</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="141"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="143"/>
         <source>user name cannot be a pure number</source>
         <translation>用户名不能全为数字</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="148"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="150"/>
         <source>user name already exists</source>
         <translation>用户名已存在</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="160"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="162"/>
         <source>Please enter your password</source>
         <translation>请输出密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="167"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="169"/>
         <source>Please enter the password again</source>
         <translation>请再次输入密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="174"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="176"/>
         <source>The password you enter must be the same as the former one</source>
         <translation>两次密码不相同，请核对后，再次输入</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="184"/>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="219"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="186"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="221"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="184"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="186"/>
         <source>Password encryption failed</source>
         <translation>密码加密失败</translation>
     </message>
@@ -1508,115 +1508,90 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="493"/>
-        <source>Color temperature</source>
-        <translation>色温</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="524"/>
-        <source>Automatic color temperature</source>
-        <translation>自动色温</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="595"/>
-        <source>cold</source>
-        <translation>冷</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="615"/>
-        <source>standard</source>
-        <translation>标准</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="635"/>
-        <source>warm</source>
-        <translation>暖</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="695"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="488"/>
         <source>Regard computer as idle after</source>
         <translation>于此时间后视计算机为空闲</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="749"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="542"/>
         <source>SliderComputerIdleTime</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="780"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="573"/>
         <source>Lock screen when idle</source>
         <translation>计算机空闲时锁定屏幕</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="817"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="610"/>
         <source>Display dimmed when idle</source>
         <translation>空闲时显示器变暗</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="861"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="654"/>
         <source>password is required to wake up in standby mode</source>
         <translation>待机时唤醒需要输入密码</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="119"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="132"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="116"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="129"/>
         <source>shutdown</source>
         <translation>关机</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="120"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="126"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="131"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="117"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="123"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="128"/>
         <source>hibernate</source>
         <translation>休眠</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="121"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="125"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="130"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="118"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="122"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="127"/>
         <source>suspend</source>
         <translation>待机</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="122"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="127"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="119"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="124"/>
         <source>display off</source>
         <translation>关闭显示器</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="123"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="128"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="133"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="120"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="125"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="130"/>
         <source>do nothing</source>
         <translation>不执行操作</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="154"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="151"/>
         <source>Energy-saving mode</source>
         <translation>节能模式</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="155"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="152"/>
         <source>Balanced mode</source>
         <translation>平衡模式</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="156"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="153"/>
         <source>High performance mode</source>
         <translation>高性能模式</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="437"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="395"/>
         <source>ERROR</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="570"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="495"/>
         <source>%1hour</source>
         <translation>%1小时</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="574"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="499"/>
         <source>%1minute</source>
         <translation>%1分钟</translation>
     </message>
@@ -1634,27 +1609,27 @@
     <message>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.ui" line="175"/>
         <source>Group</source>
-        <translation type="unfinished"></translation>
+        <translation>组</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.ui" line="269"/>
         <source>Member List</source>
-        <translation type="unfinished"></translation>
+        <translation>组成员</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.ui" line="327"/>
         <source>Add User</source>
-        <translation type="unfinished"></translation>
+        <translation>添加成员</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.ui" line="374"/>
         <source>Delete</source>
-        <translation type="unfinished">删除用户</translation>
+        <translation>删除组</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="160"/>
@@ -1662,7 +1637,7 @@
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="181"/>
         <location filename="../plugins/group/src/pages/group-info-page/group-info-page.cpp" line="190"/>
         <source>Error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
 </context>
 <context>
@@ -1670,28 +1645,28 @@
     <message>
         <location filename="../plugins/group/src/group-interface.cpp" line="46"/>
         <source>Failed to create group, %1</source>
-        <translation type="unfinished"></translation>
+        <translation>创建用户组失败， %1</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/group-interface.cpp" line="70"/>
         <source>Failed to delete group, %1</source>
-        <translation type="unfinished"></translation>
+        <translation>删除用户组失败， %1</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/group-interface.cpp" line="93"/>
         <source>Failed to add %1 to group, %2</source>
-        <translation type="unfinished"></translation>
+        <translation>添加用户%1到用户组失败， %2</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/group-interface.cpp" line="115"/>
         <source>Failed to remove %1 from group, %2</source>
-        <translation type="unfinished"></translation>
+        <translation>从用户组移除用户%1失败， %2</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/group-interface.cpp" line="142"/>
         <location filename="../plugins/group/src/group-interface.cpp" line="154"/>
         <source>Failed to change group name to %1, %2</source>
-        <translation type="unfinished"></translation>
+        <translation>修改用户组名为%1失败，%2</translation>
     </message>
 </context>
 <context>
@@ -1699,17 +1674,17 @@
     <message>
         <location filename="../plugins/group/src/tools/group-name-checker.cpp" line="24"/>
         <source>Please enter your group name</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入组名</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/tools/group-name-checker.cpp" line="33"/>
         <source>Group name cannot be a pure number</source>
-        <translation type="unfinished"></translation>
+        <translation>组名不能为纯数字</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/tools/group-name-checker.cpp" line="40"/>
         <source>Group name already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>组名已经存在</translation>
     </message>
 </context>
 <context>
@@ -1717,7 +1692,7 @@
     <message>
         <location filename="../plugins/group/src/group-page.cpp" line="139"/>
         <source>Create new group</source>
-        <translation type="unfinished"></translation>
+        <translation>创建组</translation>
     </message>
 </context>
 <context>
@@ -1725,58 +1700,58 @@
     <message>
         <location filename="../plugins/group/src/group-subitem.cpp" line="49"/>
         <source>Group</source>
-        <translation type="unfinished"></translation>
+        <translation>组</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/group-subitem.cpp" line="81"/>
         <source>Create group</source>
-        <translation type="unfinished"></translation>
+        <translation>创建用户组</translation>
     </message>
     <message>
         <location filename="../plugins/group/src/group-subitem.cpp" line="82"/>
         <source>Group information</source>
-        <translation type="unfinished"></translation>
+        <translation>用户组信息</translation>
     </message>
 </context>
 <context>
     <name>HardWorker</name>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="46"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="47"/>
         <source>Create User failed</source>
         <translation>创建用户失败</translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="150"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="151"/>
         <source> update password failed</source>
         <translation>更新密码失败</translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="176"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="177"/>
         <source>icon file</source>
         <translation>头像</translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="187"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="188"/>
         <source>userName type</source>
         <translation>用户名</translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="198"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="199"/>
         <source>locked</source>
         <translation>启用状态</translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="208"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="209"/>
         <source>Failed to update user properties,%1</source>
         <translation>更新用户属性失败，%1</translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="230"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="231"/>
         <source>Failed to delete user,%1</source>
         <translation>删除用户失败，%1</translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="59"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="60"/>
         <source>Failed to connect to the account management service</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1786,7 +1761,7 @@
     <message>
         <location filename="../plugins/system/pages/hardware-information/hardware-information.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../plugins/system/pages/hardware-information/hardware-information.ui" line="147"/>
@@ -1855,7 +1830,7 @@
     <message>
         <location filename="../plugins/appearance/pages/theme/icon/icon-theme-page.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../plugins/appearance/pages/theme/icon/icon-theme-page.ui" line="35"/>
@@ -2462,7 +2437,7 @@
     <message>
         <location filename="../plugins/timedate/widgets/kiran-date-picker-widget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
@@ -2470,7 +2445,7 @@
     <message>
         <location filename="../lib/common-widgets/kiran-module-widget/kiran-module-widget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
@@ -2511,7 +2486,7 @@
     <message>
         <location filename="../plugins/timedate/widgets/kiran-time-picker-widget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
@@ -2519,7 +2494,7 @@
     <message>
         <location filename="../plugins/timedate/widgets/kiran-time-zone.ui" line="23"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../plugins/timedate/widgets/kiran-time-zone.cpp" line="98"/>
@@ -2532,7 +2507,7 @@
     <message>
         <location filename="../plugins/timedate/widgets/kiran-time-zone-item.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../plugins/timedate/widgets/kiran-time-zone-item.cpp" line="67"/>
@@ -2545,7 +2520,7 @@
     <message>
         <location filename="../plugins/timedate/widgets/kiran-time-zone-list.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
@@ -2553,7 +2528,7 @@
     <message>
         <location filename="../lib/common-widgets/kiran-tips/kiran-tips.ui" line="29"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
 </context>
 <context>
@@ -2681,7 +2656,7 @@
     <message>
         <location filename="../plugins/system/pages/system-information/license-agreement.ui" line="32"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../plugins/system/pages/system-information/license-agreement.ui" line="88"/>
@@ -2777,7 +2752,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../plugins/mouse/pages/mouse-page.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../plugins/mouse/pages/mouse-page.ui" line="68"/>
@@ -3140,9 +3115,9 @@ This is line 50 of the test text</source>
         <translation>返回</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="71"/>
-        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="78"/>
-        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="86"/>
+        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="72"/>
+        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="79"/>
+        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="87"/>
         <source>day</source>
         <translation>日</translation>
     </message>
@@ -3150,18 +3125,18 @@ This is line 50 of the test text</source>
 <context>
     <name>PowerPlugin</name>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="71"/>
-        <location filename="../plugins/power/power-plugin.cpp" line="113"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="70"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="111"/>
         <source>General Settings</source>
         <translation>通用设置</translation>
     </message>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="80"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="79"/>
         <source>Power Settings</source>
         <translation>电源设置</translation>
     </message>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="95"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="94"/>
         <source>Battery Settings</source>
         <translation>电池设置</translation>
     </message>
@@ -3453,7 +3428,7 @@ This is line 50 of the test text</source>
     <message>
         <location filename="../lib/common-widgets/setting-brief-widget/setting-brief-widget.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../lib/common-widgets/setting-brief-widget/setting-brief-widget.ui" line="47"/>
@@ -3765,7 +3740,7 @@ This is line 50 of the test text</source>
     <message>
         <location filename="../plugins/system/pages/system-information/system-information.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../plugins/system/pages/system-information/system-information.ui" line="152"/>
@@ -3921,39 +3896,38 @@ This is line 50 of the test text</source>
         <translation>打开或关闭窗口特效</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="95"/>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="128"/>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="158"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="96"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="129"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="152"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="157"/>
         <source>Choose window Themes</source>
         <translation>选择窗口主题</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="188"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="191"/>
         <source>Light Theme</source>
         <translation>冰晶白</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="189"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="192"/>
         <source>Auto</source>
         <translation>自动</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="190"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="193"/>
         <source>Dark Theme</source>
         <translation>曜岩黑</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="89"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="90"/>
         <source>Choose icon Theme</source>
         <translation>选择图标主题</translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="122"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="123"/>
         <source>Choose cursor Themes</source>
         <translation>选择光标主题</translation>
     </message>
@@ -4032,7 +4006,7 @@ This is line 50 of the test text</source>
     <message>
         <location filename="../plugins/mouse/pages/touchpad-page.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Form</translation>
     </message>
     <message>
         <location filename="../plugins/mouse/pages/touchpad-page.ui" line="86"/>
@@ -4306,77 +4280,77 @@ This is line 50 of the test text</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="139"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="140"/>
         <source>standard</source>
         <translation>普通用户</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="140"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="141"/>
         <source>administrator</source>
         <translation>管理员</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="202"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="205"/>
         <source>Please enter the new user password</source>
         <translation>请输入新密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="210"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="213"/>
         <source>Please enter the password again</source>
         <translation>请再次输入密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="216"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="219"/>
         <source>The password you enter must be the same as the former one</source>
         <translation>两次密码不相同，请核对后，再次输入</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="228"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="231"/>
         <source>Please enter the current user password</source>
         <translation>请输入当前密码</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="234"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="237"/>
         <source>The current password is incorrect</source>
         <translation>当前密码错误，请再次输入</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="241"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="244"/>
         <source>The new password cannot be the same as the current password</source>
         <translation>新密码不能和旧密码相同，请重新输入</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="247"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="255"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="293"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="312"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="346"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="250"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="258"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="296"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="315"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="349"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="247"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="255"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="250"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="258"/>
         <source>Password encryption failed</source>
         <translation>密码加密失败</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="298"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="301"/>
         <source>user information updated successfully</source>
         <translation>用户信息更新成功</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="318"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="321"/>
         <source>Password updated successfully</source>
         <translation>密码更新成功</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="324"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="327"/>
         <source>The directory and files under the user&apos;s home directory are deleted with the user.Are you sure you want to delete the user(%1)?</source>
         <translation>用户目录下的目录和文件会随用户一起删除，确定要删除%1用户吗？</translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="327"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="330"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>

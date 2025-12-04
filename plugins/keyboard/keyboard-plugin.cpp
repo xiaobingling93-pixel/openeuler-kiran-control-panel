@@ -14,13 +14,14 @@
 #include "keyboard-plugin.h"
 #include "general-subitem.h"
 #include "layout-subitem.h"
+#include "logging-category.h"
 
-#include <kiran-log/qt5-log-i.h>
 #include <kiran-session-daemon/keyboard-i.h>
 #include <QCoreApplication>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
-#include <QTranslator>
+
+Q_LOGGING_CATEGORY(qLcKeyboard, "kcp.keyboard", QtMsgType::QtDebugMsg);
 
 KeyboardPlugin::KeyboardPlugin(QObject* parent)
     : QObject(parent)

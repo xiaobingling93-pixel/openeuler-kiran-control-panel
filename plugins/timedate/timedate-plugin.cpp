@@ -14,11 +14,11 @@
 #include "timedate-plugin.h"
 #include "kiran-timedate-global-data.h"
 #include "timedate-subitem.h"
-#include "config.h"
+#include "logging-category.h"
 
-#include <kiran-log/qt5-log-i.h>
 #include <QCoreApplication>
-#include <QTranslator>
+
+Q_LOGGING_CATEGORY(qLcTimeDate, "kcp.timedate", QtMsgType::QtDebugMsg);
 
 TimeDatePlugin::TimeDatePlugin(QObject* parent)
     : QObject(parent)

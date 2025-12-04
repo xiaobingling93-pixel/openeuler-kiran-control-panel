@@ -16,6 +16,7 @@
 #include "accounts-global-info.h"
 #include "advance-settings-page/advance-settings.h"
 #include "kiran-tips/kiran-tips.h"
+#include "logging-category.h"
 #include "passwd-helper.h"
 #include "ui_create-user-page.h"
 #include "user-name-validator.h"
@@ -96,14 +97,15 @@ void CreateUserPage::initUI()
     /// 高级设置按钮
     connect(ui->btn_advanceSetting, &QPushButton::clicked, [this]()
             {
-        if (ui->edit_name->text().isEmpty())
-        {
-            m_errorTip->setText(tr("Please enter user name first"));
-            m_errorTip->showTipAroundWidget(ui->edit_name);
-            return;
-        }
+                if (ui->edit_name->text().isEmpty())
+                {
+                    m_errorTip->setText(tr("Please enter user name first"));
+                    m_errorTip->showTipAroundWidget(ui->edit_name);
+                    return;
+                }
 
-        AdvanceSettings::exec(ui->edit_name->text(),m_advanceSettingsInfo); });
+                AdvanceSettings::exec(ui->edit_name->text(), m_advanceSettingsInfo);
+            });
 
     /// 确认按钮
     KiranPushButton::setButtonType(ui->btn_confirm, KiranPushButton::BUTTON_Default);

@@ -1,23 +1,6 @@
 set(TARGET_NAME kiran-cpanel-system)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_AUTOMOC ON)
-
-find_package(PkgConfig REQUIRED)
-find_package(Qt5 COMPONENTS Widgets Svg DBus LinguistTools PrintSupport)
-pkg_search_module(KLOG_QT5 REQUIRED klog-qt5)
-pkg_search_module(KIRAN_CC_DAEMON REQUIRED kiran-cc-daemon)
-pkg_search_module(KIRAN_INTEGRATION_THEME REQUIRED kiran-integration-theme)
-
-file(GLOB_RECURSE SYSTEM_SRC ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
-                             ${CMAKE_CURRENT_SOURCE_DIR}/*.h
-                             ${CMAKE_CURRENT_SOURCE_DIR}/*.ui)
-
-file(GLOB TS_FILES "translations/*.ts")
-qt5_create_translation(SYSTEM_QM ${CMAKE_CURRENT_SOURCE_DIR} ${TS_FILES})
+file(GLOB_RECURSE SYSTEM_SRC ./*.cpp ./*.h ./*.ui)
 
 kiran_qt5_add_dbus_interface_ex(LICENSE_DBUS_SRC
         data/com.kylinsec.Kiran.LicenseObject.xml
@@ -26,9 +9,7 @@ kiran_qt5_add_dbus_interface_ex(LICENSE_DBUS_SRC
 
 add_library(${TARGET_NAME} SHARED
         ${SYSTEM_SRC}
-        ${SYSTEM_QM}
-        ${LICENSE_DBUS_SRC}
-        ${CMAKE_CURRENT_SOURCE_DIR}/data/res.qrc)
+        ${LICENSE_DBUS_SRC})
 
 target_include_directories(${TARGET_NAME} PRIVATE
         ${CMAKE_CURRENT_BINARY_DIR}
@@ -40,7 +21,7 @@ target_include_directories(${TARGET_NAME} PRIVATE
         ${KIRAN_INTEGRATION_THEME_INCLUDE_DIRS})
 
 target_link_libraries(${TARGET_NAME}
-        common-widgets
+        plugin-devel
         Qt5::Widgets
         Qt5::DBus
         Qt5::Svg
@@ -50,4 +31,3 @@ target_link_libraries(${TARGET_NAME}
         ${KIRAN_INTEGRATION_THEME_LIBRARIES})
 
 install(TARGETS ${TARGET_NAME} DESTINATION ${PLUGIN_LIBS_DIR})
-install(FILES ${SYSTEM_QM} DESTINATION ${TRANSLATION_DIR}/)

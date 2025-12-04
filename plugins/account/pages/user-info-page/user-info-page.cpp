@@ -13,9 +13,10 @@
  */
 
 #include "user-info-page.h"
+#include "account.h"
 #include "accounts-global-info.h"
 #include "hover-tips/hover-tips.h"
-#include "kiran-account-service-wrapper.h"
+#include "logging-category.h"
 #include "passwd-helper.h"
 #include "ui_user-info-page.h"
 
@@ -52,7 +53,7 @@ void UserInfoPage::updateInfo()
 {
     m_errorTip->hideTip();
 
-    auto userAPI = DBusWrapper::createKiranAccountServiceUserAPI(m_curShowUserPath);
+    auto userAPI = DBusWrapper::Account::userInterface(m_curShowUserPath);
     QString userName = userAPI->user_name();
     m_uid = userAPI->uid();
     int userType = userAPI->account_type();
@@ -142,8 +143,9 @@ void UserInfoPage::initUI()
     // 修改密码按钮
     connect(ui->btn_changePasswd, &QPushButton::clicked, [this]()
             {
-        resetPageSetPasswd();
-        ui->stackedWidget->setCurrentIndex(PAGE_CHANGE_PASSWD); });
+                resetPageSetPasswd();
+                ui->stackedWidget->setCurrentIndex(PAGE_CHANGE_PASSWD);
+            });
 
     // 确认按钮
     connect(ui->btn_saveProperty, &QPushButton::clicked,
@@ -174,13 +176,14 @@ void UserInfoPage::initUI()
     // 取消按钮
     connect(ui->btn_cancel, &QPushButton::clicked, [this]()
             {
-        m_errorTip->hideTip();
-        ui->stackedWidget->setCurrentIndex(PAGE_USER_INFO); });
+                m_errorTip->hideTip();
+                ui->stackedWidget->setCurrentIndex(PAGE_USER_INFO);
+            });
 
     connect(ui->btn_passwdExpirationPolicy, &QPushButton::clicked, [this]()
             { emit requestPasswordExpirationPolicy(m_curShowUserPath); });
 
-    if( !AccountsGlobalInfo::instance()->getShowPasswordExpirationPolicy() )
+    if (!AccountsGlobalInfo::instance()->getShowPasswordExpirationPolicy())
     {
         ui->btn_passwdExpirationPolicy->setVisible(false);
     }

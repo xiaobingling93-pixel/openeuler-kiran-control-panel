@@ -14,13 +14,12 @@
 #include "systeminfo-plugin.h"
 
 #include "hardware-subitem.h"
+#include "logging-category.h"
 #include "system-subitem.h"
 
-#include <kiran-log/qt5-log-i.h>
 #include <QCoreApplication>
-#include <QTranslator>
 
-#define TRANSLATION_DIR "/usr/share/kiran-control-panel/translations"
+Q_LOGGING_CATEGORY(qLcSystem, "kcp.system", QtMsgType::QtDebugMsg);
 
 SystemInfoPlugin::SystemInfoPlugin(QObject* parent)
     : QObject(parent)

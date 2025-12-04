@@ -17,10 +17,6 @@
 #include "plugin-interface-v2.h"
 #include "plugin-subitem-interface.h"
 
-QT_BEGIN_NAMESPACE
-class QTranslator;
-QT_END_NAMESPACE
-
 class KiranAuthDBusProxy;
 class AuthPlugin : public QObject,
                    public KiranControlPanel::PluginInterfaceV2

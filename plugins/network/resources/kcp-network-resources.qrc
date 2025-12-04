@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>kcp-network-images/correct.png</file>
-        <file>kcp-network-images/connection-add.svg</file>
-    </qresource>
-</RCC>

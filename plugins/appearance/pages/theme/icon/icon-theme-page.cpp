@@ -14,7 +14,6 @@
 
 #include "icon-theme-page.h"
 
-#include <kiran-log/qt5-log-i.h>
 #include <kiran-session-daemon/appearance-i.h>
 #include <kiranwidgets-qt5/kiran-message-box.h>
 
@@ -25,6 +24,7 @@
 #include "appearance-global-info.h"
 #include "exclusion-group.h"
 #include "theme-preview.h"
+#include "logging-category.h"
 #include "ui_icon-theme-page.h"
 
 // clang-format off

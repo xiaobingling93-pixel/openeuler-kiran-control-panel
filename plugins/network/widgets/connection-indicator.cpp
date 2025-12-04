@@ -15,6 +15,7 @@
 #include "connection-indicator.h"
 #include <QImage>
 #include <QPainter>
+#include <QIcon>
 #include <QPainterPath>
 #include <qt5-log-i.h>
 #include "logging-category.h"
@@ -54,7 +55,8 @@ void ConnectionIndicator::init()
     setFixedSize(16, 16);
     setAttribute(Qt::WA_Hover);
 
-    m_connectedPixmap = QPixmap(":/kcp-network-images/correct.png");
+    auto iconPixmap = QIcon(":/kcp-network/images/indicator-selected.svg").pixmap(16,16);
+    m_connectedPixmap = iconPixmap;
     m_hoverPixmap = convertOpacity(m_connectedPixmap, 0.2);
 
     m_group = new QParallelAnimationGroup(this);
@@ -136,7 +138,7 @@ void ConnectionIndicator::setActivated(bool isActivated)
         m_isLoading = false;
     }
 
-    setPixmap(isActivated ? QPixmap(":/kcp-network-images/correct.png") : QPixmap(""));
+    setPixmap(isActivated ? m_connectedPixmap : QPixmap());
     update();
 }
 

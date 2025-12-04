@@ -17,11 +17,14 @@
 #include "autostart/autostart-page.h"
 #include "config.h"
 #include "defaultapp/defaultapp.h"
+#include "logging-category.h"
 
 #include <kiran-log/qt5-log-i.h>
 #include <kiran-session-daemon/appearance-i.h>
 #include <QCoreApplication>
 #include <tuple>
+
+Q_LOGGING_CATEGORY(qLcApplication,"kcp.application",QtMsgType::QtDebugMsg)
 
 ApplicationPlugin::ApplicationPlugin(QObject* parent) : QObject(parent)
 {

@@ -127,10 +127,10 @@ int main(int argc, char* argv[])
 
     QTranslator tsor;
     tsor.load(QLocale(),
-              qAppName() /*filename*/,
-              "." /*prefix*/,
+              "kiran-control-panel",
+              ".",
               TRANSLATE_PREFIX,
-              ".qm" /*suffix*/);
+              ".qm");
     QApplication::installTranslator(&tsor);
 
     handlerCommandOption(app);

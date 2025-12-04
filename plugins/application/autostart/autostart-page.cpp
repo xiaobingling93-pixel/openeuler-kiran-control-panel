@@ -24,8 +24,8 @@
 #include <QStandardPaths>
 #include <QWidget>
 #include "autostart-app.h"
-#include "kiran-setting-container.h"
-#include "kiran-setting-item.h"
+#include "kiran-setting-container/kiran-setting-container.h"
+#include "kiran-setting-container/kiran-setting-item.h"
 
 #define DESKTOP_DIR "/usr/share/applications"
 

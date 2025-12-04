@@ -20,7 +20,6 @@
 #include "plugin-interface-v2.h"
 #include "plugin-subitem-interface.h"
 
-class QTranslator;
 class DisplayPlugin : public QObject,
                       public KiranControlPanel::PluginInterfaceV2
 {
@@ -44,7 +43,6 @@ public:
     QVector<KiranControlPanel::SubItemPtr> getSubItems() override;
 
 private:
-    QTranslator* m_translator = nullptr;
     KiranControlPanel::SubItemPtr m_subitem;
 
 };

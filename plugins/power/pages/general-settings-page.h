@@ -59,22 +59,16 @@ private slots:
     void updateIdleLockEnable(bool enable);
     void updateDisplayIdleDimmedEnable(bool enable);
     void updateSuspendLockEnable(bool enable);
-    void onSwitchAutoColorTempToggoled(bool checked);
-    void updateColorTempatureValue();
-    void onSliderColorTempValueChanged(int value);
     void updateCurrentComputerMode(int idx);
 
 private:
     Ui::GeneralSettingsPage *ui;
     PowerInterface* m_powerInterface;
-    KWinColorCorrect* m_kwinColorCorrect;
     QTimer m_brightnessSettingTimer;
     QTimer m_idleTimeSettingTimer;
-    QTimer m_colorTempSettingTimer;
     int m_brightnessValue;
     QGSettings* m_sessionSettings = nullptr;
     QGSettings* m_screensaverSettings = nullptr;
-    KiranSwitchButton* m_switchAutoColorTemp = nullptr;
     KiranSwitchButton* m_switchIdlelockScreen = nullptr;
     KiranSwitchButton* m_switchDisplayIdleDimmed = nullptr;
     KiranSwitchButton* m_switchSuspendLockScreen = nullptr;

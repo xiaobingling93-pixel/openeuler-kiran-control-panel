@@ -24,6 +24,7 @@
 #include "decoration-config.h"
 #include "decoration-preview-widget.h"
 #include "exclusion-group.h"
+#include "logging-category.h"
 #include "theme-preview.h"
 #include "ui_wm-theme-page.h"
 

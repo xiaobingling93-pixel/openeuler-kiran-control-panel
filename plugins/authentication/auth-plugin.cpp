@@ -25,7 +25,8 @@
 #include "pages/ukey-page.h"
 
 #include <QCoreApplication>
-#include <QTranslator>
+
+Q_LOGGING_CATEGORY(qLcAuthentication,"kcp.authentication",QtMsgType::QtDebugMsg)
 
 AuthPlugin::AuthPlugin(QObject* parent)
     : QObject(parent)

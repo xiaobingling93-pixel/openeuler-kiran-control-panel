@@ -1,7 +1,4 @@
 set(TARGET_NAME kiran-cpanel-mouse)
-
-option(MOUSE_WHEEL_TEST_VISIBLE "Is mouse wheel direction test visible" OFF)
-
 file(GLOB_RECURSE MOUSE_SRC "./*.cpp" "./*.h" "./*.ui" "./*.qrc" )
 
 kiran_qt5_add_dbus_interface_ex(MOUSE_PROXY
@@ -30,7 +27,8 @@ target_include_directories(${TARGET_NAME} PRIVATE
         ${KIRAN_WIDGETS_INCLUDE_DIRS}
         ${KIRAN_CC_DAEMON_INCLUDE_DIRS})
 
-target_link_libraries(${TARGET_NAME}
+target_link_libraries(${TARGET_NAME} PRIVATE
+        plugin-devel
         Qt5::Widgets
         Qt5::DBus
         Qt5::Svg

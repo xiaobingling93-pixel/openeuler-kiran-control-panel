@@ -112,7 +112,7 @@ void AddUsersPage::appendUserListItem(const QString &userName)
     auto item = new UserListItem(m_usersContainer);
     item->setName(userName);
     item->setClickable(true);
-    item->setRightBtnIcon(QIcon(":/kcp-group-images/chosen_icon.svg"));
+    item->setRightBtnIcon(QIcon(":/kcp-group/images/indicator-selected.svg"));
     item->setRightBtnVisible(false);
     m_usersContainer->addItem(item);
 }

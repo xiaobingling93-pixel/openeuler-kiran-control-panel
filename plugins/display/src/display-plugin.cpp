@@ -13,13 +13,14 @@
  */
 #include "display-plugin.h"
 #include <qt5-log-i.h>
-#include <QTranslator>
-#include <QApplication>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
 #include <kiran-session-daemon/display-i.h>
 #include "config.h"
 #include "display-subitem.h"
+#include "logging-category.h"
+
+Q_LOGGING_CATEGORY(qLcDisplay,"kcp.display",QtMsgType::QtDebugMsg)
 
 DisplayPlugin::DisplayPlugin(QObject *parent)
     : QObject{parent}
@@ -39,22 +40,6 @@ int DisplayPlugin::init(KiranControlPanel::PanelInterface *interface)
         KLOG_INFO() << "Connect display dbus service failed!";
         return -1;
     }
-    m_translator = new QTranslator;
-
-    if (!m_translator->load(QLocale(),
-                            "kiran-cpanel-display",
-                            ".",
-                            TRANSLATE_PREFIX,
-                            ".qm"))
-    {
-        m_translator->deleteLater();
-        m_translator = nullptr;
-        KLOG_ERROR() << "load translator failed!";
-    }
-    else
-    {
-        qApp->installTranslator(m_translator);
-    }
 
     auto displaySubitem = new DisplaySubitem();
     m_subitem.reset(displaySubitem);
@@ -63,12 +48,6 @@ int DisplayPlugin::init(KiranControlPanel::PanelInterface *interface)
 
 void DisplayPlugin::uninit()
 {
-    if (m_translator)
-    {
-        qApp->removeTranslator(m_translator);
-        delete m_translator;
-        m_translator = nullptr;
-    }
 }
 
 QVector<KiranControlPanel::SubItemPtr> DisplayPlugin::getSubItems()

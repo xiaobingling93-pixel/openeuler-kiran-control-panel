@@ -17,19 +17,19 @@
 <context>
     <name>AccountWidget</name>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="96"/>
-        <location filename="../plugins/account/account-widget.cpp" line="397"/>
+        <location filename="../plugins/account/account-widget.cpp" line="98"/>
+        <location filename="../plugins/account/account-widget.cpp" line="402"/>
         <source>disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="96"/>
-        <location filename="../plugins/account/account-widget.cpp" line="397"/>
+        <location filename="../plugins/account/account-widget.cpp" line="98"/>
+        <location filename="../plugins/account/account-widget.cpp" line="402"/>
         <source>enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/account-widget.cpp" line="218"/>
+        <location filename="../plugins/account/account-widget.cpp" line="221"/>
         <source>Create new user</source>
         <translation type="unfinished"></translation>
     </message>
@@ -159,22 +159,22 @@
 <context>
     <name>AppearancePlugin</name>
     <message>
-        <location filename="../plugins/appearance/appearance-plugin.cpp" line="68"/>
+        <location filename="../plugins/appearance/appearance-plugin.cpp" line="70"/>
         <source>Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/appearance-plugin.cpp" line="75"/>
+        <location filename="../plugins/appearance/appearance-plugin.cpp" line="77"/>
         <source>Wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/appearance-plugin.cpp" line="82"/>
+        <location filename="../plugins/appearance/appearance-plugin.cpp" line="84"/>
         <source>Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/appearance-plugin.cpp" line="89"/>
+        <location filename="../plugins/appearance/appearance-plugin.cpp" line="91"/>
         <source>Screensaver</source>
         <translation type="unfinished"></translation>
     </message>
@@ -182,12 +182,12 @@
 <context>
     <name>ApplicationPlugin</name>
     <message>
-        <location filename="../plugins/application/application-plugin.cpp" line="71"/>
+        <location filename="../plugins/application/application-plugin.cpp" line="74"/>
         <source>DefaultApp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/application/application-plugin.cpp" line="78"/>
+        <location filename="../plugins/application/application-plugin.cpp" line="81"/>
         <source>AutoStart</source>
         <translation type="unfinished"></translation>
     </message>
@@ -195,37 +195,37 @@
 <context>
     <name>AuthPlugin</name>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="91"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="92"/>
         <source>Fingerprint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="98"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="99"/>
         <source>FingerVein</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="105"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="106"/>
         <source>UKey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="112"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="113"/>
         <source>Iris</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="119"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="120"/>
         <source>Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="126"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="127"/>
         <source>Driver Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/authentication/auth-plugin.cpp" line="133"/>
+        <location filename="../plugins/authentication/auth-plugin.cpp" line="134"/>
         <source>Prefs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -423,8 +423,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/change-host-name-widget.cpp" line="71"/>
-        <source>Change host name failed! Please check the Dbus service!</source>
+        <location filename="../plugins/system/pages/system-information/change-host-name-widget.cpp" line="73"/>
+        <source>Unknown error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/system/pages/system-information/change-host-name-widget.cpp" line="75"/>
+        <source>Change host name failed, %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -611,58 +616,58 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="77"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="78"/>
         <source>standard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="78"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="79"/>
         <source>administrator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="101"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="102"/>
         <source>Please enter user name first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="125"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="127"/>
         <source>Please enter your user name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="141"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="143"/>
         <source>user name cannot be a pure number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="148"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="150"/>
         <source>user name already exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="160"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="162"/>
         <source>Please enter your password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="167"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="169"/>
         <source>Please enter the password again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="174"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="176"/>
         <source>The password you enter must be the same as the former one</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="184"/>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="219"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="186"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="221"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="184"/>
+        <location filename="../plugins/account/pages/create-user-page/create-user-page.cpp" line="186"/>
         <source>Password encryption failed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1503,115 +1508,90 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="493"/>
-        <source>Color temperature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="524"/>
-        <source>Automatic color temperature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="595"/>
-        <source>cold</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="615"/>
-        <source>standard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="635"/>
-        <source>warm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="695"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="488"/>
         <source>Regard computer as idle after</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="749"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="542"/>
         <source>SliderComputerIdleTime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="780"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="573"/>
         <source>Lock screen when idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="817"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="610"/>
         <source>Display dimmed when idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="861"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="654"/>
         <source>password is required to wake up in standby mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="119"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="132"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="116"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="129"/>
         <source>shutdown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="120"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="126"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="131"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="117"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="123"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="128"/>
         <source>hibernate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="121"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="125"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="130"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="118"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="122"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="127"/>
         <source>suspend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="122"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="127"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="119"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="124"/>
         <source>display off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="123"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="128"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="133"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="120"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="125"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="130"/>
         <source>do nothing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="154"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="151"/>
         <source>Energy-saving mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="155"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="152"/>
         <source>Balanced mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="156"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="153"/>
         <source>High performance mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="437"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="395"/>
         <source>ERROR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="570"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="495"/>
         <source>%1hour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="574"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="499"/>
         <source>%1minute</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1736,42 +1716,42 @@
 <context>
     <name>HardWorker</name>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="46"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="47"/>
         <source>Create User failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="59"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="60"/>
         <source>Failed to connect to the account management service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="150"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="151"/>
         <source> update password failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="176"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="177"/>
         <source>icon file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="187"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="188"/>
         <source>userName type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="198"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="199"/>
         <source>locked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="208"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="209"/>
         <source>Failed to update user properties,%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/utils/hard-worker.cpp" line="230"/>
+        <location filename="../plugins/account/utils/hard-worker.cpp" line="231"/>
         <source>Failed to delete user,%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1878,19 +1858,6 @@
     <message>
         <location filename="../plugins/appearance/pages/wallpaper/widget/image-selector.cpp" line="194"/>
         <source>Are you sure you want to delete this picture?</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>InputDialog</name>
-    <message>
-        <location filename="../lib/common-widgets/input-dialog/input-dialog.cpp" line="116"/>
-        <source>Confirm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/common-widgets/input-dialog/input-dialog.cpp" line="128"/>
-        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2085,12 +2052,12 @@
 <context>
     <name>KeycodeTranslator</name>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="169"/>
+        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="102"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="173"/>
+        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="106"/>
         <source>disabled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2466,14 +2433,6 @@
     </message>
 </context>
 <context>
-    <name>KiranCollapse</name>
-    <message>
-        <location filename="../lib/common-widgets/kiran-collapse/kiran-collapse.ui" line="20"/>
-        <source>ListExpansionSpace</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>KiranDatePickerWidget</name>
     <message>
         <location filename="../plugins/timedate/widgets/kiran-date-picker-widget.ui" line="14"/>
@@ -2777,102 +2736,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="267"/>
         <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="269"/>
         <source>Privacy Policy</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ListExpansionSpace</name>
-    <message>
-        <location filename="../lib/common-widgets/kiran-collapse/list-expansion-space.ui" line="20"/>
-        <source>ListExpansionSpace</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Media Key</name>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="71"/>
-        <source>Audio Play</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="72"/>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="73"/>
-        <source>WWW</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="74"/>
-        <source>Audio Lower Volume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="75"/>
-        <source>Audio Raise Volume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="76"/>
-        <source>Mic Mute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="77"/>
-        <source>Audio Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="78"/>
-        <source>Explorer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="79"/>
-        <source>Calculator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="80"/>
-        <source>Audio Mute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="81"/>
-        <source>Audio Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="82"/>
-        <source>Audio Prev</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="83"/>
-        <source>Audio Media</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="84"/>
-        <source>Audio Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="85"/>
-        <source>Mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="86"/>
-        <source>Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/keybinding/utils/keycode-translator.cpp" line="87"/>
-        <source>Eject</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3203,9 +3066,9 @@ This is line 50 of the test text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="71"/>
-        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="78"/>
-        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="86"/>
+        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="72"/>
+        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="79"/>
+        <location filename="../plugins/account/pages/passwd-expiration-policy/password-expiration-policy-page.cpp" line="87"/>
         <source>day</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3213,18 +3076,18 @@ This is line 50 of the test text</source>
 <context>
     <name>PowerPlugin</name>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="71"/>
-        <location filename="../plugins/power/power-plugin.cpp" line="113"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="70"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="111"/>
         <source>General Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="80"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="79"/>
         <source>Power Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/power-plugin.cpp" line="95"/>
+        <location filename="../plugins/power/power-plugin.cpp" line="94"/>
         <source>Battery Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3544,8 +3407,8 @@ This is line 50 of the test text</source>
     </message>
     <message>
         <location filename="../plugins/keybinding/shortcut.ui" line="210"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="173"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="578"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="175"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="592"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3670,127 +3533,133 @@ This is line 50 of the test text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="171"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="173"/>
         <source>Finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="225"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="227"/>
         <source>failed to load shortcut key data!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="267"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="280"/>
         <source>List shortcut failed,error:%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="310"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="405"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="323"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="419"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="311"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="324"/>
         <source>Get shortcut failed,error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="394"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="408"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="396"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="410"/>
         <source>Desktop entries(*.desktop)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="630"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="644"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="632"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="646"/>
         <source>Sound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="634"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="648"/>
         <source>Accessibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="684"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="736"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="757"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="794"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="815"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="845"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="862"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="879"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="698"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="750"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="771"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="808"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="829"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="859"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="872"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="885"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="898"/>
         <source>Failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="685"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="699"/>
         <source>Delete shortcut failed,error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="698"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="775"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="712"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="789"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="699"/>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="776"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="713"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="790"/>
         <source>Please complete the shortcut information!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="708"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="722"/>
         <source>Set shortcut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="709"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="723"/>
         <source>Are you sure you want to disable this shortcut?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="737"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="751"/>
         <source>Modify system shortcut failed,error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="758"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="772"/>
         <source>Modify custom shortcut failed,error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="795"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="809"/>
         <source>Add custom shortcut failed,error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="816"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="830"/>
         <source>Reset shortcut failed,error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="846"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="860"/>
         <source>Cannot use shortcut &quot;%1&quot;,Shortcuts cannot be set to only modifier keys. Please add a regular key, like A-Z, and so on.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="863"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="873"/>
         <source>Cannot use shortcut &quot;%1&quot;,Please keep pressing the modifier keys such as Ctrl,Alt, and Shift before pressing the last key of the shortcut key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/keybinding/shortcut.cpp" line="880"/>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="886"/>
+        <source>Cannot use shortcut &quot;%1&quot;,Please continue to input modifier keys like Ctrl, Alt, and Meta.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../plugins/keybinding/shortcut.cpp" line="899"/>
         <source>Shortcut keys %1 are already used in %2,Please try again!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3922,40 +3791,40 @@ This is line 50 of the test text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="109"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="110"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="111"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="112"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="154"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="155"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="156"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="157"/>
         <source>Unknow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="249"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="263"/>
         <source>UnActivated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="258"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="272"/>
         <source>Activation code has expired</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="263"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="277"/>
         <source>Permanently activated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="268"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="282"/>
         <source>Activated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="311"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="312"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="311"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="312"/>
         <source>Failed to open the license activator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3978,39 +3847,38 @@ This is line 50 of the test text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="95"/>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="128"/>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="158"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="96"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="129"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="89"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="90"/>
         <source>Choose icon Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="122"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="123"/>
         <source>Choose cursor Themes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="152"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="157"/>
         <source>Choose window Themes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="188"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="191"/>
         <source>Light Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="189"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="192"/>
         <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="190"/>
+        <location filename="../plugins/appearance/pages/theme/theme-page.cpp" line="193"/>
         <source>Dark Theme</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4081,19 +3949,6 @@ This is line 50 of the test text</source>
     <message>
         <location filename="../plugins/timedate/pages/timezone-settings/time-zone-settings.ui" line="163"/>
         <source>reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TopBar</name>
-    <message>
-        <location filename="../lib/common-widgets/kiran-collapse/top-bar.ui" line="20"/>
-        <source>ListExpansionSpace</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/common-widgets/kiran-collapse/top-bar.ui" line="43"/>
-        <source>TITLE</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4272,6 +4127,11 @@ This is line 50 of the test text</source>
         <source>Please enter the ukey pin code</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../plugins/authentication/pages/ukey-page.cpp" line="125"/>
+        <source>Failed to record UKey device features %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfoPage</name>
@@ -4371,77 +4231,77 @@ This is line 50 of the test text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="139"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="140"/>
         <source>standard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="140"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="141"/>
         <source>administrator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="202"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="205"/>
         <source>Please enter the new user password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="210"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="213"/>
         <source>Please enter the password again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="216"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="219"/>
         <source>The password you enter must be the same as the former one</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="228"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="231"/>
         <source>Please enter the current user password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="234"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="237"/>
         <source>The current password is incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="241"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="244"/>
         <source>The new password cannot be the same as the current password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="247"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="255"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="293"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="312"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="346"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="250"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="258"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="296"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="315"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="349"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="247"/>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="255"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="250"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="258"/>
         <source>Password encryption failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="298"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="301"/>
         <source>user information updated successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="318"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="321"/>
         <source>Password updated successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="324"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="327"/>
         <source>The directory and files under the user&apos;s home directory are deleted with the user.Are you sure you want to delete the user(%1)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="327"/>
+        <location filename="../plugins/account/pages/user-info-page/user-info-page.cpp" line="330"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>

@@ -14,7 +14,7 @@
 #ifndef ACCOUNTSGLOBALINFO_H
 #define ACCOUNTSGLOBALINFO_H
 
-#include "kiran-account-service-wrapper.h"
+#include "account.h"
 #include <QList>
 #include <QObject>
 
@@ -59,8 +59,8 @@ private Q_SLOTS:
     void handlerPropertyChanged(const QString &propertyName, const QVariant &value);
 
 private:
-    DBusWrapper::KiranAccountServicePtr m_accountsInterface;
-    QMap<QString,DBusWrapper::KiranAccountServiceUserPtr> m_usersMap; // QMap<DBus对象路径,用户相关接口>
+    DBusWrapper::Account::AccountInterfacePtr m_accountsInterface;
+    QMap<QString,DBusWrapper::Account::AccountUserInterfacePtr> m_usersMap; // QMap<DBus对象路径,用户相关接口>
     QString m_curUserName;
     QString m_pubkey;
     bool m_showPasswordExpirationPolicy;

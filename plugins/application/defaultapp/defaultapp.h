@@ -18,7 +18,7 @@
 
 #include <QWidget>
 #include <QComboBox>
-#include "kiran-setting-item.h"
+#include "kiran-setting-container/kiran-setting-item.h"
 #include "libqtxdg.h"
 #include "utils.h"
 

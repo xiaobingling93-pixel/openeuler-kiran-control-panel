@@ -73,7 +73,7 @@ void CreateGroupPage::appendUserListItem(const QString &userPath)
     if (AccountsGlobalInfo::instance()->getUserName(userPath, userName))
     {
         auto item = new UserListItem(m_userContainter);
-        item->setRightBtnIcon(QIcon(":/kcp-group-images/chosen_icon.svg"));
+        item->setRightBtnIcon(QIcon(":/kcp-group/images/indicator-selected.svg"));
         item->setRightBtnVisible(false);
         item->setName(userName);
         item->setClickable(true);

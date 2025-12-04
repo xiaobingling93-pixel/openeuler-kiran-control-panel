@@ -16,12 +16,12 @@
 #include "keybinding-subitem.h"
 #include "logging-category.h"
 
-#include <kiran-log/qt5-log-i.h>
 #include <kiran-session-daemon/keybinding-i.h>
 #include <QCoreApplication>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
-#include <QTranslator>
+
+Q_LOGGING_CATEGORY(qLcKeybinding, "kcp.keybinding", QtMsgType::QtDebugMsg);
 
 KeybindingPlugin::KeybindingPlugin(QObject* parent)
     : QObject(parent)

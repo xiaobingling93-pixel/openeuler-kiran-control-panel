@@ -1,18 +1,6 @@
 set(TARGET_NAME kiran-cpanel-account)
 
-pkg_search_module(CRYPTOPP REQUIRED cryptopp)
-pkg_search_module(PAM pam)
-
-file(GLOB_RECURSE ACCOUNT_SRC
-        ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/*.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/pages/*.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/pages/*.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/pages/*.ui
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/*.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/*.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/*.ui)
-
+file(GLOB_RECURSE ACCOUNT_SRC ./*.cpp ./*.h ./*.ui)
 add_library(${TARGET_NAME} SHARED ${ACCOUNT_SRC})
 
 target_include_directories(${TARGET_NAME} PRIVATE
@@ -26,8 +14,7 @@ target_include_directories(${TARGET_NAME} PRIVATE
         ${CRYPTOPP_INCLUDE_DIRS})
 
 target_link_libraries(${TARGET_NAME}
-        common-widgets
-        dbus-wrapper
+        plugin-devel
         Qt5::Widgets
         Qt5::DBus
         Qt5::Svg

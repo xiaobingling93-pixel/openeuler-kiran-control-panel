@@ -13,7 +13,6 @@
  */
 
 #include "appearance-global-info.h"
-#include "kiran-session-daemon/appearance-i.h"
 #include "logging-category.h"
 
 #include <kiran-log/qt5-log-i.h>
@@ -22,9 +21,9 @@
 
 AppearanceGlobalInfo::AppearanceGlobalInfo(QObject *parent)
     : QObject(parent),
-      m_appearanceInterface(DBusWrapper::createKiranAppearancetServiceAPI())
+      m_appearanceInterface(DBusWrapper::Appearance::interface())
 {
-    connect(m_appearanceInterface.data(), &KiranAppearanceService::ThemeChanged, this,
+    connect(m_appearanceInterface.data(), &AppearanceInterface::ThemeChanged, this,
             [this](int type, const QString &themeName)
             {
                 KLOG_DEBUG(qLcAppearance) << "theme changed,"
@@ -32,21 +31,21 @@ AppearanceGlobalInfo::AppearanceGlobalInfo(QObject *parent)
                                           << "theme name:" << themeName;
                 emit themeChanged(type, themeName);
             });
-    connect(m_appearanceInterface.data(), &KiranAppearanceService::desktop_backgroundChanged, this,
+    connect(m_appearanceInterface.data(), &AppearanceInterface::desktop_backgroundChanged, this,
             [this](const QString &value)
             {
                 KLOG_DEBUG(qLcAppearance) << "background changed,"
                                           << "background:" << value;
                 emit desktopBackgroundChanged(value);
             });
-    connect(m_appearanceInterface.data(), &KiranAppearanceService::lock_screen_backgroundChanged, this,
+    connect(m_appearanceInterface.data(), &AppearanceInterface::lock_screen_backgroundChanged, this,
             [this](const QString &value)
             {
                 KLOG_DEBUG(qLcAppearance) << "lock screen background changed,"
                                           << "background:" << value;
                 emit lockScreenBackgroundChanged(value);
             });
-    connect(m_appearanceInterface.data(), &KiranAppearanceService::FontChanged, this,
+    connect(m_appearanceInterface.data(), &AppearanceInterface::FontChanged, this,
             [this](int type, const QString &fontInfo)
             {
                 KLOG_DEBUG(qLcAppearance) << "font changed,"
@@ -62,7 +61,7 @@ AppearanceGlobalInfo::AppearanceGlobalInfo(QObject *parent)
 
                 emit fontChanged(type, fontFamily,fontSize);
             });
-    connect(m_appearanceInterface.data(), &KiranAppearanceService::AutoSwitchWindowThemeChanged, this,
+    connect(m_appearanceInterface.data(), &AppearanceInterface::AutoSwitchWindowThemeChanged, this,
             [this](bool enable)
             {
                 KLOG_DEBUG(qLcAppearance) << "auto switch window theme changed,"
