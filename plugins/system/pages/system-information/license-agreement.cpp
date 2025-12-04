@@ -216,13 +216,13 @@ LOAD_VERSION_LICENSE_FROM_RES:
     QString title;
     if (!lang.isEmpty())
     {
-        body = QString(":/version-license/version-license/gpl-3.0-%1-body.txt").arg(lang);
-        title = QString(":/version-license/version-license/gpl-3.0-%1-title.txt").arg(lang);
+        body = QString(":/kcp-system/version-license/gpl-3.0-%1-body.txt").arg(lang);
+        title = QString(":/kcp-system/version-license/gpl-3.0-%1-title.txt").arg(lang);
     }
     else
     {
-        body = QString(":/version-license/version-license/gpl-3.0-en_US-body.txt");
-        title = QString(":/version-license/version-license/gpl-3.0-en_US-title.txt");
+        body = QString(":/kcp-system/version-license/gpl-3.0-en_US-body.txt");
+        title = QString(":/kcp-system/version-license/gpl-3.0-en_US-title.txt");
     }
 
     QFile fileTitle(title);

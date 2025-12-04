@@ -12,7 +12,6 @@
  * Author:     yuanxing <yuanxing@kylinsec.com.cn>
  */
 #include "cursor-theme-page.h"
-#include <kiran-log/qt5-log-i.h>
 #include <kiran-message-box.h>
 #include <kiran-session-daemon/appearance-i.h>
 #include <QDir>
@@ -26,6 +25,7 @@
 #include "appearance-global-info.h"
 #include "cursor-image-loader.h"
 #include "exclusion-group.h"
+#include "logging-category.h"
 #include "theme-preview.h"
 
 // 兼容不同开源版本光标名称，若光标名不存在，则使用默认光标
@@ -110,8 +110,8 @@ void CursorThemePage::loadCurosrThemes()
 }
 
 ThemePreview* CursorThemePage::createPreviewWidget(const QString& themeName,
-                                                         const QList<QPixmap> pixmaps,
-                                                         bool selected)
+                                                   const QList<QPixmap> pixmaps,
+                                                   bool selected)
 {
     auto previewWidget = new ThemePreview(this);
     previewWidget->setPreviewFixedHeight(40);

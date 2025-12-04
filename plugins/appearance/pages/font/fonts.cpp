@@ -14,6 +14,7 @@
 
 #include "fonts.h"
 #include "appearance-global-info.h"
+#include "logging-category.h"
 #include "ui_fonts.h"
 
 #include <kiran-log/qt5-log-i.h>

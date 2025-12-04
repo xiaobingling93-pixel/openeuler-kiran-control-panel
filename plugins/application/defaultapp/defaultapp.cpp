@@ -18,7 +18,7 @@
 #include <QBoxLayout>
 #include <QListWidget>
 #include "app-manager.h"
-#include "kiran-setting-container.h"
+#include "kiran-setting-container/kiran-setting-container.h"
 #include "ui_defaultapp.h"
 
 

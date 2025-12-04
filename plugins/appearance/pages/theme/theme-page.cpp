@@ -20,6 +20,7 @@
 #include "theme-preview.h"
 #include "ui_theme-page.h"
 #include "wm/wm-theme-page.h"
+#include "logging-category.h"
 
 #include <kiran-log/qt5-log-i.h>
 #include <kiran-session-daemon/appearance-i.h>

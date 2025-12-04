@@ -67,7 +67,7 @@ void WiredDeviceWidget::initUI()
 
     m_createConnectionButton = new KiranPushButton(contentWidget);
     KiranPushButton::setButtonType(m_createConnectionButton, KiranPushButton::BUTTON_Default);
-    m_createConnectionButton->setIcon(QIcon(":/kcp-network-images/connection-add.svg"));
+    m_createConnectionButton->setIcon(QIcon(":/kcp-network/images/addition.svg"));
     m_createConnectionButton->setToolTip(tr("Create Connection"));
     m_contentLayout->addWidget(m_createConnectionButton);
     connect(m_createConnectionButton, &QPushButton::clicked, this, &WiredDeviceWidget::createConnection);

@@ -13,8 +13,9 @@
  */
 
 #include "password-expiration-policy-page.h"
-#include "kiran-account-service-wrapper.h"
+#include "logging-category.h"
 #include "ui_password-expiration-policy-page.h"
+#include "account.h"
 
 #include <kiran-push-button.h>
 #include <kiran-switch-button.h>
@@ -40,13 +41,13 @@ void PasswordExpirationPolicyPage::setCurrentUser(const QString &objectPath)
 {
     if (!m_userProxy.isNull())
     {
-        disconnect(m_userProxy.data(), &KiranAccountServiceUser::dbusPropertyChanged,
+        disconnect(m_userProxy.data(), &AccountUserInterface::dbusPropertyChanged,
                    this, &PasswordExpirationPolicyPage::slotUserPropertyChanged);
         m_userProxy.clear();
     }
 
-    m_userProxy = DBusWrapper::createKiranAccountServiceUserAPI(objectPath);
-    connect(m_userProxy.data(), &KiranAccountServiceUser::dbusPropertyChanged,
+    m_userProxy = DBusWrapper::Account::userInterface(objectPath);
+    connect(m_userProxy.data(), &AccountUserInterface::dbusPropertyChanged,
             this, &PasswordExpirationPolicyPage::slotUserPropertyChanged);
 
     updateInfo();

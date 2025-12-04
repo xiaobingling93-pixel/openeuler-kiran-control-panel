@@ -4,37 +4,37 @@ set(DBUS_WRAPPER_GEN_CODE "")
 file(GLOB_RECURSE DBUS_WRAPPER_SRC "./*.cpp" "./*.h")
 
 # com.kylinsec.Kiran.SystemDaemon.Accounts
-kiran_qt5_add_dbus_interface_ex(KIRAN_ACCOUNT_SERVICE
+kiran_qt5_add_dbus_interface_ex(ACCOUNT_INTERFACE
         com.kylinsec.Kiran.SystemDaemon.Accounts.xml
-        kiran_account_service
-        KiranAccountService)
-list(APPEND DBUS_WRAPPER_GEN_CODE ${KIRAN_ACCOUNT_SERVICE})
+        account_interface
+        AccountInterface)
+list(APPEND DBUS_WRAPPER_GEN_CODE ${ACCOUNT_INTERFACE})
 
-kiran_qt5_add_dbus_interface_ex(KIRAN_ACCOUNT_SERVICE_USER
+kiran_qt5_add_dbus_interface_ex(ACCOUNT_USER_INTERFACE
         com.kylinsec.Kiran.SystemDaemon.Accounts.User.xml
-        kiran_account_service_user
-        KiranAccountServiceUser)
-list(APPEND DBUS_WRAPPER_GEN_CODE ${KIRAN_ACCOUNT_SERVICE_USER})
+        account_user_interface
+        AccountUserInterface)
+list(APPEND DBUS_WRAPPER_GEN_CODE ${ACCOUNT_USER_INTERFACE})
 
 # com.kylinsec.Kiran.SessionDaemon.Appearance
-kiran_qt5_add_dbus_interface_ex(KIRAN_APPEARANCE_SERVICE
+kiran_qt5_add_dbus_interface_ex(APPEARANCE_INTERFACE
         com.kylinsec.Kiran.SessionDaemon.Appearance.xml
-        kiran_appearance_service
-        KiranAppearanceService)
-list(APPEND DBUS_WRAPPER_GEN_CODE ${KIRAN_APPEARANCE_SERVICE})
+        appearance_interface
+        AppearanceInterface)
+list(APPEND DBUS_WRAPPER_GEN_CODE ${APPEARANCE_INTERFACE})
 
 add_library(${TARGET_NAME} STATIC
-        ${COMMON_SRC}
         ${DBUS_WRAPPER_GEN_CODE}
         ${DBUS_WRAPPER_SRC} )
 
-target_link_libraries(${TARGET_NAME}
+target_link_libraries(${TARGET_NAME} PRIVATE
         Qt5::Core
         Qt5::DBus
         ${KLOG_LIBRARIES})
 
 target_include_directories(${TARGET_NAME} PRIVATE
         ${PROJECT_SOURCE_DIR}/common
+        ${PROJECT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_BINARY_DIR}
         ${KLOG_INCLUDE_DIRS})
 

@@ -13,7 +13,7 @@
  */
 #pragma once
 #include <QWidget>
-#include "exclusion-group.h"
+#include "utils/exclusion-group.h"
 
 namespace Kiran
 {

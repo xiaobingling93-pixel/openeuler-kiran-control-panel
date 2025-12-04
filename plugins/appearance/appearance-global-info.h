@@ -16,7 +16,7 @@
 #define APPEARANCEGLOBALINFO_H
 
 #include <QObject>
-#include "kiran-appearance-service-wrapper.h"
+#include "appearance.h"
 
 class AppearanceGlobalInfo : public QObject
 {
@@ -59,7 +59,7 @@ signals:
     void AutoSwitchWindowThemeChanged(bool autoSwitch);
 
 private:
-    DBusWrapper::KiranAppearanceServicePtr m_appearanceInterface;
+    DBusWrapper::Appearance::AppearanceInterfacePtr m_appearanceInterface;
 };
 
 #endif  // APPEARANCEGLOBALINFO_H

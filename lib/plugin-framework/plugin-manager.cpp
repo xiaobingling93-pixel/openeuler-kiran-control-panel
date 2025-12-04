@@ -20,6 +20,8 @@
 #include <QMutex>
 #include <QVector>
 
+Q_LOGGING_CATEGORY(qLcPluginFramework,"kcp.plugin-framework",QtMsgType::QtDebugMsg)
+
 PluginManager* PluginManager::_instance = nullptr;
 
 PluginManager::~PluginManager()

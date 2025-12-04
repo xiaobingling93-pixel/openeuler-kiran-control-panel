@@ -16,7 +16,7 @@
 #define KIRAN_CPANEL_ACCOUNT_SRC_PAGES_PASSWD_EXPIRATION_POLICY_PASSWORD_EXPIRATION_POLICY_PAGE_H_
 
 #include <QWidget>
-#include "kiran-account-service-wrapper.h"
+#include "account.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -55,7 +55,7 @@ private slots:
 
 private:
     Ui::PasswordExpirationPolicyPage *ui;
-    DBusWrapper::KiranAccountServiceUserPtr m_userProxy;
+    DBusWrapper::Account::AccountUserInterfacePtr m_userProxy;
     KiranSwitchButton* m_userExpiresSwitch = nullptr;
     KiranSwitchButton* m_passwdMaxVaildDaysSwtich = nullptr;
     KiranSwitchButton* m_promptBeforePasswdExpirationSwitch = nullptr;

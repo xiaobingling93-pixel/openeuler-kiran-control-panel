@@ -13,8 +13,8 @@
  */
 #include "appearance-plugin.h"
 #include "config.h"
-#include "kiran-appearance-service-wrapper.h"
 #include "logging-category.h"
+#include "appearance.h"
 #include "plugin-subitem.h"
 
 #include "pages/font/fonts.h"
@@ -29,6 +29,8 @@
 #include <QDBusConnectionInterface>
 #include <tuple>
 
+Q_LOGGING_CATEGORY(qLcAppearance,"kcp.appearance",QtMsgType::QtDebugMsg)
+
 AppearancePlugin::AppearancePlugin(QObject* parent)
     : QObject(parent)
 {
@@ -40,14 +42,14 @@ AppearancePlugin::~AppearancePlugin()
 
 int AppearancePlugin::init(KiranControlPanel::PanelInterface* interface)
 {
-    if (!QDBusConnection::sessionBus().interface()->isServiceRegistered(DBusWrapper::KiranAppearanceServiceName))
+    if (!DBusWrapper::Appearance::isRegistered())
     {
-        KLOG_ERROR(qLcAppearance) << DBusWrapper::KiranAppearanceServiceName << "service isn't registered!";
+        KLOG_ERROR(qLcAppearance) << DBusWrapper::Appearance::serviceName() << "service isn't registered!";
         return false;
     }
 
     m_panelInterface = interface;
-
+    
     initSubItem();
     return 0;
 }

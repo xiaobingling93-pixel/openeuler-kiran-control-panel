@@ -15,6 +15,7 @@
 #include "power-plugin.h"
 #include "config.h"
 #include "dbus/power.h"
+#include "logging-category.h"
 #include "pages/battery-settings-page.h"
 #include "pages/general-settings-page.h"
 #include "pages/power-settings-page.h"
@@ -24,7 +25,8 @@
 
 #include <kiran-log/qt5-log-i.h>
 #include <QCoreApplication>
-#include <QTranslator>
+
+Q_LOGGING_CATEGORY(qLcPower, "kcp.power", QtMsgType::QtDebugMsg);
 
 PowerPlugin::PowerPlugin(QObject* parent)
     : QObject(parent)
@@ -39,7 +41,7 @@ int PowerPlugin::init(KiranControlPanel::PanelInterface* interface)
 {
     PowerInterface::globalInit();
 
-    auto serverMode = interface->queryCofnig("serverMode",false).toBool();
+    auto serverMode = interface->queryCofnig("serverMode", false).toBool();
     if (serverMode)
     {
         initServerPower();
@@ -54,16 +56,13 @@ int PowerPlugin::init(KiranControlPanel::PanelInterface* interface)
 
 void PowerPlugin::initDesktopPower()
 {
-    auto generalSettingsSubItemCreater = []() -> QWidget*
-    {
+    auto generalSettingsSubItemCreater = []() -> QWidget* {
         return new GeneralSettingsPage();
     };
-    auto powerSettingsSubItemCreator = []() -> QWidget*
-    {
+    auto powerSettingsSubItemCreator = []() -> QWidget* {
         return new PowerSettingsPage();
     };
-    auto batterySettingsSubItemCreator = []() -> QWidget*
-    {
+    auto batterySettingsSubItemCreator = []() -> QWidget* {
         return new BatterySettingsPage();
     };
 
@@ -105,8 +104,7 @@ void PowerPlugin::initDesktopPower()
 void PowerPlugin::initServerPower()
 {
     // 服务器类型下，只提供关于空闲锁屏以及空闲时的设置
-    auto serverGeneralSettingsCreater = []() -> QWidget*
-    {
+    auto serverGeneralSettingsCreater = []() -> QWidget* {
         return new ServerGeneralSettings();
     };
     auto serverGeneralSettings = new PluginSubItem("ServerGeneralSettings",

@@ -13,7 +13,6 @@
  */
 
 #include "config.h"
-#include "launcher.h"
 #include "plugin-v1-subitem-wrapper.h"
 #include "plugin-v1.h"
 #include "plugin-v2.h"
@@ -36,7 +35,6 @@
 // NOTE:
 // 2.4版本之后，kiran-cpanel-launcher已不提供单独启动控制中心插件的功能
 // 保留launcher只是为了兼容，转发拉起控制中心
-
 int main(int argc, char* argv[])
 {
     /// 先将插件选项从参数中提取出来,作为校验进程单例的一部分
@@ -90,7 +88,7 @@ int main(int argc, char* argv[])
     QTranslator translator;
     QLocale locale;
     if (translator.load(locale,
-                        qAppName(),
+                        "kiran-control-panel",
                         ".",
                         TRANSLATE_PREFIX,
                         ".qm"))

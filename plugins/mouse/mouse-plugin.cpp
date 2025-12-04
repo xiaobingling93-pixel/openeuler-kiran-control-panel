@@ -16,14 +16,15 @@
 #include "mouse-subitem.h"
 #include "touchPad_backEnd_proxy.h"
 #include "touchpad-subitem.h"
+#include "logging-category.h"
 
-#include <kiran-log/qt5-log-i.h>
 #include <kiran-session-daemon/mouse-i.h>
 #include <kiran-session-daemon/touchpad-i.h>
 #include <QCoreApplication>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
-#include <QTranslator>
+
+Q_LOGGING_CATEGORY(qLcMouse, "kcp.mouse", QtMsgType::QtDebugMsg);
 
 MousePlugin::MousePlugin(QObject* parent)
     : QObject(parent)

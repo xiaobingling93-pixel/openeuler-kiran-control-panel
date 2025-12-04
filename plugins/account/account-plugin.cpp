@@ -21,6 +21,8 @@
 #include <QApplication>
 #include <QLocale>
 
+Q_LOGGING_CATEGORY(qLcAccount,"kcp.account",QtMsgType::QtDebugMsg)
+
 AccountPlugin::AccountPlugin(QObject* parent)
     : QObject(parent)
 {

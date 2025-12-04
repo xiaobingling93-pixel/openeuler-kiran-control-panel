@@ -165,11 +165,11 @@ void CategorySideBar::setCurrentCategoryID(const QString &categoryID)
 
     if (m_categorysIDMap.find(categoryID) == m_categorysIDMap.end())
     {
-        KLOG_WARNING(qLcPluginFramework) << "set current category failed, category:" << categoryID << "not found";
+        KLOG_WARNING() << "set current category failed, category:" << categoryID << "not found";
         return;
     }
 
-    KLOG_WARNING(qLcPluginFramework) << m_categorysIDMap.keys();
+    KLOG_WARNING() << m_categorysIDMap.keys();
     auto siderBarItem = m_categorysIDMap[categoryID];
     siderBarItem->setChecked(true);
 }

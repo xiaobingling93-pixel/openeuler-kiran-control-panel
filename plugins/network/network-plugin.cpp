@@ -22,6 +22,8 @@
 #include "network-widget.h"
 #include "page-manager.h"
 
+Q_LOGGING_CATEGORY(qLcNetwork, "kcp.network", QtMsgType::QtDebugMsg);
+
 namespace Kiran
 {
 namespace Network

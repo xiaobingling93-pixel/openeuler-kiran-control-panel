@@ -13,8 +13,9 @@
  */
 
 #include "hard-worker.h"
-#include "kiran-account-service-wrapper.h"
+#include "account.h"
 #include "config.h"
+#include "logging-category.h"
 
 #include <kiran-system-daemon/accounts-i.h>
 #include <qt5-log-i.h>
@@ -37,7 +38,7 @@ void HardWorker::doCreateUser(QString userName,
                               QString shell,
                               QString iconFile)
 {
-    auto accountsServiceAPI = DBusWrapper::createKiranAccountServiceAPI();
+    auto accountsServiceAPI = DBusWrapper::Account::interface();
     QString userObjPath;
     QString errMsgDetail;
 
@@ -74,7 +75,7 @@ void HardWorker::doCreateUser(QString userName,
     }
 
     userObjPath = createUserRep.value().path();
-    auto userInterface = DBusWrapper::createKiranAccountServiceUserAPI(userObjPath);
+    auto userInterface = DBusWrapper::Account::userInterface(userObjPath);
     auto deleteUserAndReplyError = [this, createUserDoneWithError,
                                     accountsServiceAPI, userInterface](const QString& errorDetail) -> void
     {
@@ -139,7 +140,7 @@ void HardWorker::doUpdatePasswd(QString objPath,
                                 QString encryptedCurPasswd,
                                 QString encryptedPasswd)
 {
-    auto userProxy = DBusWrapper::createKiranAccountServiceUserAPI(objPath);
+    auto userProxy = DBusWrapper::Account::userInterface(objPath);
 
     QDBusPendingReply<> reply = userProxy->SetPasswordByPasswd(encryptedCurPasswd, encryptedPasswd);
     reply.waitForFinished();
@@ -163,7 +164,7 @@ void HardWorker::doUpdateUserProperty(QString objPath,
                                       int userType,
                                       bool isLocked)
 {
-    auto userProxy = DBusWrapper::createKiranAccountServiceUserAPI(objPath);
+    auto userProxy = DBusWrapper::Account::userInterface(objPath);
     QStringList updateFailedPropertys;
 
     if (userProxy->icon_file() != iconfile)
@@ -218,7 +219,7 @@ void HardWorker::doUpdateUserProperty(QString objPath,
 
 void HardWorker::doDeleteUser(int uid)
 {
-    auto accountsProxy = DBusWrapper::createKiranAccountServiceAPI();
+    auto accountsProxy = DBusWrapper::Account::interface();
 
     auto reply = accountsProxy->DeleteUser(uid, true);
     reply.waitForFinished();

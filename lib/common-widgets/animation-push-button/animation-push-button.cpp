@@ -34,7 +34,7 @@ void AnimationPushButton::setBusy(bool busy)
 
     if (busy && !m_svgRender.isValid())
     {
-        KLOG_WARNING(qLcAccount) << "AnimationPushButton: animation pixmap isNull!";
+        KLOG_WARNING(qLcCommonWidget) << "AnimationPushButton: animation pixmap isNull!";
         return;
     }
     m_isBusy = busy;

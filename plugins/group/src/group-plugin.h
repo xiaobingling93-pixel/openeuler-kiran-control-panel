@@ -17,7 +17,6 @@
 
 #include "plugin-interface-v2.h"
 
-class QTranslator;
 class GroupPlugin : public QObject,
                     public KiranControlPanel::PluginInterfaceV2
 {
@@ -36,6 +35,5 @@ private:
     KiranControlPanel::PanelInterface* m_panelInterface = nullptr;
     KiranControlPanel::SubItemPtr m_subitem;
     QWidget* m_currentWidget = nullptr;
-    QTranslator* m_translator = nullptr;
 };
 #endif  // INTERFACE_H

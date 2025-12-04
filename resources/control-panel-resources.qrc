@@ -56,4 +56,20 @@
         <file>images/addition.svg</file>
     </qresource>
 
+    <qresource prefix="/kcp-network">
+        <file>images/addition.svg</file>
+        <file>images/indicator-selected.svg</file>
+    </qresource>
+
+    <qresource prefix="/kcp-group">
+        <file>images/indicator-selected.svg</file>
+    </qresource>
+
+    <qresource prefix="/kcp-system">
+        <file>version-license/gpl-3.0-en_US-title.txt</file>
+        <file>version-license/gpl-3.0-en_US-body.txt</file>
+        <file>version-license/gpl-3.0-zh_CN-title.txt</file>
+        <file>version-license/gpl-3.0-zh_CN-body.txt</file>
+    </qresource>
+
 </RCC>

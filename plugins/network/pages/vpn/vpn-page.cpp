@@ -47,7 +47,7 @@ void VpnPage::reset()
 void VpnPage::initUI()
 {
     KiranPushButton::setButtonType(ui->btn_create, KiranPushButton::BUTTON_Default);
-    ui->btn_create->setIcon(QIcon(":/kcp-network-images/connection-add.svg"));
+    ui->btn_create->setIcon(QIcon(":/kcp-network/images/addition.svg"));
     ui->btn_create->setToolTip(tr("Create VPN Setting"));
     connect(ui->btn_create, &QPushButton::clicked, this, &VpnPage::createConnection);
 }

@@ -15,7 +15,6 @@
 #define __SYSTEMINFO_PLUGIN_H__
 
 #include <QObject>
-#include <QTranslator>
 
 #include "panel-interface.h"
 #include "plugin-interface-v2.h"

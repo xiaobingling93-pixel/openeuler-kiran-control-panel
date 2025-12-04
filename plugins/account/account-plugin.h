@@ -16,7 +16,6 @@
 #define __ACCOUNT_PLUGIN_H__
 
 #include <QObject>
-#include <QTranslator>
 
 #include "account-subitem.h"
 #include "panel-interface.h"
