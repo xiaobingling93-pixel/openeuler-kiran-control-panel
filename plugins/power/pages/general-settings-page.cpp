@@ -18,7 +18,6 @@
 #include <QGSettings/QGSettings>
 #include <QListView>
 #include <QSignalBlocker>
-#include "dbus/kwin-color-correct.h"
 #include "dbus/power.h"
 #include "kiran-message-box.h"
 #include "kiran-session-daemon/power-i.h"
@@ -29,7 +28,6 @@
 
 #define MATE_SESSION_SCHEMA_ID "org.mate.session"
 #define KIRAN_SESSION_SCHEMA_ID "com.kylinsec.kiran.session-manager"
-// #define KEY_IDLE_DELAY "idle-delay"
 #define KEY_IDLE_DELAY "idleDelay"
 #define DEFAULT_IDLE_DELAY 5
 
@@ -39,8 +37,7 @@
 GeneralSettingsPage::GeneralSettingsPage(QWidget* parent)
     : QWidget(parent),
       ui(new Ui::GeneralSettingsPage),
-      m_powerInterface(PowerInterface::getInstance()),
-      m_kwinColorCorrect(new KWinColorCorrect(this))
+      m_powerInterface(PowerInterface::getInstance())
 {
     ui->setupUi(this);
     init();
@@ -173,22 +170,6 @@ void GeneralSettingsPage::initUI()
     bool lidIsPresent = m_powerInterface->lidIsPresent();
     ui->widget_lid->setVisible(lidIsPresent);
 
-    // 色温
-    ui->slider_colorTemp->setMinimum(0);
-    ui->slider_colorTemp->setMaximum(100);
-
-    m_colorTempSettingTimer.setInterval(300);
-    m_colorTempSettingTimer.setSingleShot(true);
-
-    m_switchAutoColorTemp = new KiranSwitchButton(this);
-    m_switchAutoColorTemp->setAccessibleName("SwitchAutoColorTemp");
-    ui->layout_autoColortemp->addWidget(m_switchAutoColorTemp);
-
-    if (!m_kwinColorCorrect->isValid())
-    {
-        ui->widget_colorTemperature->setVisible(false);
-    }
-
     // 空闲时是否锁定屏幕及屏保
     m_switchIdlelockScreen = new KiranSwitchButton(this);
     m_switchIdlelockScreen->setAccessibleName("SwitchIdleLockScreen");
@@ -226,13 +207,6 @@ void GeneralSettingsPage::initConnection()
             this, &GeneralSettingsPage::updateMonitorBrightness);
     connect(ui->slider_brightness, &QSlider::valueChanged,
             this, &GeneralSettingsPage::onSliderBrightnessValueChanged);
-
-    connect(m_switchAutoColorTemp, &QAbstractButton::toggled,
-            this, &GeneralSettingsPage::onSwitchAutoColorTempToggoled);
-    connect(&m_colorTempSettingTimer, &QTimer::timeout,
-            this, &GeneralSettingsPage::updateColorTempatureValue);
-    connect(ui->slider_colorTemp, &QSlider::valueChanged,
-            this, &GeneralSettingsPage::onSliderColorTempValueChanged);
 
     connect(ui->slider_idleTime, &QSlider::valueChanged,
             this, &GeneralSettingsPage::onSliderIdleTimeChanged);
@@ -314,22 +288,6 @@ void GeneralSettingsPage::load()
         {
             setUiBrightnessPercent(monitorBrightnessPercent);
         }
-    }
-
-    // 色温
-    if (m_kwinColorCorrect->isValid())
-    {
-        QSignalBlocker autoColorTempBlocker(m_switchAutoColorTemp);
-        QSignalBlocker colorTempSliderBlocker(ui->slider_colorTemp);
-
-        auto mode = m_kwinColorCorrect->getMode();
-
-        m_switchAutoColorTemp->setChecked(mode == KWinColorCorrect::MODE_AUTOMATIC);
-        ui->widget_manualColorTemp->setVisible(mode != KWinColorCorrect::MODE_AUTOMATIC);
-        auto percent = m_kwinColorCorrect->getPercent();
-        ui->slider_colorTemp->setValue(percent * 100);
-
-        KLOG_INFO(qLcPower) << "kwin color correct: " << mode << percent;
     }
 
     // 多久判定为空闲
@@ -490,39 +448,6 @@ void GeneralSettingsPage::updateSuspendLockEnable(bool checked)
 {
     m_powerInterface->LockScreenWhenSuspend(checked);
     KLOG_INFO(qLcPower) << "update suspend lock enable" << checked;
-}
-
-void GeneralSettingsPage::onSwitchAutoColorTempToggoled(bool checked)
-{
-    if (checked)
-    {
-        if (!m_kwinColorCorrect->setAutomaticMode())
-        {
-            KLOG_WARNING(qLcPower) << "set kwin color correct automatic mode failed";
-            return;
-        }
-        KLOG_INFO(qLcPower) << "kwin color correct enable automatic mode success";
-        ui->widget_manualColorTemp->setVisible(false);
-    }
-    else
-    {
-        m_kwinColorCorrect->setManualMode(m_kwinColorCorrect->getPercent());
-        ui->widget_manualColorTemp->setVisible(true);
-        KLOG_INFO(qLcPower) << "kwin color correct set manual mode success";
-    }
-}
-
-void GeneralSettingsPage::updateColorTempatureValue()
-{
-    auto colorTemp = ui->slider_colorTemp->value();
-    double percent = colorTemp / 100.0;
-
-    m_kwinColorCorrect->setManualMode(percent);
-}
-
-void GeneralSettingsPage::onSliderColorTempValueChanged(int value)
-{
-    m_colorTempSettingTimer.start();
 }
 
 void GeneralSettingsPage::updateCurrentComputerMode(int idx)

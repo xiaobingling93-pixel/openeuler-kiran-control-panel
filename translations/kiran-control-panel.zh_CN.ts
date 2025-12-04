@@ -1508,115 +1508,90 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="493"/>
-        <source>Color temperature</source>
-        <translation>色温</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="524"/>
-        <source>Automatic color temperature</source>
-        <translation>自动色温</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="595"/>
-        <source>cold</source>
-        <translation>冷</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="615"/>
-        <source>standard</source>
-        <translation>标准</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="635"/>
-        <source>warm</source>
-        <translation>暖</translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="695"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="488"/>
         <source>Regard computer as idle after</source>
         <translation>于此时间后视计算机为空闲</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="749"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="542"/>
         <source>SliderComputerIdleTime</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="780"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="573"/>
         <source>Lock screen when idle</source>
         <translation>计算机空闲时锁定屏幕</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="817"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="610"/>
         <source>Display dimmed when idle</source>
         <translation>空闲时显示器变暗</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="861"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="654"/>
         <source>password is required to wake up in standby mode</source>
         <translation>待机时唤醒需要输入密码</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="119"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="132"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="116"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="129"/>
         <source>shutdown</source>
         <translation>关机</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="120"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="126"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="131"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="117"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="123"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="128"/>
         <source>hibernate</source>
         <translation>休眠</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="121"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="125"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="130"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="118"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="122"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="127"/>
         <source>suspend</source>
         <translation>待机</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="122"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="127"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="119"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="124"/>
         <source>display off</source>
         <translation>关闭显示器</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="123"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="128"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="133"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="120"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="125"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="130"/>
         <source>do nothing</source>
         <translation>不执行操作</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="154"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="151"/>
         <source>Energy-saving mode</source>
         <translation>节能模式</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="155"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="152"/>
         <source>Balanced mode</source>
         <translation>平衡模式</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="156"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="153"/>
         <source>High performance mode</source>
         <translation>高性能模式</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="437"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="395"/>
         <source>ERROR</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="570"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="495"/>
         <source>%1hour</source>
         <translation>%1小时</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="574"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="499"/>
         <source>%1minute</source>
         <translation>%1分钟</translation>
     </message>

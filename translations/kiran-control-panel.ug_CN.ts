@@ -1508,115 +1508,90 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="493"/>
-        <source>Color temperature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="524"/>
-        <source>Automatic color temperature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="595"/>
-        <source>cold</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="615"/>
-        <source>standard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="635"/>
-        <source>warm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="695"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="488"/>
         <source>Regard computer as idle after</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="749"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="542"/>
         <source>SliderComputerIdleTime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="780"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="573"/>
         <source>Lock screen when idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="817"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="610"/>
         <source>Display dimmed when idle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="861"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="654"/>
         <source>password is required to wake up in standby mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="119"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="132"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="116"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="129"/>
         <source>shutdown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="120"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="126"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="131"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="117"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="123"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="128"/>
         <source>hibernate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="121"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="125"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="130"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="118"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="122"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="127"/>
         <source>suspend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="122"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="127"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="119"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="124"/>
         <source>display off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="123"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="128"/>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="133"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="120"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="125"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="130"/>
         <source>do nothing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="154"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="151"/>
         <source>Energy-saving mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="155"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="152"/>
         <source>Balanced mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="156"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="153"/>
         <source>High performance mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="437"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="395"/>
         <source>ERROR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="570"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="495"/>
         <source>%1hour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.cpp" line="574"/>
+        <location filename="../plugins/power/pages/general-settings-page.cpp" line="499"/>
         <source>%1minute</source>
         <translation type="unfinished"></translation>
     </message>
