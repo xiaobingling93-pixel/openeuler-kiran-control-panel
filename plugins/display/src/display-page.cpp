@@ -368,11 +368,13 @@ void DisplayPage::confirmSaveMessageBox()
 
     QPushButton saveBtn;
     saveBtn.setText(tr("Save current configuration(K)"));
-    saveBtn.setFixedSize(QSize(200, box.buttonSize().height()));
+    // saveBtn.setFixedSize(QSize(200, box.buttonSize().height()));
+    saveBtn.setFixedHeight(box.buttonSize().height());
 
     QPushButton cancelBtn;
     cancelBtn.setText(tr("Restore previous configuration(R)"));
-    cancelBtn.setFixedSize(QSize(200, box.buttonSize().height()));
+    // cancelBtn.setFixedSize(QSize(200, box.buttonSize().height()));
+    cancelBtn.setFixedHeight(box.buttonSize().height());
 
     box.addButton(&saveBtn, QDialogButtonBox::AcceptRole);
     box.addButton(&cancelBtn, QDialogButtonBox::RejectRole);
@@ -386,7 +388,8 @@ void DisplayPage::confirmSaveMessageBox()
     QObject::connect(&timer, &QTimer::timeout, [&]()
                      {
                          box.setText(text.arg(countdown--));
-                         if (countdown < 0) box.reject(); });
+                         if (countdown < 0) box.reject();
+                     });
     timer.start();
 
     box.setText(text.arg(countdown--));
@@ -403,7 +406,8 @@ void DisplayPage::confirmSaveMessageBox()
 
             QPushButton btn;
             btn.setText(QObject::tr("OK(K)"));
-            btn.setFixedSize(QSize(200, box.buttonSize().height()));
+            // btn.setFixedSize(QSize(200, box.buttonSize().height()));
+            btn.setFixedHeight(box.buttonSize().height());
             btn.setShortcut(Qt::CTRL + Qt::Key_K);
             box.addButton(&btn, QDialogButtonBox::AcceptRole);
             box.setText(QObject::tr("Failed to apply display settings!%1").arg(var.toString()));
@@ -421,7 +425,8 @@ void DisplayPage::confirmSaveMessageBox()
 
             QPushButton btn;
             btn.setText(QObject::tr("OK(K)"));
-            btn.setFixedSize(QSize(200, box.buttonSize().height()));
+            // btn.setFixedSize(QSize(200, box.buttonSize().height()));
+            btn.setFixedHeight(box.buttonSize().height());
             btn.setShortcut(Qt::CTRL + Qt::Key_K);
             box.addButton(&btn, QDialogButtonBox::AcceptRole);
             box.setText(QObject::tr("Fallback display setting failed! %1").arg(var.toString()));
