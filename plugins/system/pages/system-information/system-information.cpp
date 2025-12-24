@@ -40,9 +40,11 @@
 #define PRODUCT_RELEASE "product_release"
 
 SystemInformation::SystemInformation(QWidget* parent)
-    : QWidget(parent), ui(new Ui::SystemInformation), hostNameWidget(nullptr), licenseAgreement(nullptr)
+    : QWidget(parent), ui(new Ui::SystemInformation), hostNameWidget(nullptr), m_licenseAgreement(nullptr)
 {
     ui->setupUi(this);
+
+    m_licenseAgreement = new LicenseAgreement(this);
     init();
 }
 
@@ -53,9 +55,10 @@ SystemInformation::~SystemInformation()
     {
         delete hostNameWidget;
     }
-    if (licenseAgreement != nullptr)
+    if (m_licenseAgreement != nullptr)
     {
-        delete licenseAgreement;
+        delete m_licenseAgreement;
+        m_licenseAgreement = nullptr;
     }
 }
 
@@ -66,28 +69,18 @@ void SystemInformation::init()
     // clang-format off
     connect(ui->btn_EULA, &QPushButton::clicked, [this]
     {
-        if (licenseAgreement == nullptr)
-        {
-            licenseAgreement = new LicenseAgreement(this);
-        }
-        licenseAgreement->setEULA();
-        licenseAgreement->show();
+        m_licenseAgreement->setEULA();
+        m_licenseAgreement->show();
     });
     connect(ui->btn_version_license, &QPushButton::clicked, [this]
     {
-        if (licenseAgreement == nullptr) {
-            licenseAgreement = new LicenseAgreement(this);
-        }
-        licenseAgreement->setVersionLicnese();
-        licenseAgreement->show();
+        m_licenseAgreement->setVersionLicnese();
+        m_licenseAgreement->show();
     });
     connect(ui->btn_privacy_policy, &QPushButton::clicked, [this]
     {
-        if (licenseAgreement == nullptr) {
-            licenseAgreement = new LicenseAgreement(this);
-        }
-        licenseAgreement->setPrivacyPolicy();
-        licenseAgreement->show();
+        m_licenseAgreement->setPrivacyPolicy();
+        m_licenseAgreement->show();
     });
 
     // clang-format on
@@ -129,8 +122,24 @@ bool SystemInformation::initUI()
         frame->setDrawBroder(false);
     }
 
+    // 如果协议文件不存在，则隐藏协议相关控件
+    if (m_licenseAgreement->getEULAFile().isEmpty())
+    {
+        ui->widget_EULA->hide();
+    }
+    if (m_licenseAgreement->getLicenseFile().isEmpty())
+    {
+        ui->widget_version_license->hide();
+    }
+#ifdef SYSTEM_PRIVACY_POLICY
+    if (m_licenseAgreement->getPrivacyFile().isEmpty())
+    {
+        ui->widget_privacy_policy->hide();
+    }
+#else
     // #35818 在系统中不再单独提供隐私协议
     ui->widget_privacy_policy->hide();
+#endif
 
     return true;
 }

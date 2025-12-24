@@ -6,3 +6,5 @@ OPTION(SERVER_MODE "Whether to build a server version" OFF)
 option(MODIFIER_LOCK_TIPS_VISIBLE "Is modifire lock tips visible" OFF)
 #鼠标滚轮方向测试
 option(MOUSE_WHEEL_TEST_VISIBLE "Is mouse wheel direction test visible" OFF)
+#系统信息，是否显示隐私协议
+OPTION(ENABLE_SYSTEM_PRIVACY_POLICY "Whether to show the system privacy policy" ON)
