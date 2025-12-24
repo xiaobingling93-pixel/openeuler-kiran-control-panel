@@ -44,7 +44,7 @@ private:
                                QString &kernelVersion);
 
     bool checkLicensEnable();
-    bool getLicenseDesc(QString& licenseStatus);
+    bool getLicenseDesc(QString &licenseStatus);
 
 private slots:
     void handleChangeHostName(void);
@@ -58,7 +58,7 @@ private:
     Ui::SystemInformation *ui;
 
     ChangeHostNameWidget *hostNameWidget;
-    LicenseAgreement *licenseAgreement;
+    LicenseAgreement *m_licenseAgreement;
 };
 
 #endif  // SYSTEMINFORMATION_H

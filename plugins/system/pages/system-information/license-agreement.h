@@ -30,16 +30,23 @@ public:
     explicit LicenseAgreement(QWidget *parent, Qt::WindowFlags windowFlags = Qt::Window);
     ~LicenseAgreement();
     QString getEulaText();
+
+    // 设置协议内容
     void setEULA();
     void setVersionLicnese();
     void setPrivacyPolicy();
-    //void setLicenseType(int type);
+
+    // 获取协议文件，不存在返回空字符串
+    QString getEULAFile();
+    QString getLicenseFile();
+    QString getPrivacyFile();
 
 public slots:
     void exportLicense();
 
 private:
     QString getLocaleLang();
+    QString getReleaseBasePath();
 
 private:
     Ui::LicenseAgreement *ui;

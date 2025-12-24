@@ -19,6 +19,7 @@
 #include <kiranwidgets-qt5/kiran-message-box.h>
 
 #include <QDesktopWidget>
+#include <QDir>
 #include <QFile>
 #include <QFileDialog>
 #include <QIcon>
@@ -28,9 +29,10 @@
 #include <QTextDocument>
 #include <QtPrintSupport/QPrinter>
 
-#define EULAFILE "/usr/share/kylin-release"
-#define LICENSEFILE "/usr/share/doc/kylin-release/LICENSE"
-#define PRIVACYFILE "/usr/share/kylin-release/privacy_policy"
+#define KYLIN_RELEASE_PATH "/usr/share/kylin-release"
+#define KYLINSEC_RELEASE_PATH "/usr/share/kylinsec-release"
+#define LICENSEFILE_KYLIN "/usr/share/doc/kylin-release/LICENSE"
+#define LICENSEFILE_KYLINSEC "/usr/share/doc/kylinsec-release/LICENSE"
 
 enum LicenseType
 {
@@ -63,6 +65,103 @@ LicenseAgreement::LicenseAgreement(QWidget *parent, Qt::WindowFlags windowFlags)
 LicenseAgreement::~LicenseAgreement()
 {
     delete ui;
+}
+
+QString LicenseAgreement::getReleaseBasePath()
+{
+    QDir dirKylinsec(KYLINSEC_RELEASE_PATH);
+    if (dirKylinsec.exists())
+    {
+        return KYLINSEC_RELEASE_PATH;
+    }
+    QDir dirKylin(KYLIN_RELEASE_PATH);
+    if (dirKylin.exists())
+    {
+        return KYLIN_RELEASE_PATH;
+    }
+    // 如果都不存在，默认返回 kylinsec-release
+    return KYLINSEC_RELEASE_PATH;
+}
+
+QString LicenseAgreement::getLicenseFile()
+{
+    QString licenseFile = "";
+    QFile fileKylinsec(LICENSEFILE_KYLINSEC);
+    if (fileKylinsec.exists())
+    {
+        licenseFile = LICENSEFILE_KYLINSEC;
+    }
+    else
+    {
+        QFile fileKylin(LICENSEFILE_KYLIN);
+        if (fileKylin.exists())
+        {
+            licenseFile = LICENSEFILE_KYLIN;
+        }
+    }
+    // 如果都不存在，返回空字符串
+    KLOG_DEBUG() << "License file: " << licenseFile;
+    return licenseFile;
+}
+
+QString LicenseAgreement::getPrivacyFile()
+{
+    QString basePath = getReleaseBasePath();
+    if (basePath.isEmpty())
+    {
+        KLOG_WARNING() << "Release path not found";
+        return QString();
+    }
+
+    QString privacyFile = "";
+    QString lang = getLocaleLang();
+    if (!lang.isEmpty())
+        privacyFile = QString("%1/privacy_policy-%2").arg(basePath).arg(lang);
+    else
+        privacyFile = QString("%1/privacy_policy-en_US").arg(basePath);
+
+    if (!QFile::exists(privacyFile))
+    {
+        privacyFile = QString("%1/privacy_policy").arg(basePath);
+        if (!QFile::exists(privacyFile))
+        {
+            KLOG_WARNING() << "privacy file not found";
+            return QString();
+        }
+    }
+
+    KLOG_DEBUG() << "Privacy file: " << privacyFile;
+    return privacyFile;
+}
+
+QString LicenseAgreement::getEULAFile()
+{
+    QString eulaFile = "";
+    auto eulaDir = getReleaseBasePath();
+    if (eulaDir.isEmpty())
+    {
+        KLOG_WARNING() << "Release path not found";
+        return QString();
+    }
+
+    QString lang = getLocaleLang();
+    if (!lang.isEmpty())
+        eulaFile = QString("%1/EULA-%2").arg(eulaDir).arg(lang);
+    else
+        eulaFile = QString("%1/EULA-en_US").arg(eulaDir);
+
+    if (!QFile::exists(eulaFile))
+    {
+        eulaFile = QString("%1/EULA").arg(eulaDir);
+        if (!QFile::exists(eulaFile))
+        {
+            KLOG_WARNING() << "EULA file not found";
+            return QString();
+        }
+    }
+
+    KLOG_DEBUG() << "EULA file: " << eulaFile;
+    return eulaFile;
 }
 
 QString LicenseAgreement::getEulaText()
@@ -139,42 +238,23 @@ void LicenseAgreement::setEULA()
 
     setTitle(LicenseAgreement::tr("User End License Agreement"));
 
-    QString lang = getLocaleLang();
-    QString licenseFile;
+    auto eulaFile = getEULAFile();
+    if (eulaFile.isEmpty())
+    {
+        KLOG_WARNING() << "EULA file not found";
+        ui->text_license->setText(tr("None"));
+        return;
+    }
 
-    if (!lang.isEmpty())
-        licenseFile = QString("%1/EULA-%2").arg(EULAFILE).arg(lang);
-    else
-        licenseFile = QString("%1/EULA-en_US").arg(EULAFILE);
-
-    KLOG_INFO() << licenseFile;
-    QFile file(licenseFile);
+    QFile file(eulaFile);
     QTextStream textStream;
-
-    if (file.exists())
+    if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        if (!file.open(QFile::ReadOnly | QFile::Text))
-        {
-            KLOG_INFO() << "Can't open " << licenseFile;
-            ui->text_license->setText(tr("None"));
-            file.close();
-            return;
-        }
-        textStream.setDevice(&file);
+        KLOG_WARNING() << "Can't open " << eulaFile;
+        ui->text_license->setText(tr("None"));
+        return;
     }
-    else
-    {
-        KLOG_INFO() << licenseFile << " is not exists ";
-        file.setFileName(QString("%1/EULA").arg(EULAFILE));
-        if (!file.open(QFile::ReadOnly | QFile::Text))
-        {
-            KLOG_INFO() << "Can't open " << file.fileName();
-            ui->text_license->setText(tr("None"));
-            file.close();
-            return;
-        }
-        textStream.setDevice(&file);
-    }
+    textStream.setDevice(&file);
     textStream.setCodec("UTF-8");
     ui->text_license->setText(textStream.readAll());
     file.close();
@@ -187,30 +267,31 @@ void LicenseAgreement::setVersionLicnese()
 
     setTitle(LicenseAgreement::tr("Version License"));
 
-    QFile file(LICENSEFILE);
-    QTextStream textStream;
-
-    if (file.exists())
+    auto licenseFile = getLicenseFile();
+    if (!licenseFile.isEmpty())
     {
-        if (!file.open(QFile::ReadOnly | QFile::Text))
+        QFile file(licenseFile);
+        if (file.open(QFile::ReadOnly | QFile::Text))
         {
-            KLOG_INFO() << "Can't open " << LICENSEFILE;
-            goto LOAD_VERSION_LICENSE_FROM_RES;
+            QTextStream textStream;
+            textStream.setDevice(&file);
+            textStream.setCodec("UTF-8");
+            ui->text_license->setText(textStream.readAll());
+            file.close();
+            return;
         }
-        textStream.setDevice(&file);
-        textStream.setCodec("UTF-8");
-        ui->text_license->setText(textStream.readAll());
-        file.close();
-        return;
+        else
+        {
+            KLOG_WARNING() << "Can't open " << licenseFile;
+        }
     }
     else
     {
-        KLOG_INFO() << LICENSEFILE << " is not exists ";
-        goto LOAD_VERSION_LICENSE_FROM_RES;
+        KLOG_WARNING() << "License file not found";
     }
 
-LOAD_VERSION_LICENSE_FROM_RES:
-    KLOG_INFO() << "LOAD_VERSION_LICENSE_FROM_RES";
+    // 从资源文件加载版本许可证
+    KLOG_DEBUG() << "Load version license from resources";
     QString lang = getLocaleLang();
     QString body;
     QString title;
@@ -229,7 +310,7 @@ LOAD_VERSION_LICENSE_FROM_RES:
     QFile fileBody(body);
     if (!fileTitle.exists() || !fileBody.exists())
     {
-        KLOG_INFO() << "Version License don't exists";
+        KLOG_WARNING() << "Version License don't exists";
         ui->text_license->setText(tr("None"));
         return;
     }
@@ -237,7 +318,7 @@ LOAD_VERSION_LICENSE_FROM_RES:
     if (!fileTitle.open(QIODevice::ReadOnly | QIODevice::Text) ||
         !fileBody.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        KLOG_INFO() << "can't open Version License";
+        KLOG_WARNING() << "can't open Version License";
         ui->text_license->setText(tr("None"));
         return;
     }
@@ -268,19 +349,21 @@ void LicenseAgreement::setPrivacyPolicy()
 #else
     setTitle(LicenseAgreement::tr("Privacy Policy"));
 #endif
-    QFile file(PRIVACYFILE);
-    QTextStream textStream;
 
-    if (!file.exists())
+    auto privateFile = getPrivacyFile();
+    if (privateFile.isEmpty())
     {
-        KLOG_INFO() << PRIVACYFILE << " is not exists ";
+        KLOG_WARNING() << "Privacy file not found";
         ui->text_license->setText(tr("None"));
         return;
     }
 
+    QFile file(privateFile);
+    QTextStream textStream;
+
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        KLOG_INFO() << "Can't open " << PRIVACYFILE;
+        KLOG_WARNING() << "Can't open " << privateFile;
         ui->text_license->setText(tr("None"));
         return;
     }

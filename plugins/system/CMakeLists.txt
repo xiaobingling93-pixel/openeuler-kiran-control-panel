@@ -2,6 +2,10 @@ set(TARGET_NAME kiran-cpanel-system)
 
 file(GLOB_RECURSE SYSTEM_SRC ./*.cpp ./*.h ./*.ui)
 
+if (ENABLE_SYSTEM_PRIVACY_POLICY)
+    add_definitions(-DSYSTEM_PRIVACY_POLICY)
+endif ()
+
 kiran_qt5_add_dbus_interface_ex(LICENSE_DBUS_SRC
         data/com.kylinsec.Kiran.LicenseObject.xml
         dbus_license_dbus
