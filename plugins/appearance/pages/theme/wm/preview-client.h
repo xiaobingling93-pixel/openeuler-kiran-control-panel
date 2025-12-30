@@ -15,6 +15,7 @@
 #include <QObject>
 #include <QPalette>
 #include "decoration-def.h"
+#include "config.h"
 
 namespace Kiran
 {
@@ -90,6 +91,9 @@ public:
     QPalette palette() const override;
     QColor color(ColorGroup group,
                  ColorRole role) const override;
+#if KDECORATION2_VERSION_INT >= 52700
+    virtual QString windowClass() const override;
+#endif
     Qt::Edges adjacentScreenEdges() const override;
 
     bool hasApplicationMenu() const override;
