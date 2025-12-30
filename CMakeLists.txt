@@ -99,3 +99,6 @@ add_subdirectory(plugins)
 if(BUILD_EXAMPLE)
   add_subdirectory(example)
 endif()
+
+file(GLOB_RECURSE DEVELOP_HEADER include/*.h)
+install(FILES ${DEVELOP_HEADER} DESTINATION ${KCP_INCLUDEDIR})
