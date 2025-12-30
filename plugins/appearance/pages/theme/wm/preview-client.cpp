@@ -168,6 +168,13 @@ QColor PreviewClient::color(ColorGroup group, ColorRole role) const
     return m_palette->color(group, role);
 }
 
+#if KDECORATION2_VERSION_INT >= 52700
+QString PreviewClient::windowClass() const 
+{ 
+    return QStringLiteral("KDecorationPreviewClient"); 
+}
+#endif
+
 Qt::Edges PreviewClient::adjacentScreenEdges() const
 {
     Qt::Edges edges;

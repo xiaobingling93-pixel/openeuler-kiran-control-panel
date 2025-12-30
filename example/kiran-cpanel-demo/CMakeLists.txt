@@ -1,12 +1,5 @@
 set(TARGET_NAME kiran-cpanel-demo)
 
-find_package(PkgConfig REQUIRED)
-find_package(Qt5 COMPONENTS Widgets X11Extras Svg Xml LinguistTools)
-pkg_search_module(GLIB REQUIRED glib-2.0)
-pkg_search_module(GSETTINGS_QT REQUIRED gsettings-qt)
-pkg_search_module(KLOG_QT5 REQUIRED klog-qt5)
-pkg_search_module(KIRANWIDGETS REQUIRED kiranwidgets-qt5)
-
 file(GLOB_RECURSE DEMO_SRC "src/*.cpp" "src/*.h" "src/*.ui")
 file(GLOB DEMO_TS_FILES "translations/*.ts")
 
@@ -19,11 +12,11 @@ target_include_directories(${TARGET_NAME} PRIVATE
         ${CMAKE_BINARY_DIR}
         ${CMAKE_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/subitem
-        ${GLIB_INCLUDE_DIRS}
-        ${GSETTINGS_QT_INCLUDE_DIRS}
+        ${GLIB_2_INCLUDE_DIRS}
+        ${QGSETTINGS_INCLUDE_DIRS}
         ${KIRAN_CONTROL_PANEL_PKG_INCLUDE_DIRS}
-        ${KIRANWIDGETS_INCLUDE_DIRS}
-        ${KLOG_QT5_INCLUDE_DIRS})
+        ${KIRAN_WIDGETS_INCLUDE_DIRS}
+        ${KLOG_INCLUDE_DIRS})
 
 target_link_libraries(${TARGET_NAME}
         Qt5::Core
@@ -33,10 +26,10 @@ target_link_libraries(${TARGET_NAME}
         Qt5::X11Extras
         Qt5::Xml
         X11
-        ${GLIB_LIBRARIES}
-        ${GSETTINGS_QT_LIBRARIES}
-        ${KIRANWIDGETS_LIBRARIES}
-        ${KLOG_QT5_LIBRARIES})
+        ${GLIB_2_LIBRARIES}
+        ${QGSETTINGS_LIBRARIES}
+        ${KIRAN_WIDGETS_LIBRARIES}
+        ${KLOG_LIBRARIES})
 
 set(PLUGIN_ICONS_DIR ${INSTALL_DATADIR}/icons/hicolor/scalable/apps )
 install(TARGETS ${TARGET_NAME} DESTINATION ${PLUGIN_LIBS_DIR}/)
