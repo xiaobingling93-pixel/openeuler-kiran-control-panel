@@ -13,8 +13,8 @@
  */
 #pragma once
 
-#include <QLoggingCategory>
 #include <qt5-log-i.h>
+#include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(qLcDbusWrapper)
 Q_DECLARE_LOGGING_CATEGORY(qLcCommonWidget)
@@ -33,12 +33,4 @@ Q_DECLARE_LOGGING_CATEGORY(qLcMouse)
 Q_DECLARE_LOGGING_CATEGORY(qLcNetwork)
 Q_DECLARE_LOGGING_CATEGORY(qLcPower)
 Q_DECLARE_LOGGING_CATEGORY(qLcSystem)
-
-
-
-
-
-
-
-
-
+Q_DECLARE_LOGGING_CATEGORY(qLcUpgrade)
