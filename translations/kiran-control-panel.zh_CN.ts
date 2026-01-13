@@ -157,6 +157,34 @@
     </message>
 </context>
 <context>
+    <name>AdvisoryKindHelper</name>
+    <message>
+        <location filename="../plugins/upgrade/def.h" line="27"/>
+        <source>Enhancement</source>
+        <translation>功能增强</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/def.h" line="28"/>
+        <source>Bugfix</source>
+        <translation>缺陷修复</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/def.h" line="29"/>
+        <source>Security</source>
+        <translation>安全更新</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/def.h" line="30"/>
+        <source>Newpackage</source>
+        <translation>新包引入</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/def.h" line="31"/>
+        <source>Unknown</source>
+        <translation>未知</translation>
+    </message>
+</context>
+<context>
     <name>AppearancePlugin</name>
     <message>
         <location filename="../plugins/appearance/appearance-plugin.cpp" line="70"/>
@@ -765,6 +793,39 @@
     </message>
 </context>
 <context>
+    <name>DepsDialog</name>
+    <message>
+        <location filename="../plugins/upgrade/deps-dialog.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/deps-dialog.ui" line="90"/>
+        <source>After updated, the system cannot be rolled back.Are you sure you want to continue?</source>
+        <translation>更新后系统无法回退，是否确认继续更新？</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/deps-dialog.ui" line="129"/>
+        <source>Confirm</source>
+        <translation>确认</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/deps-dialog.ui" line="161"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/deps-dialog.cpp" line="29"/>
+        <source>Dependency Information</source>
+        <translation>软件包依赖列表</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/deps-dialog.cpp" line="59"/>
+        <source>No dependency information</source>
+        <translation>无依赖软件包</translation>
+    </message>
+</context>
+<context>
     <name>DetailsPage</name>
     <message>
         <location filename="../plugins/network/pages/details/details-page.ui" line="69"/>
@@ -1118,12 +1179,12 @@
         <translation>保存当前配置(K)</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="374"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="375"/>
         <source>Restore previous configuration(R)</source>
         <translation>恢复之前的配置(R)</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="382"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="384"/>
         <source>The display will resume the previous configuration in %1 seconds</source>
         <translation>显示将会在 %1 秒后恢复之前的配置</translation>
     </message>
@@ -1508,27 +1569,27 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="488"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="504"/>
         <source>Regard computer as idle after</source>
         <translation>于此时间后视计算机为空闲</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="542"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="558"/>
         <source>SliderComputerIdleTime</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="573"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="589"/>
         <source>Lock screen when idle</source>
         <translation>计算机空闲时锁定屏幕</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="610"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="626"/>
         <source>Display dimmed when idle</source>
         <translation>空闲时显示器变暗</translation>
     </message>
     <message>
-        <location filename="../plugins/power/pages/general-settings-page.ui" line="654"/>
+        <location filename="../plugins/power/pages/general-settings-page.ui" line="670"/>
         <source>password is required to wake up in standby mode</source>
         <translation>待机时唤醒需要输入密码</translation>
     </message>
@@ -2693,48 +2754,48 @@ p, li { white-space: pre-wrap; }
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="86"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="185"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="88"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="187"/>
         <source>PDF(*.pdf)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="97"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="196"/>
         <source>Export License</source>
         <translation>导出协议</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="98"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="197"/>
         <source>Export License failed!</source>
         <translation>导出协议失败!</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="140"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="239"/>
         <source>User End License Agreement</source>
         <translation>最终用户许可协议</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="159"/>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="172"/>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="233"/>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="241"/>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="277"/>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="284"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="245"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="254"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="314"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="322"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="357"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="367"/>
         <source>None</source>
         <translation>暂无</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="188"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="268"/>
         <source>Version License</source>
         <translation>版本协议</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="267"/>
-        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="269"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="348"/>
+        <location filename="../plugins/system/pages/system-information/license-agreement.cpp" line="350"/>
         <source>Privacy Policy</source>
         <translation>隐私协议</translation>
     </message>
@@ -3020,6 +3081,34 @@ This is line 50 of the test text</source>
     </message>
 </context>
 <context>
+    <name>PackageModel</name>
+    <message>
+        <location filename="../plugins/upgrade/widgets/package-table.cpp" line="229"/>
+        <source>Package Name</source>
+        <translation>软件包名</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/widgets/package-table.cpp" line="231"/>
+        <source>Current Version</source>
+        <translation>当前版本</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/widgets/package-table.cpp" line="233"/>
+        <source>Latest Version</source>
+        <translation>更新后版本</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/widgets/package-table.cpp" line="235"/>
+        <source>Kinds</source>
+        <translation>类型</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/widgets/package-table.cpp" line="237"/>
+        <source>Size</source>
+        <translation>大小</translation>
+    </message>
+</context>
+<context>
     <name>PanelWindow</name>
     <message>
         <location filename="../src/panel-window.cpp" line="46"/>
@@ -3262,26 +3351,26 @@ This is line 50 of the test text</source>
     <message>
         <location filename="../plugins/display/src/display-config.cpp" line="468"/>
         <location filename="../plugins/display/src/display-config.h" line="134"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="402"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="420"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="405"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="424"/>
         <source>Tips</source>
         <translation>提示</translation>
     </message>
     <message>
         <location filename="../plugins/display/src/display-config.cpp" line="471"/>
         <location filename="../plugins/display/src/display-config.h" line="137"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="405"/>
-        <location filename="../plugins/display/src/display-page.cpp" line="423"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="408"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="427"/>
         <source>OK(K)</source>
         <translation>确定(K)</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="409"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="413"/>
         <source>Failed to apply display settings!%1</source>
         <translation>应用显示设置失败!%1</translation>
     </message>
     <message>
-        <location filename="../plugins/display/src/display-page.cpp" line="427"/>
+        <location filename="../plugins/display/src/display-page.cpp" line="432"/>
         <source>Fallback display setting failed! %1</source>
         <translation>回撤显示设置失败! %1</translation>
     </message>
@@ -3294,6 +3383,21 @@ This is line 50 of the test text</source>
         <location filename="../plugins/appearance/pages/theme/icon/icon-theme-page.h" line="25"/>
         <source>Summer</source>
         <translation>盛夏</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="39"/>
+        <source>Scan</source>
+        <translation>检查更新</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="40"/>
+        <source>Upgrade</source>
+        <translation>开始更新</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="41"/>
+        <source>Retry</source>
+        <translation>重试</translation>
     </message>
 </context>
 <context>
@@ -3835,40 +3939,40 @@ This is line 50 of the test text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="154"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="155"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="156"/>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="157"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="163"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="164"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="165"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="166"/>
         <source>Unknow</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="263"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="272"/>
         <source>UnActivated</source>
         <translation>未激活</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="272"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="281"/>
         <source>Activation code has expired</source>
         <translation>激活码已过期</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="277"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="286"/>
         <source>Permanently activated</source>
         <translation>永久激活</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="282"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="291"/>
         <source>Activated</source>
         <translation>已激活</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="312"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="321"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="312"/>
+        <location filename="../plugins/system/pages/system-information/system-information.cpp" line="321"/>
         <source>Failed to open the license activator</source>
         <translation>启动激活许可证弹窗失败</translation>
     </message>
@@ -4180,6 +4284,152 @@ This is line 50 of the test text</source>
         <location filename="../plugins/authentication/pages/ukey-page.cpp" line="125"/>
         <source>Failed to record UKey device features %1</source>
         <translation>录入UKey设备特征失败: %1</translation>
+    </message>
+</context>
+<context>
+    <name>UpgradePage</name>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.ui" line="91"/>
+        <source>Last scan date:</source>
+        <translation>上次检查时间：</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.ui" line="280"/>
+        <source>Upgrade Reminder</source>
+        <translation>更新提醒</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="130"/>
+        <source>Never</source>
+        <translation>从不</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="131"/>
+        <source>Weekly</source>
+        <translation>每周</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="132"/>
+        <source>Monthly</source>
+        <translation>每月</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="133"/>
+        <source>Quarterly</source>
+        <translation>每季度</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="147"/>
+        <source>Please check for updates manually.</source>
+        <translation>请手动检查更新</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="152"/>
+        <source>Scanning for updates...</source>
+        <translation>正在检查更新,请稍候...</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="169"/>
+        <source>No updates are available</source>
+        <translation>无可更新的软件包</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="174"/>
+        <source>Solving dependencies...</source>
+        <translation>正在解析依赖，请稍候...</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="207"/>
+        <source>None</source>
+        <translation>暂无</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="212"/>
+        <source>Selected %1/ Total %2</source>
+        <translation>已选 %1/ 总共 %2</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="232"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="295"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="295"/>
+        <source>Please select at least one package</source>
+        <translation>请选择至少一个软件包</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="420"/>
+        <source>Upgrade package successfully</source>
+        <translation>系统更新成功</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="420"/>
+        <source>Upgrade package failed</source>
+        <translation>系统更新失败</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="157"/>
+        <source>Scan failed</source>
+        <translation>检查更新失败</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="164"/>
+        <source>System updates are available</source>
+        <translation>检测到系统有可更新的软件包</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="370"/>
+        <source>Upgrade failed: </source>
+        <translation>本次软件包更新失败： </translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="189"/>
+        <source>Upgrade failed</source>
+        <translation>软件包更新失败</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="381"/>
+        <source>Upgrade completed successfully</source>
+        <translation>本次软件包更新成功</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="184"/>
+        <source>Upgrade successfully</source>
+        <translation>软件包更新成功</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="394"/>
+        <source>System updating (%1%)</source>
+        <translation>系统更新中 (%1%)</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="90"/>
+        <source>System updating</source>
+        <translation>系统更新中</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="179"/>
+        <source>Upgrading system...</source>
+        <translation>正在更新系统，请稍候...</translation>
+    </message>
+</context>
+<context>
+    <name>UpgradeSubItem</name>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-subitem.cpp" line="45"/>
+        <source>Upgrade</source>
+        <translation>系统升级</translation>
     </message>
 </context>
 <context>

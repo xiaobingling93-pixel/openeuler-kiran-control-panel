@@ -72,4 +72,8 @@
         <file>version-license/gpl-3.0-zh_CN-body.txt</file>
     </qresource>
 
+    <qresource prefix="/kcp-upgrade">
+        <file>images/upgrade.svg</file>
+    </qresource>
+
 </RCC>
