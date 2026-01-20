@@ -135,6 +135,21 @@ void IconThemePage::loadIconThemes()
             {
                 QStringList entryList = iter.value();
 
+                // 优先匹配后缀为png或svg的图标
+                static QSet<QString> suffixes = {".png", ".svg"};
+                for (auto suffix : suffixes)
+                {
+                    if (entryList.contains(iconName + suffix))
+                    {
+                        iconPath = iter.key() + iconName + suffix;
+                        break;
+                    }
+                }
+                if( !iconPath.isEmpty() )
+                {
+                    break;
+                }
+
                 // 模糊匹配图标名称
                 auto idx = entryList.indexOf(QRegExp(QString("^%1.*").arg(iconName)));
                 if (idx != -1)
