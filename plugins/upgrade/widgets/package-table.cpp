@@ -21,6 +21,7 @@
 #include <QHeaderView>
 #include <QMouseEvent>
 #include <QPainterPath>
+#include <QScrollBar>
 #include <QStyle>
 #include <QStyleOptionButton>
 #include <QToolTip>
@@ -330,13 +331,13 @@ PackageTable::PackageTable(QWidget *parent)
             { m_headerView->setCheckState(Qt::Unchecked); });
 
     // 设置水平行表头
-    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_CHECKBOX, 50);
-    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_NAME, 80);
-    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_CURRENT_VERSION, 80);
-    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_LATEST_VERSION, 80);
-    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_KINDS, 80);
-    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_SIZE, 80);
     m_headerView->setSectionResizeMode(PackageTableField::PACKAGE_TABLE_FIELD_CHECKBOX, QHeaderView::Fixed);
+    m_headerView->setSectionResizeMode(PackageTableField::PACKAGE_TABLE_FIELD_NAME, QHeaderView::Interactive);
+    m_headerView->setSectionResizeMode(PackageTableField::PACKAGE_TABLE_FIELD_CURRENT_VERSION, QHeaderView::Interactive);
+    m_headerView->setSectionResizeMode(PackageTableField::PACKAGE_TABLE_FIELD_LATEST_VERSION, QHeaderView::Interactive);
+    m_headerView->setSectionResizeMode(PackageTableField::PACKAGE_TABLE_FIELD_KINDS, QHeaderView::Interactive);
+    m_headerView->setSectionResizeMode(PackageTableField::PACKAGE_TABLE_FIELD_SIZE, QHeaderView::Interactive);
+
     m_headerView->setStretchLastSection(true);
     m_headerView->setSectionsMovable(false);
     m_headerView->setDefaultAlignment(Qt::AlignLeft | Qt::AlignVCenter);
@@ -437,6 +438,64 @@ void PackageTable::updateHeaderState()
         state = Qt::PartiallyChecked;
 
     m_headerView->setCheckState(state);
+}
+
+void PackageTable::resizeEvent(QResizeEvent *event)
+{
+    QTableView::resizeEvent(event);
+    updateColumnWidths();
+}
+
+void PackageTable::showEvent(QShowEvent *event)
+{
+    QTableView::showEvent(event);
+    updateColumnWidths();
+}
+
+void PackageTable::updateColumnWidths()
+{
+    if (!m_headerView)
+        return;
+
+    // 获取表格可用宽度（减去垂直滚动条宽度）
+    int availableWidth = viewport()->width();
+    if (verticalScrollBar()->isVisible())
+    {
+        availableWidth -= verticalScrollBar()->width();
+    }
+
+    // CHECKBOX 列固定宽度
+    const int checkboxWidth = 50;
+
+    // 计算剩余可用宽度
+    int remainingWidth = availableWidth - checkboxWidth;
+    if (remainingWidth <= 0)
+        return;
+
+    // 定义各列的权重
+    const int nameWeight = 80;
+    const int currentVersionWeight = 80;
+    const int latestVersionWeight = 80;
+    const int kindsWeight = 80;
+    const int sizeWeight = 80;
+
+    // 计算总权重
+    int totalWeight = nameWeight + currentVersionWeight + latestVersionWeight + kindsWeight + sizeWeight;
+
+    // 按权重比例分配剩余宽度
+    int nameWidth = (remainingWidth * nameWeight) / totalWeight;
+    int currentVersionWidth = (remainingWidth * currentVersionWeight) / totalWeight;
+    int latestVersionWidth = (remainingWidth * latestVersionWeight) / totalWeight;
+    int kindsWidth = (remainingWidth * kindsWeight) / totalWeight;
+    int sizeWidth = remainingWidth - nameWidth - currentVersionWidth - latestVersionWidth - kindsWidth;  // 最后一列取剩余值，避免舍入误差
+
+    // 设置各列宽度
+    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_CHECKBOX, checkboxWidth);
+    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_NAME, nameWidth);
+    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_CURRENT_VERSION, currentVersionWidth);
+    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_LATEST_VERSION, latestVersionWidth);
+    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_KINDS, kindsWidth);
+    m_headerView->resizeSection(PackageTableField::PACKAGE_TABLE_FIELD_SIZE, sizeWidth);
 }
 
 void PackageTable::paintEvent(QPaintEvent *event)
