@@ -45,7 +45,8 @@ UpgradePage::UpgradePage(QWidget *parent)
       ui(new Ui::UpgradePage),
       m_upgradeInterface(nullptr),
       m_depsDialog(nullptr),
-      m_upgradeStatus(UPGRADE_STATUS_LAST)
+      m_upgradeStatus(UPGRADE_STATUS_LAST),
+      m_reminderInterval(DEFAULT_REMINDER_INTERVAL)
 {
     ui->setupUi(this);
     m_upgradeInterface = new UpgradeInterface(this);
@@ -133,8 +134,8 @@ void UpgradePage::initUI()
     ui->cb_reminder->addItem(tr("Weekly"), REMINDER_INTERVAL_WEEKLY);
     ui->cb_reminder->addItem(tr("Monthly"), REMINDER_INTERVAL_MONTHLY);
     ui->cb_reminder->addItem(tr("Quarterly"), REMINDER_INTERVAL_QUARTERLY);
-    auto reminderInterval = m_upgradeInterface->getReminderInterval();
-    ui->cb_reminder->setCurrentIndex(ui->cb_reminder->findData(reminderInterval));
+    m_reminderInterval = m_upgradeInterface->getReminderInterval();
+    ui->cb_reminder->setCurrentIndex(ui->cb_reminder->findData(m_reminderInterval));
 
     connect(ui->btn_action, &QPushButton::clicked, this, &UpgradePage::handleActionClicked);
     connect(ui->cb_reminder, QOverload<int>::of(&QComboBox::activated), this, &UpgradePage::setReminderInterval);
@@ -216,17 +217,33 @@ void UpgradePage::updatePkgNumText(int selectedCount, int totalCount)
 
 void UpgradePage::updateReminderInterval(int interval)
 {
+    if (interval == m_reminderInterval)
+    {
+        KLOG_INFO(qLcUpgrade) << "Reminder interval is already set to " << interval << ", no need to update.";
+        return;
+    }
     auto index = ui->cb_reminder->findData(interval);
     if (index < 0)
     {
         KLOG_WARNING(qLcUpgrade) << "Invalid reminder interval: " << interval << ", resetting to default: " << DEFAULT_REMINDER_INTERVAL;
         index = ui->cb_reminder->findData(DEFAULT_REMINDER_INTERVAL);
+        m_reminderInterval = DEFAULT_REMINDER_INTERVAL;
+    }
+    else
+    {
+        m_reminderInterval = interval;
     }
     ui->cb_reminder->setCurrentIndex(index);
+    KLOG_INFO(qLcUpgrade) << "Update reminder interval to " << m_reminderInterval << " successfully";
 }
 void UpgradePage::setReminderInterval(int index)
 {
     auto reminderInterval = ui->cb_reminder->itemData(index).toInt();
+    if (reminderInterval == m_reminderInterval)
+    {
+        KLOG_INFO(qLcUpgrade) << "Reminder interval is already set to " << reminderInterval;
+        return;
+    }
     QString errorMessage;
     if (!m_upgradeInterface->setReminderInterval(reminderInterval, errorMessage))
     {
@@ -235,10 +252,10 @@ void UpgradePage::setReminderInterval(int index)
                                  KiranMessageBox::Ok);
 
         //恢复选中项为后台数据
-        reminderInterval = m_upgradeInterface->getReminderInterval();
-        ui->cb_reminder->setCurrentIndex(ui->cb_reminder->findData(reminderInterval));
+        ui->cb_reminder->setCurrentIndex(ui->cb_reminder->findData(m_reminderInterval));
         return;
     }
+    m_reminderInterval = reminderInterval;
     KLOG_INFO(qLcUpgrade) << "Set reminder interval successfully";
 }
 

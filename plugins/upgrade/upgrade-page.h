@@ -105,4 +105,6 @@ private:
 
     //保存用户选择更新的软件包ID列表
     QStringList m_selectedPkgIDs;
+
+    int m_reminderInterval;
 };
