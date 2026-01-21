@@ -242,7 +242,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QTextBrowser" name="text_install_log"/>
+           <widget class="CustomTextBrowser" name="text_install_log"/>
           </item>
          </layout>
         </widget>
@@ -331,6 +331,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>CustomTextBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header location="global">widgets/custom-text-browser.h</header>
+  </customwidget>
   <customwidget>
    <class>PackageTable</class>
    <extends>QTableView</extends>

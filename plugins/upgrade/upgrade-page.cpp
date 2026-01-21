@@ -96,11 +96,6 @@ void UpgradePage::initUI()
     palette.setColor(QPalette::WindowText, textColor);
     ui->label_error->setPalette(palette);
 
-    // 为安装日志控件设置边框
-    ui->text_install_log->viewport()->setAutoFillBackground(false);
-    auto borderColor = DEFAULT_PALETTE()->getColor(Palette::ColorGroup::ACTIVE, Palette::ColorRole::BORDER);
-    ui->text_install_log->setStyleSheet(QString("QTextBrowser { border: 1px solid %1; border-radius: 6px; }").arg(borderColor.name()));
-
     // 默认隐藏升级布局
     ui->widget_upgrade->hide();
 
