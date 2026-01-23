@@ -114,8 +114,7 @@ void UpgradePage::initUI()
         break;
     case BACKEND_STATUS_UPGRADING:
         setUpgradeStatus(UPGRADE_STATUS_UPGRADING);
-        ui->text_install_log->clear();
-        ui->text_install_log->append(m_upgradeInterface->getUpgradeLog());
+        updateUpgradeLogFromJson(m_upgradeInterface->getUpgradeLog());
         break;
     default:
         break;
@@ -205,6 +204,39 @@ void UpgradePage::updateLatestScanTime()
     ui->label_time->setText(latestScanTime.isEmpty() ? tr("None") : latestScanTime);
 }
 
+void UpgradePage::updateUpgradeLogFromJson(const QString &upgradeLogJson)
+{
+    if (upgradeLogJson.isEmpty())
+    {
+        KLOG_WARNING(qLcUpgrade) << "Upgrade log json is empty";
+        return;
+    }
+    KLOG_DEBUG(qLcUpgrade) << "Update upgrade log from json: " << upgradeLogJson;
+
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(upgradeLogJson.toUtf8(), &error);
+    if (error.error == QJsonParseError::NoError && doc.isObject())
+    {
+        QJsonObject logObject = doc.object();
+
+        // 更新百分比
+        if (logObject.contains("percentage"))
+        {
+            upgradePercentage(logObject["percentage"].toInt());
+        }
+
+        // 更新操作日志
+        if (logObject.contains("action"))
+        {
+            ui->text_install_log->clear();
+            ui->text_install_log->append(logObject["action"].toString());
+        }
+    }
+    else
+    {
+        KLOG_WARNING(qLcUpgrade) << "Failed to parse upgrade log json " << upgradeLogJson << error.errorString();
+    }
+}
 void UpgradePage::updatePkgNumText(int selectedCount, int totalCount)
 {
     ui->label_pkg_num->setText(tr("Selected %1/ Total %2").arg(selectedCount).arg(totalCount));
@@ -417,7 +449,7 @@ void UpgradePage::handleUpgradeCompleted(bool success, const QString &errorMessa
 void UpgradePage::updateUpgradeAction(const QString &action, const QString &actionHint)
 {
     KLOG_DEBUG(qLcUpgrade) << "Update upgrade action: " << action << ", action hint: " << actionHint;
-    ui->text_install_log->append(action + (actionHint.isEmpty() ? "" : ": " + actionHint) + "\n");
+    ui->text_install_log->append(action + (actionHint.isEmpty() ? "" : ": " + actionHint));
 }
 
 void UpgradePage::upgradePercentage(uint percentage)

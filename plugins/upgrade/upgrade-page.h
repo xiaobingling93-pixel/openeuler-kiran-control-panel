@@ -83,6 +83,8 @@ private:
     void updateLatestScanTime();
     void updatePkgNumText(int selectedCount, int totalCount);
     void updateReminderInterval(int interval);
+    // 解析并更新升级日志
+    void updateUpgradeLogFromJson(const QString &upgradeLogJson);
 
     void setUpgradeStatus(UpgradeStatus upgradeStatus);
     UpgradeStatus getUpgradeStatus();
