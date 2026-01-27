@@ -77,9 +77,7 @@ bool SystemInfoDBus::setHostName(QString name,QString& errorgMsg)
 
     msgMethodCall << name;
 
-    QDBusMessage msgReply = QDBusConnection::systemBus().call(msgMethodCall,
-                                                              QDBus::Block,
-                                                              TIMEOUT_MS);
+    QDBusMessage msgReply = QDBusConnection::systemBus().call(msgMethodCall);
 
     if (msgReply.type() == QDBusMessage::ReplyMessage)
     {
