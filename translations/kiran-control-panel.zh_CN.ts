@@ -1887,6 +1887,39 @@
     </message>
 </context>
 <context>
+    <name>HistoryDialog</name>
+    <message>
+        <location filename="../plugins/upgrade/history-dialog.cpp" line="39"/>
+        <source>Upgrade History</source>
+        <translation>历史更新记录</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/history-dialog.cpp" line="78"/>
+        <source>Upgraded Packages</source>
+        <translation>更新成功的软件包</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/history-dialog.cpp" line="88"/>
+        <source>Un-upgraded Packages</source>
+        <translation>更新失败的软件包</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/history-dialog.cpp" line="142"/>
+        <source>Success</source>
+        <translation>成功</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/history-dialog.cpp" line="145"/>
+        <source>Failed</source>
+        <translation>失败</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/history-dialog.cpp" line="148"/>
+        <source>Unknown</source>
+        <translation>未知</translation>
+    </message>
+</context>
+<context>
     <name>IconThemePage</name>
     <message>
         <location filename="../plugins/appearance/pages/theme/icon/icon-theme-page.ui" line="14"/>
@@ -3385,17 +3418,17 @@ This is line 50 of the test text</source>
         <translation>盛夏</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="39"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="40"/>
         <source>Scan</source>
         <translation>检查更新</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="40"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="41"/>
         <source>Upgrade</source>
         <translation>开始更新</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="41"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="42"/>
         <source>Retry</source>
         <translation>重试</translation>
     </message>
@@ -4287,6 +4320,14 @@ This is line 50 of the test text</source>
     </message>
 </context>
 <context>
+    <name>UpgradeInterface</name>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-interface.cpp" line="219"/>
+        <source>No upgrade history found</source>
+        <translation>无历史更新记录</translation>
+    </message>
+</context>
+<context>
     <name>UpgradePage</name>
     <message>
         <location filename="../plugins/upgrade/upgrade-page.ui" line="14"/>
@@ -4304,123 +4345,134 @@ This is line 50 of the test text</source>
         <translation>更新提醒</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="133"/>
+        <location filename="../plugins/upgrade/upgrade-page.ui" line="307"/>
+        <source>Upgrade History</source>
+        <translation>历史更新记录</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.ui" line="339"/>
+        <source>Show</source>
+        <translation>查看</translation>
+    </message>
+    <message>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="131"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="134"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="132"/>
         <source>Weekly</source>
         <translation>每周</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="135"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="133"/>
         <source>Monthly</source>
         <translation>每月</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="136"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="134"/>
         <source>Quarterly</source>
         <translation>每季度</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="150"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="149"/>
         <source>Please check for updates manually.</source>
         <translation>请手动检查更新</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="155"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="154"/>
         <source>Scanning for updates...</source>
         <translation>正在检查更新,请稍候...</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="172"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="171"/>
         <source>No updates are available</source>
         <translation>无可更新的软件包</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="177"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="176"/>
         <source>Solving dependencies...</source>
         <translation>正在解析依赖，请稍候...</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="210"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="209"/>
         <source>None</source>
         <translation>暂无</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="215"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="247"/>
         <source>Selected %1/ Total %2</source>
         <translation>已选 %1/ 总共 %2</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="251"/>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="384"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="283"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="376"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="431"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="315"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="347"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="315"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="347"/>
         <source>Please select at least one package</source>
         <translation>请选择至少一个软件包</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="458"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="505"/>
         <source>Upgrade package successfully</source>
         <translation>软件包更新成功</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="458"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="505"/>
         <source>Upgrade package failed</source>
         <translation>软件包更新失败</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="160"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="159"/>
         <source>Scan failed</source>
         <translation>检查更新失败</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="167"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="166"/>
         <source>System updates are available</source>
         <translation>检测到系统有可更新的软件包</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="404"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="451"/>
         <source>Upgrade failed: </source>
         <translation>本次软件包更新失败： </translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="192"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="191"/>
         <source>Upgrade failed</source>
         <translation>软件包更新失败</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="416"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="463"/>
         <source>Upgrade completed successfully</source>
         <translation>本次软件包更新成功</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="187"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="186"/>
         <source>Upgrade successfully</source>
         <translation>软件包更新成功</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="431"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="478"/>
         <source>System updating (%1%)</source>
         <translation>系统更新中 (%1%)</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="91"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="95"/>
         <source>System updating</source>
         <translation>系统更新中</translation>
     </message>
     <message>
-        <location filename="../plugins/upgrade/upgrade-page.cpp" line="182"/>
+        <location filename="../plugins/upgrade/upgrade-page.cpp" line="181"/>
         <source>Upgrading system...</source>
         <translation>正在更新系统，请稍候...</translation>
     </message>

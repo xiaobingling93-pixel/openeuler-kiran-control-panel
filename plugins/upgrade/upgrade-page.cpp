@@ -16,16 +16,17 @@
 #include <kiran-log/qt5-log-i.h>
 #include <kiran-message-box.h>
 #include <kiran-push-button.h>
-#include <kiran-system-daemon/upgrade-i.h>
 
 #include <palette.h>
 #include <QDBusInterface>
 #include <QDBusMessage>
+#include <QDBusMetaType>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
 #include "deps-dialog.h"
+#include "history-dialog.h"
 #include "logging-category.h"
 #include "ui_upgrade-page.h"
 #include "upgrade-interface.h"
@@ -45,12 +46,17 @@ UpgradePage::UpgradePage(QWidget *parent)
       ui(new Ui::UpgradePage),
       m_upgradeInterface(nullptr),
       m_depsDialog(nullptr),
+      m_historyDialog(nullptr),
       m_upgradeStatus(UPGRADE_STATUS_LAST),
       m_reminderInterval(DEFAULT_REMINDER_INTERVAL)
 {
+    qRegisterMetaType<UpgradeHistory>("UpgradeHistory");
+    qDBusRegisterMetaType<UpgradeHistory>();
+
     ui->setupUi(this);
     m_upgradeInterface = new UpgradeInterface(this);
     m_depsDialog = new DepsDialog(this);
+    m_historyDialog = new HistoryDialog(this);
 
     initUI();
 
@@ -60,6 +66,7 @@ UpgradePage::UpgradePage(QWidget *parent)
     connect(m_upgradeInterface, &UpgradeInterface::upgradeActionChanged, this, &UpgradePage::updateUpgradeAction);
     connect(m_upgradeInterface, &UpgradeInterface::upgradePercentageChanged, this, &UpgradePage::upgradePercentage);
     connect(m_upgradeInterface, &UpgradeInterface::reminderIntervalChanged, this, &UpgradePage::updateReminderInterval);
+    connect(m_upgradeInterface, &UpgradeInterface::upgradeHistoryAdded, this, &UpgradePage::prependHistoryToDialog);
 
     connect(m_depsDialog, &DepsDialog::confirmed, this, &UpgradePage::upgrade);
     connect(ui->table_pkgs, &PackageTable::packageSelectedChanged, this, &UpgradePage::updatePkgNumText);
@@ -87,6 +94,7 @@ UpgradeStatus UpgradePage::getUpgradeStatus()
 void UpgradePage::initUI()
 {
     KiranPushButton::setButtonType(ui->btn_action, KiranPushButton::BUTTON_Default);
+    KiranPushButton::setButtonType(ui->btn_show_history, KiranPushButton::BUTTON_Default);
     ui->label_icon->setPixmap(QPixmap(":/kcp-upgrade/images/upgrade.svg"));
     ui->label_install_process->setText(tr("System updating"));
 
@@ -133,6 +141,7 @@ void UpgradePage::initUI()
 
     connect(ui->btn_action, &QPushButton::clicked, this, &UpgradePage::handleActionClicked);
     connect(ui->cb_reminder, QOverload<int>::of(&QComboBox::activated), this, &UpgradePage::setReminderInterval);
+    connect(ui->btn_show_history, &QPushButton::clicked, this, &UpgradePage::showHistoryDialog);
 }
 
 void UpgradePage::updateUI(UpgradeStatus status)
@@ -360,6 +369,40 @@ void UpgradePage::handleActionClicked()
     }
 }
 
+void UpgradePage::showHistoryDialog()
+{
+    QString errorMessage;
+    auto historyList = m_upgradeInterface->getUpgradeHistory(errorMessage);
+    if (!errorMessage.isEmpty())
+    {
+        KLOG_WARNING(qLcUpgrade) << "Get upgrade history failed: " << errorMessage;
+        KiranMessageBox::message(nullptr,
+                                 tr("Error"), errorMessage,
+                                 KiranMessageBox::Ok);
+        return;
+    }
+    m_historyDialog->setUpgradeHistory(historyList);
+    m_historyDialog->show();
+    KLOG_DEBUG(qLcUpgrade) << "Show upgrade history dialog successfully."
+                           << "Upgrade history count: " << historyList.size();
+}
+
+void UpgradePage::prependHistoryToDialog(const UpgradeHistory &history)
+{
+    // 仅在历史记录窗口显示时刷新窗口
+    if (!m_historyDialog->isVisible())
+    {
+        return;
+    }
+
+    m_historyDialog->prependHistory(history);
+    KLOG_DEBUG(qLcUpgrade) << "Prepend history to dialog successfully."
+                           << history.upgradeTime
+                           << static_cast<int>(history.result)
+                           << history.errorMessage
+                           << history.successPackages.join(",").trimmed()
+                           << history.failedPackages.join(",").trimmed();
+}
 void UpgradePage::handleScanCompleted(bool success, const QString &errorMessage)
 {
     //无论是否扫描成功，都更新最新扫描时间

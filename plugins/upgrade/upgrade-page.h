@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include <kiran-system-daemon/upgrade-i.h>
 #include <QWidget>
 
 namespace Ui
@@ -51,6 +52,7 @@ enum StackedWidgetIndex
 
 class UpgradeInterface;
 class DepsDialog;
+class HistoryDialog;
 class UpgradePage : public QWidget
 {
     Q_OBJECT
@@ -61,8 +63,9 @@ public:
     ~UpgradePage();
 
 private slots:
-    //处理按钮点击槽函数
+    //处理UI交互槽函数
     void handleActionClicked();
+    void showHistoryDialog();
     void setReminderInterval(int index);
 
     //处理操作完成槽函数
@@ -73,6 +76,9 @@ private slots:
     //更新日志和进度
     void updateUpgradeAction(const QString &action, const QString &actionHint);
     void upgradePercentage(uint percentage);
+
+    // 刷新历史记录
+    void prependHistoryToDialog(const UpgradeHistory &history);
 
 private:
     //界面设置
@@ -103,6 +109,7 @@ private:
     Ui::UpgradePage *ui;
     UpgradeInterface *m_upgradeInterface;
     DepsDialog *m_depsDialog;
+    HistoryDialog *m_historyDialog;
     UpgradeStatus m_upgradeStatus;
 
     //保存用户选择更新的软件包ID列表
