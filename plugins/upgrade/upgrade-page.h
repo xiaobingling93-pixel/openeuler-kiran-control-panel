@@ -53,6 +53,7 @@ enum StackedWidgetIndex
 class UpgradeInterface;
 class DepsDialog;
 class HistoryDialog;
+class MessageDialog;
 class UpgradePage : public QWidget
 {
     Q_OBJECT
@@ -105,11 +106,15 @@ private:
     // 发送升级结果消息弹窗,以防在升级过程中切换tab，用户无法感知升级成功/失败
     void sendUpgradeNotify(bool success, const QString &errorMessage);
 
+    // 弹出消息显示窗口
+    void showMessageDialog(const QString &title, const QString &message);
+
 private:
     Ui::UpgradePage *ui;
     UpgradeInterface *m_upgradeInterface;
     DepsDialog *m_depsDialog;
     HistoryDialog *m_historyDialog;
+    MessageDialog *m_messageDialog;
     UpgradeStatus m_upgradeStatus;
 
     //保存用户选择更新的软件包ID列表

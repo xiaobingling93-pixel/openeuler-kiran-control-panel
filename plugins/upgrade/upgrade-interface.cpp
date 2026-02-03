@@ -214,12 +214,6 @@ QList<UpgradeHistory> UpgradeInterface::getUpgradeHistory(QString& errorMessage)
                               << history.successPackages.join(",").trimmed()
                               << history.failedPackages.join(",").trimmed();
     }
-    if (historyList.isEmpty())
-    {
-        KLOG_WARNING(qLcUpgrade) << "No upgrade history found";
-        errorMessage = tr("No upgrade history found");
-    }
-
     return historyList;
 }
 

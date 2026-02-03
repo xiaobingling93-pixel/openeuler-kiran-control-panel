@@ -28,6 +28,7 @@
 #include "deps-dialog.h"
 #include "history-dialog.h"
 #include "logging-category.h"
+#include "message-dialog.h"
 #include "ui_upgrade-page.h"
 #include "upgrade-interface.h"
 
@@ -47,6 +48,7 @@ UpgradePage::UpgradePage(QWidget *parent)
       m_upgradeInterface(nullptr),
       m_depsDialog(nullptr),
       m_historyDialog(nullptr),
+      m_messageDialog(nullptr),
       m_upgradeStatus(UPGRADE_STATUS_LAST),
       m_reminderInterval(DEFAULT_REMINDER_INTERVAL)
 {
@@ -57,6 +59,7 @@ UpgradePage::UpgradePage(QWidget *parent)
     m_upgradeInterface = new UpgradeInterface(this);
     m_depsDialog = new DepsDialog(this);
     m_historyDialog = new HistoryDialog(this);
+    m_messageDialog = new MessageDialog(this);
 
     initUI();
 
@@ -381,6 +384,14 @@ void UpgradePage::showHistoryDialog()
                                  KiranMessageBox::Ok);
         return;
     }
+    if (historyList.isEmpty())
+    {
+        KLOG_WARNING(qLcUpgrade) << "No upgrade history found";
+        KiranMessageBox::message(nullptr,
+                                 tr("Warning"), tr("No upgrade history found"),
+                                 KiranMessageBox::Ok);
+        return;
+    }
     m_historyDialog->setUpgradeHistory(historyList);
     m_historyDialog->show();
     KLOG_DEBUG(qLcUpgrade) << "Show upgrade history dialog successfully."
@@ -450,9 +461,7 @@ void UpgradePage::handleSolveDepsCompleted(bool success, const QString &pkgDepsI
     {
         setUpgradeStatus(UPGRADE_STATUS_SOLVING_DEPS_FAILED);
         KLOG_WARNING(qLcUpgrade) << "Solve deps failed: " << errorMessage;
-        KiranMessageBox::message(nullptr,
-                                 tr("Error"), errorMessage,
-                                 KiranMessageBox::Ok);
+        showMessageDialog(tr("Error"), errorMessage);
         return;
     }
 
@@ -542,4 +551,11 @@ void UpgradePage::sendUpgradeNotify(bool success, const QString &errorMessage)
     {
         KLOG_WARNING(qLcUpgrade) << "send notify failed," << reply.errorMessage();
     }
+}
+
+void UpgradePage::showMessageDialog(const QString &title, const QString &message)
+{
+    m_messageDialog->setTitle(title);
+    m_messageDialog->setMessage(message);
+    m_messageDialog->show();
 }
