@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>683</width>
-    <height>512</height>
+    <width>756</width>
+    <height>628</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -242,7 +242,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QTextBrowser" name="text_install_log"/>
+           <widget class="CustomTextBrowser" name="text_install_log"/>
           </item>
          </layout>
         </widget>
@@ -251,9 +251,9 @@
      </layout>
     </widget>
    </item>
-   <item alignment="Qt::AlignTop">
+   <item>
     <widget class="QWidget" name="widget_setting" native="true">
-     <layout class="QVBoxLayout" name="layout_setting">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="spacing">
        <number>10</number>
       </property>
@@ -270,7 +270,7 @@
        <number>0</number>
       </property>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="spacing">
          <number>10</number>
         </property>
@@ -282,7 +282,34 @@
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer">
+         <widget class="QComboBox" name="cb_reminder">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Upgrade History</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -295,18 +322,21 @@
          </spacer>
         </item>
         <item>
-         <widget class="QComboBox" name="cb_reminder">
+         <widget class="QPushButton" name="btn_show_history">
           <property name="minimumSize">
            <size>
-            <width>110</width>
-            <height>40</height>
+            <width>56</width>
+            <height>28</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>110</width>
-            <height>40</height>
+            <width>56</width>
+            <height>28</height>
            </size>
+          </property>
+          <property name="text">
+           <string>Show</string>
           </property>
          </widget>
         </item>
@@ -331,6 +361,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>CustomTextBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header location="global">widgets/custom-text-browser.h</header>
+  </customwidget>
   <customwidget>
    <class>PackageTable</class>
    <extends>QTableView</extends>

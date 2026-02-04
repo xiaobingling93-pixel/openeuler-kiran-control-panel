@@ -16,9 +16,6 @@
 #include "ui_deps-dialog.h"
 
 #include <kiran-push-button.h>
-#include <palette.h>
-
-using namespace Kiran::Theme;
 
 DepsDialog::DepsDialog(QWidget *parent)
     : KiranTitlebarWindow(parent, Qt::Dialog),
@@ -30,11 +27,6 @@ DepsDialog::DepsDialog(QWidget *parent)
     setWindowModality(Qt::ApplicationModal);
     setButtonHints(TitlebarCloseButtonHint);
     setTitlebarColorBlockEnable(true);
-
-    // 为依赖信息控件设置边框
-    ui->textBrowser->viewport()->setAutoFillBackground(false);
-    auto borderColor = DEFAULT_PALETTE()->getColor(Palette::ColorGroup::ACTIVE, Palette::ColorRole::BORDER);
-    ui->textBrowser->setStyleSheet(QString("QTextBrowser { border: 1px solid %1; border-radius: 6px; }").arg(borderColor.name()));
 
     ui->icon_tip->setIcon(QIcon::fromTheme("ksvg-tip"));
     KiranPushButton::setButtonType(ui->btn_confirm, KiranPushButton::BUTTON_Default);

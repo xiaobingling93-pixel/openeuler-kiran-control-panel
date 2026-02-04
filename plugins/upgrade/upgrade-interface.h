@@ -46,6 +46,9 @@ public:
     QString getUpgradeLog();
     QString getLatestUpgradeTime();
 
+    //获取升级历史记录
+    QList<UpgradeHistory> getUpgradeHistory(QString& errorMessage);
+
 signals:
     //操作结果
     void scanCompleted(bool success, const QString& errorMessage);
@@ -57,6 +60,9 @@ signals:
     //更新进度
     void upgradePercentageChanged(uint percentage);
     void upgradeActionChanged(const QString& action, const QString& actionHint);
+
+    //升级历史记录变化
+    void upgradeHistoryAdded(const UpgradeHistory& history);
 
 private slots:
     void handleDBusPropertyChanged(const QString& property, const QVariant& value);

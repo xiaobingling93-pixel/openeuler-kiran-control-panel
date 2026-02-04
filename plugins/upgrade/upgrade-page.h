@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include <kiran-system-daemon/upgrade-i.h>
 #include <QWidget>
 
 namespace Ui
@@ -51,6 +52,8 @@ enum StackedWidgetIndex
 
 class UpgradeInterface;
 class DepsDialog;
+class HistoryDialog;
+class MessageDialog;
 class UpgradePage : public QWidget
 {
     Q_OBJECT
@@ -61,8 +64,9 @@ public:
     ~UpgradePage();
 
 private slots:
-    //处理按钮点击槽函数
+    //处理UI交互槽函数
     void handleActionClicked();
+    void showHistoryDialog();
     void setReminderInterval(int index);
 
     //处理操作完成槽函数
@@ -74,6 +78,9 @@ private slots:
     void updateUpgradeAction(const QString &action, const QString &actionHint);
     void upgradePercentage(uint percentage);
 
+    // 刷新历史记录
+    void prependHistoryToDialog(const UpgradeHistory &history);
+
 private:
     //界面设置
     void initUI();
@@ -83,6 +90,8 @@ private:
     void updateLatestScanTime();
     void updatePkgNumText(int selectedCount, int totalCount);
     void updateReminderInterval(int interval);
+    // 解析并更新升级日志
+    void updateUpgradeLogFromJson(const QString &upgradeLogJson);
 
     void setUpgradeStatus(UpgradeStatus upgradeStatus);
     UpgradeStatus getUpgradeStatus();
@@ -97,12 +106,19 @@ private:
     // 发送升级结果消息弹窗,以防在升级过程中切换tab，用户无法感知升级成功/失败
     void sendUpgradeNotify(bool success, const QString &errorMessage);
 
+    // 弹出消息显示窗口
+    void showMessageDialog(const QString &title, const QString &message);
+
 private:
     Ui::UpgradePage *ui;
     UpgradeInterface *m_upgradeInterface;
     DepsDialog *m_depsDialog;
+    HistoryDialog *m_historyDialog;
+    MessageDialog *m_messageDialog;
     UpgradeStatus m_upgradeStatus;
 
     //保存用户选择更新的软件包ID列表
     QStringList m_selectedPkgIDs;
+
+    int m_reminderInterval;
 };

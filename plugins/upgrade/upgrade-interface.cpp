@@ -51,6 +51,7 @@ void UpgradeInterface::init()
     connect(m_upgradeProxy, &KCDUpgradeProxy::UpgradeCompleted, this, &UpgradeInterface::upgradeCompleted);
     connect(m_upgradeProxy, &KCDUpgradeProxy::UpgradePercentageChanged, this, &UpgradeInterface::upgradePercentageChanged);
     connect(m_upgradeProxy, &KCDUpgradeProxy::UpgradeActionChanged, this, &UpgradeInterface::upgradeActionChanged);
+    connect(m_upgradeProxy, &KCDUpgradeProxy::UpgradeHistoryAdded, this, &UpgradeInterface::upgradeHistoryAdded);
 
     connect(m_upgradeProxy, &KCDUpgradeProxy::dbusPropertyChanged, this, &UpgradeInterface::handleDBusPropertyChanged);
 }
@@ -173,6 +174,47 @@ QString UpgradeInterface::getUpgradeLog()
 QString UpgradeInterface::getLatestUpgradeTime()
 {
     return m_upgradeProxy->latest_upgrade_time();
+}
+
+QList<UpgradeHistory> UpgradeInterface::getUpgradeHistory(QString& errorMessage)
+{
+    auto reply = m_upgradeProxy->GetUpgradeHistory();
+    reply.waitForFinished();
+    if (reply.isError())
+    {
+        KLOG_ERROR(qLcUpgrade) << "Failed to get upgrade histories: " << reply.error().message();
+        errorMessage = reply.error().message();
+        return QList<UpgradeHistory>();
+    }
+
+    auto result = reply.value();
+    QJsonDocument doc = QJsonDocument::fromJson(result.toUtf8());
+    QJsonArray array = doc.array();
+    QList<UpgradeHistory> historyList;
+    for (const auto& item : array)
+    {
+        QJsonObject obj = item.toObject();
+        UpgradeHistory history;
+        history.upgradeTime = obj["upgrade_time"].toString();
+        history.result = static_cast<UpgradeResult>(obj["result"].toInt());
+        history.errorMessage = obj["error_message"].toString();
+        for (const auto& item : obj["success_packages"].toArray())
+        {
+            history.successPackages.append(item.toString());
+        }
+        for (const auto& item : obj["failed_packages"].toArray())
+        {
+            history.failedPackages.append(item.toString());
+        }
+        historyList.append(history);
+        KLOG_INFO(qLcUpgrade) << "Get upgrade history:"
+                              << history.upgradeTime
+                              << history.result
+                              << history.errorMessage
+                              << history.successPackages.join(",").trimmed()
+                              << history.failedPackages.join(",").trimmed();
+    }
+    return historyList;
 }
 
 QString UpgradeInterface::getAdvisoryKindsString(AdvisoryKindFlags kinds)

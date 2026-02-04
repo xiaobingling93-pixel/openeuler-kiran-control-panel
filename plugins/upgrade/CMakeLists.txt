@@ -2,8 +2,12 @@ set(TARGET_NAME kiran-cpanel-upgrade)
 
 file(GLOB_RECURSE UPGRADE_SRC ./*.cpp ./*.h ./*.ui)
 
+set(KCD_UPGRADE_XML data/com.kylinsec.Kiran.SystemDaemon.Upgrade.xml)
+set_source_files_properties(${KCD_UPGRADE_XML}
+        PROPERTIES
+        INCLUDE kiran-system-daemon/upgrade-i.h)
 kiran_qt5_add_dbus_interface_ex(
-  KCD_UPGRADE_SRC data/com.kylinsec.Kiran.SystemDaemon.Upgrade.xml
+  KCD_UPGRADE_SRC ${KCD_UPGRADE_XML}
   kcd_upgrade_proxy KCDUpgradeProxy)
 
 add_library(${TARGET_NAME} SHARED ${UPGRADE_SRC} ${KCD_UPGRADE_SRC})

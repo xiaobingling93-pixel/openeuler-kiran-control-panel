@@ -16,17 +16,19 @@
 #include <kiran-log/qt5-log-i.h>
 #include <kiran-message-box.h>
 #include <kiran-push-button.h>
-#include <kiran-system-daemon/upgrade-i.h>
 
 #include <palette.h>
 #include <QDBusInterface>
 #include <QDBusMessage>
+#include <QDBusMetaType>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
 #include "deps-dialog.h"
+#include "history-dialog.h"
 #include "logging-category.h"
+#include "message-dialog.h"
 #include "ui_upgrade-page.h"
 #include "upgrade-interface.h"
 
@@ -45,11 +47,19 @@ UpgradePage::UpgradePage(QWidget *parent)
       ui(new Ui::UpgradePage),
       m_upgradeInterface(nullptr),
       m_depsDialog(nullptr),
-      m_upgradeStatus(UPGRADE_STATUS_LAST)
+      m_historyDialog(nullptr),
+      m_messageDialog(nullptr),
+      m_upgradeStatus(UPGRADE_STATUS_LAST),
+      m_reminderInterval(DEFAULT_REMINDER_INTERVAL)
 {
+    qRegisterMetaType<UpgradeHistory>("UpgradeHistory");
+    qDBusRegisterMetaType<UpgradeHistory>();
+
     ui->setupUi(this);
     m_upgradeInterface = new UpgradeInterface(this);
     m_depsDialog = new DepsDialog(this);
+    m_historyDialog = new HistoryDialog(this);
+    m_messageDialog = new MessageDialog(this);
 
     initUI();
 
@@ -59,6 +69,7 @@ UpgradePage::UpgradePage(QWidget *parent)
     connect(m_upgradeInterface, &UpgradeInterface::upgradeActionChanged, this, &UpgradePage::updateUpgradeAction);
     connect(m_upgradeInterface, &UpgradeInterface::upgradePercentageChanged, this, &UpgradePage::upgradePercentage);
     connect(m_upgradeInterface, &UpgradeInterface::reminderIntervalChanged, this, &UpgradePage::updateReminderInterval);
+    connect(m_upgradeInterface, &UpgradeInterface::upgradeHistoryAdded, this, &UpgradePage::prependHistoryToDialog);
 
     connect(m_depsDialog, &DepsDialog::confirmed, this, &UpgradePage::upgrade);
     connect(ui->table_pkgs, &PackageTable::packageSelectedChanged, this, &UpgradePage::updatePkgNumText);
@@ -86,6 +97,7 @@ UpgradeStatus UpgradePage::getUpgradeStatus()
 void UpgradePage::initUI()
 {
     KiranPushButton::setButtonType(ui->btn_action, KiranPushButton::BUTTON_Default);
+    KiranPushButton::setButtonType(ui->btn_show_history, KiranPushButton::BUTTON_Default);
     ui->label_icon->setPixmap(QPixmap(":/kcp-upgrade/images/upgrade.svg"));
     ui->label_install_process->setText(tr("System updating"));
 
@@ -94,11 +106,6 @@ void UpgradePage::initUI()
     QPalette palette;
     palette.setColor(QPalette::WindowText, textColor);
     ui->label_error->setPalette(palette);
-
-    // 为安装日志控件设置边框
-    ui->text_install_log->viewport()->setAutoFillBackground(false);
-    auto borderColor = DEFAULT_PALETTE()->getColor(Palette::ColorGroup::ACTIVE, Palette::ColorRole::BORDER);
-    ui->text_install_log->setStyleSheet(QString("QTextBrowser { border: 1px solid %1; border-radius: 6px; }").arg(borderColor.name()));
 
     // 默认隐藏升级布局
     ui->widget_upgrade->hide();
@@ -118,8 +125,7 @@ void UpgradePage::initUI()
         break;
     case BACKEND_STATUS_UPGRADING:
         setUpgradeStatus(UPGRADE_STATUS_UPGRADING);
-        ui->text_install_log->clear();
-        ui->text_install_log->append(m_upgradeInterface->getUpgradeLog());
+        updateUpgradeLogFromJson(m_upgradeInterface->getUpgradeLog());
         break;
     default:
         break;
@@ -133,11 +139,12 @@ void UpgradePage::initUI()
     ui->cb_reminder->addItem(tr("Weekly"), REMINDER_INTERVAL_WEEKLY);
     ui->cb_reminder->addItem(tr("Monthly"), REMINDER_INTERVAL_MONTHLY);
     ui->cb_reminder->addItem(tr("Quarterly"), REMINDER_INTERVAL_QUARTERLY);
-    auto reminderInterval = m_upgradeInterface->getReminderInterval();
-    ui->cb_reminder->setCurrentIndex(ui->cb_reminder->findData(reminderInterval));
+    m_reminderInterval = m_upgradeInterface->getReminderInterval();
+    ui->cb_reminder->setCurrentIndex(ui->cb_reminder->findData(m_reminderInterval));
 
     connect(ui->btn_action, &QPushButton::clicked, this, &UpgradePage::handleActionClicked);
     connect(ui->cb_reminder, QOverload<int>::of(&QComboBox::activated), this, &UpgradePage::setReminderInterval);
+    connect(ui->btn_show_history, &QPushButton::clicked, this, &UpgradePage::showHistoryDialog);
 }
 
 void UpgradePage::updateUI(UpgradeStatus status)
@@ -209,6 +216,39 @@ void UpgradePage::updateLatestScanTime()
     ui->label_time->setText(latestScanTime.isEmpty() ? tr("None") : latestScanTime);
 }
 
+void UpgradePage::updateUpgradeLogFromJson(const QString &upgradeLogJson)
+{
+    if (upgradeLogJson.isEmpty())
+    {
+        KLOG_WARNING(qLcUpgrade) << "Upgrade log json is empty";
+        return;
+    }
+    KLOG_DEBUG(qLcUpgrade) << "Update upgrade log from json: " << upgradeLogJson;
+
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(upgradeLogJson.toUtf8(), &error);
+    if (error.error == QJsonParseError::NoError && doc.isObject())
+    {
+        QJsonObject logObject = doc.object();
+
+        // 更新百分比
+        if (logObject.contains("percentage"))
+        {
+            upgradePercentage(logObject["percentage"].toInt());
+        }
+
+        // 更新操作日志
+        if (logObject.contains("action"))
+        {
+            ui->text_install_log->clear();
+            ui->text_install_log->append(logObject["action"].toString());
+        }
+    }
+    else
+    {
+        KLOG_WARNING(qLcUpgrade) << "Failed to parse upgrade log json " << upgradeLogJson << error.errorString();
+    }
+}
 void UpgradePage::updatePkgNumText(int selectedCount, int totalCount)
 {
     ui->label_pkg_num->setText(tr("Selected %1/ Total %2").arg(selectedCount).arg(totalCount));
@@ -216,17 +256,33 @@ void UpgradePage::updatePkgNumText(int selectedCount, int totalCount)
 
 void UpgradePage::updateReminderInterval(int interval)
 {
+    if (interval == m_reminderInterval)
+    {
+        KLOG_INFO(qLcUpgrade) << "Reminder interval is already set to " << interval << ", no need to update.";
+        return;
+    }
     auto index = ui->cb_reminder->findData(interval);
     if (index < 0)
     {
         KLOG_WARNING(qLcUpgrade) << "Invalid reminder interval: " << interval << ", resetting to default: " << DEFAULT_REMINDER_INTERVAL;
         index = ui->cb_reminder->findData(DEFAULT_REMINDER_INTERVAL);
+        m_reminderInterval = DEFAULT_REMINDER_INTERVAL;
+    }
+    else
+    {
+        m_reminderInterval = interval;
     }
     ui->cb_reminder->setCurrentIndex(index);
+    KLOG_INFO(qLcUpgrade) << "Update reminder interval to " << m_reminderInterval << " successfully";
 }
 void UpgradePage::setReminderInterval(int index)
 {
     auto reminderInterval = ui->cb_reminder->itemData(index).toInt();
+    if (reminderInterval == m_reminderInterval)
+    {
+        KLOG_INFO(qLcUpgrade) << "Reminder interval is already set to " << reminderInterval;
+        return;
+    }
     QString errorMessage;
     if (!m_upgradeInterface->setReminderInterval(reminderInterval, errorMessage))
     {
@@ -235,10 +291,10 @@ void UpgradePage::setReminderInterval(int index)
                                  KiranMessageBox::Ok);
 
         //恢复选中项为后台数据
-        reminderInterval = m_upgradeInterface->getReminderInterval();
-        ui->cb_reminder->setCurrentIndex(ui->cb_reminder->findData(reminderInterval));
+        ui->cb_reminder->setCurrentIndex(ui->cb_reminder->findData(m_reminderInterval));
         return;
     }
+    m_reminderInterval = reminderInterval;
     KLOG_INFO(qLcUpgrade) << "Set reminder interval successfully";
 }
 
@@ -316,6 +372,48 @@ void UpgradePage::handleActionClicked()
     }
 }
 
+void UpgradePage::showHistoryDialog()
+{
+    QString errorMessage;
+    auto historyList = m_upgradeInterface->getUpgradeHistory(errorMessage);
+    if (!errorMessage.isEmpty())
+    {
+        KLOG_WARNING(qLcUpgrade) << "Get upgrade history failed: " << errorMessage;
+        KiranMessageBox::message(nullptr,
+                                 tr("Error"), errorMessage,
+                                 KiranMessageBox::Ok);
+        return;
+    }
+    if (historyList.isEmpty())
+    {
+        KLOG_WARNING(qLcUpgrade) << "No upgrade history found";
+        KiranMessageBox::message(nullptr,
+                                 tr("Warning"), tr("No upgrade history found"),
+                                 KiranMessageBox::Ok);
+        return;
+    }
+    m_historyDialog->setUpgradeHistory(historyList);
+    m_historyDialog->show();
+    KLOG_DEBUG(qLcUpgrade) << "Show upgrade history dialog successfully."
+                           << "Upgrade history count: " << historyList.size();
+}
+
+void UpgradePage::prependHistoryToDialog(const UpgradeHistory &history)
+{
+    // 仅在历史记录窗口显示时刷新窗口
+    if (!m_historyDialog->isVisible())
+    {
+        return;
+    }
+
+    m_historyDialog->prependHistory(history);
+    KLOG_DEBUG(qLcUpgrade) << "Prepend history to dialog successfully."
+                           << history.upgradeTime
+                           << static_cast<int>(history.result)
+                           << history.errorMessage
+                           << history.successPackages.join(",").trimmed()
+                           << history.failedPackages.join(",").trimmed();
+}
 void UpgradePage::handleScanCompleted(bool success, const QString &errorMessage)
 {
     //无论是否扫描成功，都更新最新扫描时间
@@ -363,9 +461,7 @@ void UpgradePage::handleSolveDepsCompleted(bool success, const QString &pkgDepsI
     {
         setUpgradeStatus(UPGRADE_STATUS_SOLVING_DEPS_FAILED);
         KLOG_WARNING(qLcUpgrade) << "Solve deps failed: " << errorMessage;
-        KiranMessageBox::message(nullptr,
-                                 tr("Error"), errorMessage,
-                                 KiranMessageBox::Ok);
+        showMessageDialog(tr("Error"), errorMessage);
         return;
     }
 
@@ -405,7 +501,7 @@ void UpgradePage::handleUpgradeCompleted(bool success, const QString &errorMessa
 void UpgradePage::updateUpgradeAction(const QString &action, const QString &actionHint)
 {
     KLOG_DEBUG(qLcUpgrade) << "Update upgrade action: " << action << ", action hint: " << actionHint;
-    ui->text_install_log->append(action + (actionHint.isEmpty() ? "" : ": " + actionHint) + "\n");
+    ui->text_install_log->append(action + (actionHint.isEmpty() ? "" : ": " + actionHint));
 }
 
 void UpgradePage::upgradePercentage(uint percentage)
@@ -455,4 +551,11 @@ void UpgradePage::sendUpgradeNotify(bool success, const QString &errorMessage)
     {
         KLOG_WARNING(qLcUpgrade) << "send notify failed," << reply.errorMessage();
     }
+}
+
+void UpgradePage::showMessageDialog(const QString &title, const QString &message)
+{
+    m_messageDialog->setTitle(title);
+    m_messageDialog->setMessage(message);
+    m_messageDialog->show();
 }

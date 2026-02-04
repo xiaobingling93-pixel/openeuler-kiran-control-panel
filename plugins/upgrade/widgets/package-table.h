@@ -22,6 +22,8 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QRect>
+#include <QResizeEvent>
+#include <QShowEvent>
 #include <QSortFilterProxyModel>
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
@@ -106,11 +108,16 @@ public:
 
     void clearTable();
 
+protected:
+    void paintEvent(QPaintEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
+    void showEvent(QShowEvent *event) override;
+
 private:
-    void mouseEnter(const QModelIndex &index);
-    void paintEvent(QPaintEvent *event);
+    void updateColumnWidths();
 
 private slots:
+    void mouseEnter(const QModelIndex &index);
     void checkedAllItem(Qt::CheckState checkState);
     void updateHeaderState();
 
