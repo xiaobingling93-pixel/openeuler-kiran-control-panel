@@ -75,11 +75,6 @@ configure_file(./config.h.in ${CMAKE_BINARY_DIR}/config.h)
 
 # CMake Options
 include("options")
-if(SERVER_MODE)
-  set(ENABLE_SERVER_MODE true)
-else()
-  set(ENABLE_SERVER_MODE false)
-endif()
 
 # 内部插件直接依赖该target找到开发头文件以及内部静态库
 add_library(plugin-devel INTERFACE)
