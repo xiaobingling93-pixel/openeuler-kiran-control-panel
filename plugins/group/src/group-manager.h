@@ -48,8 +48,6 @@ public:
      */
     bool init();
 
-    GroupInterface *getInterface();
-
     /**
      * @brief  获取排序之后的用户组列表
      * @return QList<QString> 用户DBusObjectPath列表
@@ -84,5 +82,4 @@ signals:
 private:
     KSDGroupAdminProxy *m_groupAdminProxy;
     QMap<QString, QSharedPointer<KSDGroupAdminListProxy>> m_groupsMap;  // QMap<DBus对象路径,用户相关接口>
-    GroupInterface *m_groupInterface;
 };

@@ -35,7 +35,7 @@ GroupPage::GroupPage(QWidget *parent)
     : QWidget(parent)
 {
     m_workThread.start();
-    m_groupInterface = GroupManager::instance()->getInterface();
+    m_groupInterface = new GroupInterface();
     m_groupInterface->moveToThread(&m_workThread);
 
     KLOG_INFO() << "WorkThread:" << m_workThread.currentThreadId();
@@ -45,11 +45,10 @@ GroupPage::GroupPage(QWidget *parent)
 
 GroupPage::~GroupPage()
 {
-    if (m_workThread.isRunning())
-    {
-        m_workThread.quit();
-        m_workThread.wait();
-    }
+    m_workThread.quit();
+    m_workThread.wait();
+    delete m_groupInterface;
+    m_groupInterface = nullptr;
 }
 
 void GroupPage::initUI()
@@ -133,7 +132,8 @@ void GroupPage::initGroupList()
                     m_pageGroupInfo->setCurrentShowGroupPath(groupObjPath);
                     //切换到用户组信息
                     m_stackWidget->setCurrentIndex(PAGE_GROUP_INFO);
-                } });
+                }
+            });
 
     /// 创建用户组按钮
     m_createGroupItem = new QListWidgetItem(tr("Create new group"), m_tabList);
@@ -232,8 +232,10 @@ void GroupPage::initPageCreateGroup()
 void GroupPage::initPageGroupInfo()
 {
     connect(m_pageGroupInfo, &GroupInfoPage::requestAddUsersPage, [this](QString groupPath)
-            { m_stackWidget->setCurrentIndex(PAGE_ADD_USERS);
-            m_pageAddUsers->updateUsersList(groupPath); });
+            {
+                m_stackWidget->setCurrentIndex(PAGE_ADD_USERS);
+                m_pageAddUsers->updateUsersList(groupPath);
+            });
 
     // 从用户组移除用户
     connect(m_pageGroupInfo, &GroupInfoPage::requestRemoveMember,
