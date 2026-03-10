@@ -54,7 +54,7 @@
        <number>20</number>
       </property>
       <item>
-       <widget class="CustomTextBrowser" name="textBrowser">
+       <widget class="CustomPlainTextEdit" name="textBrowser">
         <property name="minimumSize">
          <size>
           <width>500</width>
@@ -196,9 +196,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>CustomTextBrowser</class>
-   <extends>QTextBrowser</extends>
-   <header location="global">widgets/custom-text-browser.h</header>
+   <class>CustomPlainTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header location="global">widgets/custom-plain-text-edit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

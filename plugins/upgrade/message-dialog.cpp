@@ -14,7 +14,7 @@
 
 #include "message-dialog.h"
 #include <QVBoxLayout>
-#include "widgets/custom-text-browser.h"
+#include "widgets/custom-plain-text-edit.h"
 
 #include <kiran-color-block.h>
 
@@ -43,8 +43,8 @@ MessageDialog::MessageDialog(QWidget *parent)
     messageLayout->setContentsMargins(0, 0, 0, 0);
     messageLayout->setSpacing(0);
 
-    // 创建 CustomTextBrowser 控件
-    m_textBrowser = new CustomTextBrowser(messageWidget);
+    // 创建 CustomPlainTextEdit 控件
+    m_textBrowser = new CustomPlainTextEdit(messageWidget);
     messageLayout->addWidget(m_textBrowser);
 }
 

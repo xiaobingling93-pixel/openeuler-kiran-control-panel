@@ -15,6 +15,7 @@
 #pragma once
 
 #include <kiran-system-daemon/upgrade-i.h>
+#include <QTimer>
 #include <QWidget>
 
 namespace Ui
@@ -78,6 +79,9 @@ private slots:
     void updateUpgradeAction(const QString &action, const QString &actionHint);
     void upgradePercentage(uint percentage);
 
+    // 定时刷新缓存的升级日志到界面
+    void flushPendingLogLines();
+
     // 刷新历史记录
     void prependHistoryToDialog(const UpgradeHistory &history);
 
@@ -121,4 +125,7 @@ private:
     QStringList m_selectedPkgIDs;
 
     int m_reminderInterval;
+
+    QTimer *m_logThrottleTimer;
+    QStringList m_pendingLogLines;
 };

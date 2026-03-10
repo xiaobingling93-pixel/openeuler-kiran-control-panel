@@ -17,7 +17,7 @@
 #include <kiran-titlebar-window.h>
 #include <QString>
 
-class CustomTextBrowser;
+class CustomPlainTextEdit;
 
 class MessageDialog : public KiranTitlebarWindow
 {
@@ -30,5 +30,5 @@ public:
     void clearMessage();
 
 private:
-    CustomTextBrowser *m_textBrowser;
+    CustomPlainTextEdit *m_textBrowser;
 };
