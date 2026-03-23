@@ -165,6 +165,23 @@ void HistoryDialog::appendHistory(const UpgradeHistory &history)
 
 void HistoryDialog::prependHistory(const UpgradeHistory &history)
 {
+    // 如果历史记录已存在(如未知状态)，则更新,否则插入到最前面.
+    for (int row = 0; row < m_tabList->count(); ++row)
+    {
+        auto oldItem = m_tabList->item(row);
+        if (oldItem && oldItem->text() == history.upgradeTime)
+        {
+            auto newItem = createHistoryItem(history);
+            m_tabList->takeItem(row);
+            delete oldItem;
+            oldItem = nullptr;
+
+            m_tabList->insertItem(row, newItem);
+            m_tabList->setCurrentItem(newItem);
+            return;
+        }
+    }
+
     auto item = createHistoryItem(history);
     m_tabList->insertItem(0, item);
 }
