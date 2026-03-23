@@ -23,6 +23,7 @@ CustomPlainTextEdit::CustomPlainTextEdit(QWidget *parent)
     : QPlainTextEdit(parent)
 {
     viewport()->setAutoFillBackground(false);
+    setReadOnly(true);
 }
 
 void CustomPlainTextEdit::paintEvent(QPaintEvent *event)
