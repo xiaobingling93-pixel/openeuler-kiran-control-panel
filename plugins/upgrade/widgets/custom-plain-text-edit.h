@@ -14,13 +14,13 @@
 
 #pragma once
 
-#include <QTextBrowser>
+#include <QPlainTextEdit>
 
-class CustomTextBrowser : public QTextBrowser
+class CustomPlainTextEdit : public QPlainTextEdit
 {
     Q_OBJECT
 public:
-    explicit CustomTextBrowser(QWidget *parent = nullptr);
+    explicit CustomPlainTextEdit(QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *event) override;

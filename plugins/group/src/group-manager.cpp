@@ -25,8 +25,7 @@
 
 GroupManager::GroupManager(QObject *parent)
     : QObject(parent),
-      m_groupAdminProxy(new KSDGroupAdminProxy(GROUPS_DBUS_NAME, GROUPS_OBJECT_PATH, QDBusConnection::systemBus())),
-      m_groupInterface(new GroupInterface())
+      m_groupAdminProxy(new KSDGroupAdminProxy(GROUPS_DBUS_NAME, GROUPS_OBJECT_PATH, QDBusConnection::systemBus()))
 {
 }
 
@@ -36,11 +35,6 @@ GroupManager::~GroupManager()
     {
         delete m_groupAdminProxy;
         m_groupAdminProxy = nullptr;
-    }
-    if (m_groupInterface)
-    {
-        delete m_groupInterface;
-        m_groupInterface = nullptr;
     }
 
     m_groupsMap.clear();
@@ -94,11 +88,6 @@ bool GroupManager::init()
         addGroupToMap(*objListIter);
     }
     return true;
-}
-
-GroupInterface *GroupManager::getInterface()
-{
-    return m_groupInterface;
 }
 
 QList<QString> GroupManager::getGroupList()

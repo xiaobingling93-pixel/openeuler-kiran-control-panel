@@ -12,22 +12,23 @@
  * Author:     yuanxing <yuanxing@kylinsec.com.cn>
  */
 
-#include "custom-text-browser.h"
+#include "custom-plain-text-edit.h"
 #include <palette.h>
 #include <QPainter>
 #include <QPainterPath>
 
 using namespace Kiran::Theme;
 
-CustomTextBrowser::CustomTextBrowser(QWidget *parent)
-    : QTextBrowser(parent)
+CustomPlainTextEdit::CustomPlainTextEdit(QWidget *parent)
+    : QPlainTextEdit(parent)
 {
     viewport()->setAutoFillBackground(false);
+    setReadOnly(true);
 }
 
-void CustomTextBrowser::paintEvent(QPaintEvent *event)
+void CustomPlainTextEdit::paintEvent(QPaintEvent *event)
 {
-    QTextBrowser::paintEvent(event);
+    QPlainTextEdit::paintEvent(event);
 
     // 获取当前主题的边框颜色
     auto kiranPalette = DEFAULT_PALETTE();

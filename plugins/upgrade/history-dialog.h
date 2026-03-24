@@ -21,7 +21,7 @@
 
 class KiranSidebarWidget;
 class KiranSidebarItem;
-class CustomTextBrowser;
+class CustomPlainTextEdit;
 class HistoryDialog : public KiranTitlebarWindow
 {
     Q_OBJECT
@@ -42,6 +42,6 @@ private:
     KiranSidebarWidget *m_tabList;
     QWidget *m_successWidget;
     QWidget *m_failedWidget;
-    CustomTextBrowser *m_successBrowser;
-    CustomTextBrowser *m_failedBrowser;
+    CustomPlainTextEdit *m_successBrowser;
+    CustomPlainTextEdit *m_failedBrowser;
 };

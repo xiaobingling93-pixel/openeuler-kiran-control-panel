@@ -13,7 +13,7 @@
  */
 
 #include "history-dialog.h"
-#include "widgets/custom-text-browser.h"
+#include "widgets/custom-plain-text-edit.h"
 
 #include <QHBoxLayout>
 #include <QLabel>
@@ -76,7 +76,7 @@ void HistoryDialog::initUI()
     auto successLayout = new QVBoxLayout(m_successWidget);
     successLayout->setSpacing(6);
     auto successLabel = new QLabel(tr("Upgraded Packages"), m_successWidget);
-    m_successBrowser = new CustomTextBrowser(m_successWidget);
+    m_successBrowser = new CustomPlainTextEdit(m_successWidget);
     successLayout->addWidget(successLabel);
     successLayout->addWidget(m_successBrowser);
     historyLayout->addWidget(m_successWidget);
@@ -86,7 +86,7 @@ void HistoryDialog::initUI()
     auto failedLayout = new QVBoxLayout(m_failedWidget);
     failedLayout->setSpacing(6);
     auto failedLabel = new QLabel(tr("Un-upgraded Packages"), m_failedWidget);
-    m_failedBrowser = new CustomTextBrowser(m_failedWidget);
+    m_failedBrowser = new CustomPlainTextEdit(m_failedWidget);
     failedLayout->addWidget(failedLabel);
     failedLayout->addWidget(m_failedBrowser);
     historyLayout->addWidget(m_failedWidget);
@@ -111,11 +111,11 @@ void HistoryDialog::updatePackageInfo()
     m_failedBrowser->clear();
     for (const auto &package : successPackages)
     {
-        m_successBrowser->append(package);
+        m_successBrowser->appendPlainText(package);
     }
     for (const auto &package : failedPackages)
     {
-        m_failedBrowser->append(package);
+        m_failedBrowser->appendPlainText(package);
     }
     m_successWidget->setVisible(successPackages.size() > 0);
     m_failedWidget->setVisible(failedPackages.size() > 0);
@@ -165,6 +165,23 @@ void HistoryDialog::appendHistory(const UpgradeHistory &history)
 
 void HistoryDialog::prependHistory(const UpgradeHistory &history)
 {
+    // 如果历史记录已存在(如未知状态)，则更新,否则插入到最前面.
+    for (int row = 0; row < m_tabList->count(); ++row)
+    {
+        auto oldItem = m_tabList->item(row);
+        if (oldItem && oldItem->text() == history.upgradeTime)
+        {
+            auto newItem = createHistoryItem(history);
+            m_tabList->takeItem(row);
+            delete oldItem;
+            oldItem = nullptr;
+
+            m_tabList->insertItem(row, newItem);
+            m_tabList->setCurrentItem(newItem);
+            return;
+        }
+    }
+
     auto item = createHistoryItem(history);
     m_tabList->insertItem(0, item);
 }

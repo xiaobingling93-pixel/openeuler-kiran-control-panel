@@ -42,6 +42,8 @@ using namespace Kiran::Theme;
 #define ACTION_BUTTON_TEXT_UPGRADE QObject::tr("Upgrade")
 #define ACTION_BUTTON_TEXT_RETRY QObject::tr("Retry")
 
+#define LOG_THROTTLE_MS 200
+
 UpgradePage::UpgradePage(QWidget *parent)
     : QWidget(parent),
       ui(new Ui::UpgradePage),
@@ -62,6 +64,11 @@ UpgradePage::UpgradePage(QWidget *parent)
     m_messageDialog = new MessageDialog(this);
 
     initUI();
+
+    // 延迟处理更新日志定时器
+    m_logThrottleTimer = new QTimer(this);
+    m_logThrottleTimer->setSingleShot(true);
+    connect(m_logThrottleTimer, &QTimer::timeout, this, &UpgradePage::flushPendingLogLines);
 
     connect(m_upgradeInterface, &UpgradeInterface::scanCompleted, this, &UpgradePage::handleScanCompleted);
     connect(m_upgradeInterface, &UpgradeInterface::solveDepsCompleted, this, &UpgradePage::handleSolveDepsCompleted);
@@ -241,7 +248,7 @@ void UpgradePage::updateUpgradeLogFromJson(const QString &upgradeLogJson)
         if (logObject.contains("action"))
         {
             ui->text_install_log->clear();
-            ui->text_install_log->append(logObject["action"].toString());
+            ui->text_install_log->appendPlainText(logObject["action"].toString());
         }
     }
     else
@@ -478,9 +485,12 @@ void UpgradePage::handleSolveDepsCompleted(bool success, const QString &pkgDepsI
 
 void UpgradePage::handleUpgradeCompleted(bool success, const QString &errorMessage)
 {
+    m_logThrottleTimer->stop();
+    flushPendingLogLines();
+
     if (!errorMessage.isEmpty())
     {
-        ui->text_install_log->append(tr("Upgrade failed: ") + errorMessage);
+        ui->text_install_log->appendPlainText(tr("Upgrade failed: ") + errorMessage);
         setUpgradeStatus(UPGRADE_STATUS_UPGRADE_FAILED);
         sendUpgradeNotify(false, errorMessage);
         KLOG_WARNING(qLcUpgrade) << "Upgrade failed: " << errorMessage;
@@ -492,7 +502,7 @@ void UpgradePage::handleUpgradeCompleted(bool success, const QString &errorMessa
     setUpgradeStatus(UPGRADE_STATUS_UPGRADE_SUCCESS);
 
     //记录本次升级情况
-    ui->text_install_log->append(tr("Upgrade completed successfully"));
+    ui->text_install_log->appendPlainText(tr("Upgrade completed successfully"));
 
     // 发送升级成功消息弹窗
     sendUpgradeNotify(true, "");
@@ -501,7 +511,24 @@ void UpgradePage::handleUpgradeCompleted(bool success, const QString &errorMessa
 void UpgradePage::updateUpgradeAction(const QString &action, const QString &actionHint)
 {
     KLOG_DEBUG(qLcUpgrade) << "Update upgrade action: " << action << ", action hint: " << actionHint;
-    ui->text_install_log->append(action + (actionHint.isEmpty() ? "" : ": " + actionHint));
+    m_pendingLogLines.append(action + (actionHint.isEmpty() ? "" : ": " + actionHint));
+    if (!m_logThrottleTimer->isActive())
+    {
+        m_logThrottleTimer->start(LOG_THROTTLE_MS);
+    }
+}
+
+void UpgradePage::flushPendingLogLines()
+{
+    if (m_pendingLogLines.isEmpty())
+    {
+        return;
+    }
+    for (const QString &line : m_pendingLogLines)
+    {
+        ui->text_install_log->appendPlainText(line);
+    }
+    m_pendingLogLines.clear();
 }
 
 void UpgradePage::upgradePercentage(uint percentage)
@@ -514,6 +541,8 @@ void UpgradePage::upgrade()
 {
     // 更新界面
     setUpgradeStatus(UPGRADE_STATUS_UPGRADING);
+    m_logThrottleTimer->stop();
+    m_pendingLogLines.clear();
     ui->text_install_log->clear();
 
     //调用后端接口进行升级
