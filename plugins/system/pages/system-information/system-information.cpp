@@ -127,10 +127,10 @@ bool SystemInformation::initUI()
     {
         ui->widget_EULA->hide();
     }
-    if (m_licenseAgreement->getLicenseFile().isEmpty())
-    {
-        ui->widget_version_license->hide();
-    }
+
+    // #126107 商业版本不能以开源许可证声明，不再显示本版协议
+    ui->widget_version_license->hide();
+
 #ifdef SYSTEM_PRIVACY_POLICY
     if (m_licenseAgreement->getPrivacyFile().isEmpty())
     {
