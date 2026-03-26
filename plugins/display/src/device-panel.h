@@ -45,5 +45,7 @@ private slots:
     void on_pushButton_identifying_clicked();
 
 private:
+    void updateTransformButtonsVisible(QString monitorPath);
+
     Ui::DevicePanel *ui;
 };

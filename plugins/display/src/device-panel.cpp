@@ -17,6 +17,8 @@
 #include "screen-identifying.h"
 #include "ui_device-panel.h"
 
+#include <QDBusArgument>
+#include <QDBusMetaType>
 #include <palette.h>
 #include <QPainter>
 #include <QPainterPath>
@@ -24,9 +26,32 @@
 
 using namespace Kiran::Theme;
 
+namespace
+{
+quint16 getTransformSupportMask(const QVariant &reflectsProperty)
+{
+    if (!reflectsProperty.isValid() || reflectsProperty.isNull()) return 0;
+
+    quint16List transforms;
+    if (reflectsProperty.userType() == qMetaTypeId<QDBusArgument>())
+        transforms = qdbus_cast<quint16List>(reflectsProperty.value<QDBusArgument>());
+    else
+        transforms = reflectsProperty.value<quint16List>();
+
+    quint16 supportMask = 0;
+    foreach (quint16 transform, transforms)
+    {
+        supportMask |= transform;
+    }
+    return supportMask;
+}
+}  // namespace
+
 DevicePanel::DevicePanel(QWidget *parent) : QFrame(parent),
                                             ui(new Ui::DevicePanel)
 {
+    qDBusRegisterMetaType<quint16List>();
+
     ui->setupUi(this);
     setAccessibleName("DevicePanel");
 
@@ -39,6 +64,7 @@ DevicePanel::DevicePanel(QWidget *parent) : QFrame(parent),
 
     connect(ui->contain, &DevicePanelWidget::screenItemChecked, this, [this](QString monitorPath)
             {
+                updateTransformButtonsVisible(monitorPath);
                 ui->pushButton_horizontal->setChecked(ui->contain->getHorizontalDisplayReflectType());
                 ui->pushButton_vertical->setChecked(ui->contain->getVerticalDisplayReflectType());
                 emit screenItemChecked(monitorPath); });
@@ -56,6 +82,26 @@ DevicePanel::DevicePanel(QWidget *parent) : QFrame(parent),
 DevicePanel::~DevicePanel()
 {
     delete ui;
+}
+
+void DevicePanel::updateTransformButtonsVisible(QString monitorPath)
+{
+    if (monitorPath == KIRAN_SCREEN_COPY_MODE_MONITOR_PATH)
+    {
+        QStringList monitors = DisplayConfig::instance()->listMonitors();
+        monitorPath = monitors.isEmpty() ? QString() : monitors.first();
+    }
+
+    quint16 supportMask = 0;
+    if (!monitorPath.isEmpty())
+    {
+        supportMask = getTransformSupportMask(DBusInterface::MonitorProperty(monitorPath, "reflects"));
+    }
+
+    ui->pushButton_left->setVisible(supportMask & DISPLAY_ROTATION_90);
+    ui->pushButton_right->setVisible(supportMask & DISPLAY_ROTATION_270);
+    ui->pushButton_horizontal->setVisible(supportMask & DISPLAY_REFLECT_X);
+    ui->pushButton_vertical->setVisible(supportMask & DISPLAY_REFLECT_Y);
 }
 
 void DevicePanel::changeItemDisabled(const bool &disabled)
