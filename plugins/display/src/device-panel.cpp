@@ -92,16 +92,18 @@ void DevicePanel::updateTransformButtonsVisible(QString monitorPath)
         monitorPath = monitors.isEmpty() ? QString() : monitors.first();
     }
 
-    quint16 supportMask = 0;
+    quint16 rotationSupportMask = 0;
+    quint16 reflectSupportMask = 0;
     if (!monitorPath.isEmpty())
     {
-        supportMask = getTransformSupportMask(DBusInterface::MonitorProperty(monitorPath, "reflects"));
+        rotationSupportMask = getTransformSupportMask(DBusInterface::MonitorProperty(monitorPath, "rotations"));
+        reflectSupportMask = getTransformSupportMask(DBusInterface::MonitorProperty(monitorPath, "reflects"));
     }
 
-    ui->pushButton_left->setVisible(supportMask & DISPLAY_ROTATION_90);
-    ui->pushButton_right->setVisible(supportMask & DISPLAY_ROTATION_270);
-    ui->pushButton_horizontal->setVisible(supportMask & DISPLAY_REFLECT_X);
-    ui->pushButton_vertical->setVisible(supportMask & DISPLAY_REFLECT_Y);
+    ui->pushButton_left->setVisible(rotationSupportMask & DISPLAY_ROTATION_90);
+    ui->pushButton_right->setVisible(rotationSupportMask & DISPLAY_ROTATION_270);
+    ui->pushButton_horizontal->setVisible(reflectSupportMask & DISPLAY_REFLECT_X);
+    ui->pushButton_vertical->setVisible(reflectSupportMask & DISPLAY_REFLECT_Y);
 }
 
 void DevicePanel::changeItemDisabled(const bool &disabled)
