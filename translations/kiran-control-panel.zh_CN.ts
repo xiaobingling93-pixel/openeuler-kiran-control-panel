@@ -2437,7 +2437,7 @@
     <message>
         <location filename="../plugins/network/pages/ethernet/wired-settings-item.cpp" line="127"/>
         <source>Device unavailable</source>
-        <translation type="unfinished"></translation>
+        <translation>设备不可用</translation>
     </message>
     <message>
         <location filename="../plugins/network/pages/ethernet/wired-settings-item.cpp" line="137"/>
