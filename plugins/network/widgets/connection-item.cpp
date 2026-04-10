@@ -181,11 +181,6 @@ void ConnectionItem::dbusNotifyFailed(OpeartionType type, const QString &connect
     auto desc = tr(typesBodyMap[type].toStdString().c_str());
     desc = desc.arg(connectionName);
 
-    if( !resason.isEmpty() )
-    {
-        desc = QString("%1,%2").arg(desc,resason);
-    }
-
     QDBusInterface notifyInterface(NOTIFICATION_SERVICE,
                                    NOTIFICATION_PATH,
                                    NOTIFICATION_INTERFACE,
